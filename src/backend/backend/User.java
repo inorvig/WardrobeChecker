@@ -1,3 +1,5 @@
+package backend; 
+
 public interface User{
 
 	public Collection<Wardrobe> getWardrobes();

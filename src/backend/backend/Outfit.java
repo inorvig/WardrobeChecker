@@ -1,3 +1,5 @@
+package backend; 
+
 public interface Outfit{
 
 	//The outfit's name

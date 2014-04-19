@@ -1,3 +1,5 @@
+package backend; 
+
 public interface Wardrobe{
 
 	public String getName();
