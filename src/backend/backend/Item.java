@@ -17,4 +17,6 @@ public interface Item{
 	public Collection<Outfit> whichOutfits();
 
 	public void moveItem(Wardrobe destination);
+	
+	public String getImagePath();
 }
