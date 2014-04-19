@@ -10,7 +10,7 @@ public interface User{
 
 	public int howManyOutfits();
 
-	public void addItem(Item item, Collection<String> tags);
+	public void addItem(Item item);
 
 	public void saveOutfit(Outfit outfit);
 
