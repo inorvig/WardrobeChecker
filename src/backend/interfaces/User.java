@@ -16,8 +16,8 @@ public interface User{
 
 	public void saveOutfit(Outfit outfit);
 
-	public Item removeItem();
+	public void removeItem(Item item);
 
-	public Collection<Outfit> search(Collection<String> searchTerms);
+	public Collection<Item> search(String[] searchTerms);
 
 }
