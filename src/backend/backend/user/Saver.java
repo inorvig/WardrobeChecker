@@ -9,9 +9,10 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import backend.interfaces.Item;
+import backend.interfaces.Savable;
 import backend.interfaces.User;
 
-public class Saver{
+public class Saver implements Savable{
 
 	private AppUser user;
 	private String name;
