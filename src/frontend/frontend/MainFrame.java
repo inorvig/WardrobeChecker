@@ -19,6 +19,8 @@ import java.awt.event.*;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 
 /**
@@ -63,6 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
         ResultsPanel = new javax.swing.JScrollPane();
         logoPanel = new javax.swing.JPanel();
         OutfitPanel = new OutfitPanel();
+        final WardrobePanel WardrobePanel = new WardrobePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -211,7 +214,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         RightPanel.setLayout(RightPanelLayout);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        final javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
@@ -219,17 +222,37 @@ public class MainFrame extends javax.swing.JFrame {
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(OutfitPanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+        			.addComponent(WardrobePanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
         			.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addComponent(LeftPanel, GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
         		.addComponent(OutfitPanel, GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+        		.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
         		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 402, Short.MAX_VALUE))
         );
+        //WardrobePanel.setVisible(false);
         getContentPane().setLayout(layout);
+        
+        myWardrobes.addItemListener(new ItemListener() {
+        	public void itemStateChanged(ItemEvent e) {
+        		if (myWardrobes.isSelected()){
+        			OutfitPanel.setVisible(false);
+        			WardrobePanel.setVisible(true);
+        			pack();
+        			System.out.println("selected");
+        		} else {
+        			OutfitPanel.setVisible(true);
+        			WardrobePanel.setVisible(false);
+        			pack();
+        			System.out.println("deselected");
+        		}
+        	}
+        });
 
         bindingGroup.bind();
 
