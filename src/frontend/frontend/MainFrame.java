@@ -29,6 +29,29 @@ import javax.swing.event.ChangeEvent;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+	
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel LeftPanel;
+    private javax.swing.JScrollPane ResultsPanel;
+    private javax.swing.JPanel RightPanel;
+    private javax.swing.JToggleButton addNewItem;
+    private javax.swing.JToggleButton favoriteOutfits;
+    private javax.swing.JToggleButton helpButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel OutfitPanel;
+    private WardrobePanel WardrobePanel;
+    private NewItemPanel newItemPanel;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel logoPanel;
+    private javax.swing.JToggleButton myWardrobes;
+    private javax.swing.JButton newWindow;
+    private javax.swing.JToggleButton searchWeb;
+    private javax.swing.JPanel weatherAPI;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+    private JTextField txtSearch;
+    
     /**
 	 * 
 	 */
@@ -65,7 +88,8 @@ public class MainFrame extends javax.swing.JFrame {
         ResultsPanel = new javax.swing.JScrollPane();
         logoPanel = new javax.swing.JPanel();
         OutfitPanel = new OutfitPanel();
-        final WardrobePanel WardrobePanel = new WardrobePanel();
+        newItemPanel = new NewItemPanel();
+        WardrobePanel = new WardrobePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,8 +210,9 @@ public class MainFrame extends javax.swing.JFrame {
         );
         logoPanel.setLayout(logoPanelLayout);
         
-        textField = new JTextField();
-        textField.setColumns(10);
+        txtSearch = new JTextField();
+        txtSearch.setText("Search");
+        txtSearch.setColumns(10);
 
         javax.swing.GroupLayout RightPanelLayout = new javax.swing.GroupLayout(RightPanel);
         RightPanelLayout.setHorizontalGroup(
@@ -198,7 +223,7 @@ public class MainFrame extends javax.swing.JFrame {
         			.addComponent(logoPanel, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         		.addGroup(RightPanelLayout.createSequentialGroup()
-        			.addComponent(textField, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+        			.addComponent(txtSearch, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
         			.addContainerGap())
         );
         RightPanelLayout.setVerticalGroup(
@@ -206,13 +231,15 @@ public class MainFrame extends javax.swing.JFrame {
         		.addGroup(RightPanelLayout.createSequentialGroup()
         			.addComponent(weatherAPI, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addGap(18)
         			.addComponent(ResultsPanel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         			.addComponent(logoPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
         RightPanel.setLayout(RightPanelLayout);
+        
+        
 
         final javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -223,19 +250,26 @@ public class MainFrame extends javax.swing.JFrame {
         			.addComponent(OutfitPanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
         			.addComponent(WardrobePanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(newItemPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.LEADING)
-        		.addComponent(LeftPanel, GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-        		.addComponent(OutfitPanel, GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-        		.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-        		.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addComponent(LeftPanel, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+        		.addComponent(OutfitPanel, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+        		.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+        		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 402, Short.MAX_VALUE))
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(newItemPanel, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+        			.addContainerGap())
         );
-        //WardrobePanel.setVisible(false);
+        WardrobePanel.setVisible(false);
+        newItemPanel.setVisible(false);
         getContentPane().setLayout(layout);
         
         myWardrobes.addItemListener(new ItemListener() {
@@ -253,6 +287,24 @@ public class MainFrame extends javax.swing.JFrame {
         		}
         	}
         });
+        
+        addNewItem.addItemListener(new ItemListener() {
+        	public void itemStateChanged(ItemEvent e) {
+        		if (addNewItem.isSelected()){
+        			OutfitPanel.setVisible(false);
+        			newItemPanel.setVisible(true);
+        			pack();
+        			System.out.println("selected");
+        		} else {
+        			OutfitPanel.setVisible(true);
+        			newItemPanel.setVisible(false);
+        			pack();
+        			System.out.println("deselected");
+        		}
+        	}
+        });
+        
+        
 
         bindingGroup.bind();
 
@@ -270,6 +322,8 @@ public class MainFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+    	
+    	
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -310,22 +364,4 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel LeftPanel;
-    private javax.swing.JScrollPane ResultsPanel;
-    private javax.swing.JPanel RightPanel;
-    private javax.swing.JToggleButton addNewItem;
-    private javax.swing.JToggleButton favoriteOutfits;
-    private javax.swing.JToggleButton helpButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel OutfitPanel;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel logoPanel;
-    private javax.swing.JToggleButton myWardrobes;
-    private javax.swing.JButton newWindow;
-    private javax.swing.JToggleButton searchWeb;
-    private javax.swing.JPanel weatherAPI;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
-    private JTextField textField;
 }
