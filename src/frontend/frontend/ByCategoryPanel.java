@@ -2,7 +2,11 @@ package frontend;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import java.awt.GridLayout;
+import java.awt.Image;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
@@ -15,9 +19,14 @@ public class ByCategoryPanel extends JPanel {
 		
 		setLayout(new GridLayout(0, 3, 0, 0));
 		
-		JButton btnNewButton = new JButton("Dresses");
-		btnNewButton.setIcon(new ImageIcon("../wardrobe/images/dresses.gif"));
-		add(btnNewButton);
+		JButton btnDresses = new JButton("Dresses");
+		ImageIcon icon = new ImageIcon("../wardrobe/images/dresses.gif");
+        Image img = icon.getImage();
+        Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+		btnDresses.setIcon(new ImageIcon(newimg));
+		btnDresses.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnDresses.setHorizontalTextPosition(SwingConstants.CENTER);
+		add(btnDresses);
 		
 		JButton btnNewButton_3 = new JButton("New button");
 		add(btnNewButton_3);
