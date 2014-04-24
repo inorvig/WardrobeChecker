@@ -36,6 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel LeftPanel;
     private javax.swing.JScrollPane ResultsPanel;
     private javax.swing.JPanel RightPanel;
+    private javax.swing.ButtonGroup toggleGroup;
     private javax.swing.JToggleButton addNewItem;
     private javax.swing.JToggleButton favoriteOutfits;
     private javax.swing.JToggleButton helpButton;
@@ -78,9 +79,13 @@ public class MainFrame extends javax.swing.JFrame {
         LeftPanel = new javax.swing.JPanel();
         newWindow = new javax.swing.JButton();
         newWindow.setIcon(new ImageIcon("../wardrobe/images/plus.gif"));
+        toggleGroup = new javax.swing.ButtonGroup();
         myWardrobes = new javax.swing.JToggleButton();
         addNewItem = new javax.swing.JToggleButton();
         favoriteOutfits = new javax.swing.JToggleButton();
+        toggleGroup.add(myWardrobes);
+        toggleGroup.add(addNewItem);
+        toggleGroup.add(favoriteOutfits);
         searchWeb = new javax.swing.JToggleButton();
         helpButton = new javax.swing.JToggleButton();
         helpButton.setFont(new Font("Dialog", Font.BOLD, 12));
