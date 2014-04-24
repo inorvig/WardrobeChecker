@@ -40,8 +40,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton favoriteOutfits;
     private javax.swing.JToggleButton helpButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JPanel OutfitPanel;
+    private OutfitDesignPanel OutfitDesignPanel;
     private WardrobePanel WardrobePanel;
+    private OutfitsPanel OutfitsPanel;
     private NewItemPanel newItemPanel;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel logoPanel;
@@ -87,9 +88,10 @@ public class MainFrame extends javax.swing.JFrame {
         weatherAPI = new javax.swing.JPanel();
         ResultsPanel = new javax.swing.JScrollPane();
         logoPanel = new javax.swing.JPanel();
-        OutfitPanel = new OutfitPanel();
+        OutfitDesignPanel = new OutfitDesignPanel();
         newItemPanel = new NewItemPanel();
         WardrobePanel = new WardrobePanel();
+        OutfitsPanel = new OutfitsPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -247,43 +249,51 @@ public class MainFrame extends javax.swing.JFrame {
         		.addGroup(layout.createSequentialGroup()
         			.addComponent(LeftPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(OutfitPanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-        			.addComponent(WardrobePanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(OutfitDesignPanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
+        			.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(newItemPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(OutfitsPanel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
-        	layout.createParallelGroup(Alignment.TRAILING)
-        		.addComponent(LeftPanel, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-        		.addComponent(OutfitPanel, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-        		.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addComponent(LeftPanel, GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+        		.addComponent(OutfitDesignPanel, GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
-        			.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 402, Short.MAX_VALUE))
-        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 424, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(newItemPanel, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+        			.addContainerGap())
+        		.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+        		.addGroup(layout.createSequentialGroup()
+        			.addComponent(OutfitsPanel, GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
         			.addContainerGap())
         );
         WardrobePanel.setVisible(false);
         newItemPanel.setVisible(false);
+        OutfitsPanel.setVisible(false);
         getContentPane().setLayout(layout);
         
         myWardrobes.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
         		if (myWardrobes.isSelected()){
-        			OutfitPanel.setVisible(false);
+        			OutfitDesignPanel.setVisible(false);
+        			newItemPanel.setVisible(false);
+        			OutfitsPanel.setVisible(false);
         			WardrobePanel.setVisible(true);
         			pack();
-        			System.out.println("selected");
+        			System.out.println("wardrobes selected");
         		} else {
-        			OutfitPanel.setVisible(true);
         			WardrobePanel.setVisible(false);
+        			OutfitDesignPanel.setVisible(true);
         			pack();
-        			System.out.println("deselected");
+        			System.out.println("wardrobes deselected");
         		}
         	}
         });
@@ -291,15 +301,35 @@ public class MainFrame extends javax.swing.JFrame {
         addNewItem.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
         		if (addNewItem.isSelected()){
-        			OutfitPanel.setVisible(false);
+        			OutfitDesignPanel.setVisible(false);
+        			WardrobePanel.setVisible(false);
+        			OutfitsPanel.setVisible(false);
         			newItemPanel.setVisible(true);
         			pack();
-        			System.out.println("selected");
+        			System.out.println("addNewItem selected");
         		} else {
-        			OutfitPanel.setVisible(true);
         			newItemPanel.setVisible(false);
+        			OutfitDesignPanel.setVisible(true);
         			pack();
-        			System.out.println("deselected");
+        			System.out.println("addNewItem deselected");
+        		}
+        	}
+        });
+        
+        favoriteOutfits.addItemListener(new ItemListener() {
+        	public void itemStateChanged(ItemEvent e) {
+        		if (favoriteOutfits.isSelected()){
+        			OutfitDesignPanel.setVisible(false);
+        			WardrobePanel.setVisible(false);
+        			newItemPanel.setVisible(false);
+        			OutfitsPanel.setVisible(true);
+        			pack();
+        			System.out.println("addNewItem selected");
+        		} else {
+        			OutfitsPanel.setVisible(false);
+        			OutfitDesignPanel.setVisible(true);
+        			pack();
+        			System.out.println("addNewItem deselected");
         		}
         	}
         });

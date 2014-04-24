@@ -11,6 +11,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class NewItemPanel extends JPanel {
 	private JTextField txtCategory;
@@ -21,6 +23,10 @@ public class NewItemPanel extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("New Item");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBackground(Color.BLACK);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setOpaque(true);
 		add(lblNewLabel, BorderLayout.NORTH);
 		
 		JPanel panel = new JPanel();
@@ -40,8 +46,12 @@ public class NewItemPanel extends JPanel {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		JLabel lblN = new JLabel("Name");
-		panel.add(lblN, "1, 2, right, default");
+		JLabel lblName = new JLabel("Name");
+		lblName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblName.setForeground(Color.WHITE);
+		lblName.setBackground(Color.BLACK);
+		lblName.setOpaque(true);
+		panel.add(lblName, "1, 2, fill, default");
 		
 		String[] wardrobeNames = {"Home Closet","Spring Break"};
 		
@@ -51,12 +61,20 @@ public class NewItemPanel extends JPanel {
 		txtName.setColumns(10);
 		
 		JLabel lblWardrobe = new JLabel("Wardrobe");
-		panel.add(lblWardrobe, "1, 4, right, default");
+		lblWardrobe.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWardrobe.setBackground(Color.BLACK);
+		lblWardrobe.setForeground(Color.WHITE);
+		lblWardrobe.setOpaque(true);
+		panel.add(lblWardrobe, "1, 4, fill, default");
 		JComboBox comboBox = new JComboBox(wardrobeNames);
 		panel.add(comboBox, "2, 4, left, top");
 		
 		JLabel lblCategory = new JLabel("Category");
-		panel.add(lblCategory, "1, 6, right, default");
+		lblCategory.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCategory.setBackground(Color.BLACK);
+		lblCategory.setForeground(Color.WHITE);
+		lblCategory.setOpaque(true);
+		panel.add(lblCategory, "1, 6, fill, default");
 		
 		txtCategory = new JTextField();
 		txtCategory.setText("Category");
@@ -64,7 +82,11 @@ public class NewItemPanel extends JPanel {
 		txtCategory.setColumns(10);
 		
 		JLabel lblColor = new JLabel("Color");
-		panel.add(lblColor, "1, 8, right, default");
+		lblColor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblColor.setBackground(Color.BLACK);
+		lblColor.setForeground(Color.WHITE);
+		lblColor.setOpaque(true);
+		panel.add(lblColor, "1, 8, fill, default");
 		
 		txtColor = new JTextField();
 		txtColor.setText("Color");

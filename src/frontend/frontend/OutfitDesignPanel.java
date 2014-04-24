@@ -4,12 +4,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class OutfitPanel extends JPanel {
+public class OutfitDesignPanel extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public OutfitPanel() {
+	public OutfitDesignPanel() {
 
 		JButton jButton1 = new javax.swing.JButton();
         JTextField jTextField1 = new javax.swing.JTextField();

@@ -6,6 +6,7 @@ import javax.swing.JTabbedPane;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class WardrobePanel extends JPanel {
 
@@ -16,9 +17,15 @@ public class WardrobePanel extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblMyWardrobes = new JLabel("My Wardrobes");
+		lblMyWardrobes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMyWardrobes.setForeground(Color.WHITE);
+		lblMyWardrobes.setBackground(Color.BLACK);
+		lblMyWardrobes.setOpaque(true);
 		add(lblMyWardrobes, BorderLayout.PAGE_START);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(Color.BLACK);
+		tabbedPane.setForeground(Color.WHITE);
 		tabbedPane.addTab("All Items", new AllItemsPanel());
 		tabbedPane.setForegroundAt(0, Color.WHITE);
 		tabbedPane.setBackgroundAt(0, Color.BLACK);
