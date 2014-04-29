@@ -1,6 +1,7 @@
 package backend.user;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -8,7 +9,7 @@ import backend.interfaces.Item;
 import backend.interfaces.Outfit;
 import backend.interfaces.Wardrobe;
 
-public class AppItem implements Item {
+public class AppItem implements Item, Serializable {
 	
 	private Integer score = 0;
 	String name;

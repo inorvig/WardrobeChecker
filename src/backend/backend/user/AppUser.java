@@ -1,5 +1,6 @@
 package backend.user;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -12,7 +13,7 @@ import backend.interfaces.Outfit;
 import backend.interfaces.User;
 import backend.interfaces.Wardrobe;
 
-public class AppUser implements User{
+public class AppUser implements User, Serializable{
 	
 	String username;
 	ArrayList<Wardrobe> wardrobeList = new ArrayList<Wardrobe>();
