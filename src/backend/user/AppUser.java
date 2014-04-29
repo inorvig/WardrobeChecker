@@ -189,7 +189,28 @@ public class AppUser implements User{
 		}
 		
 		
+		String[] toSearch2 = new String[]{"green", "fits like a sack", "fits like a glove"};
 		
+
+		ArrayList<Item> result2 = (ArrayList<Item>) a.search(toSearch2);
+		
+		System.out.println(result2.size());
+		
+		for (int i=0; i<result2.size();i++){
+			System.out.println(result2.get(i).getName());
+		}
+		
+		
+		String[] toSearch3 = new String[]{"green", "fits like a sack", "fits like a glove", "shirt"};
+		
+
+		ArrayList<Item> result3 = (ArrayList<Item>) a.search(toSearch3);
+		
+		System.out.println(result3.size());
+		
+		for (int i=0; i<result3.size();i++){
+			System.out.println(result3.get(i).getName());
+		}
 		
 		
 		
