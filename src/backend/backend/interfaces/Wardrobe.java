@@ -10,5 +10,5 @@ public interface Wardrobe{
 
 	public void addItem(Item toAdd);
 
-	public Item removeItem();
+	public boolean removeItem(Item toRem);
 }
