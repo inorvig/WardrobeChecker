@@ -10,10 +10,12 @@ import java.util.TreeSet;
 
 import app.backend.interfaces.Item;
 import app.backend.interfaces.Outfit;
+import app.backend.interfaces.TagSuggesting;
 import app.backend.interfaces.User;
 import app.backend.interfaces.Wardrobe;
 
 public class AppUser implements User, Serializable{
+	
 	
 	String username;
 	ArrayList<Wardrobe> wardrobeList = new ArrayList<Wardrobe>();
@@ -21,10 +23,11 @@ public class AppUser implements User, Serializable{
 	HashMap<Item, Integer> allItems = new HashMap<Item, Integer>(); //list of tags instead of integer
 	//HashSet<String> allTags = new HashSet<String>();
 	HashMap<String, HashSet<Item>> tagsMap = new HashMap<String, HashSet<Item>>(); 
-	
+	TagSuggesting tagsuggester;
 	
 	public AppUser(String name){
 		this.username = name;
+		this.tagsuggester = new StubTagger();
 	}
 
 	@Override
@@ -218,6 +221,11 @@ public class AppUser implements User, Serializable{
 		
 		
 		
+	}
+
+	@Override
+	public Collection<String> suggestTags(String imagePath) {
+		return tagsuggester.suggestTags(imagePath);
 	}
 	
 	

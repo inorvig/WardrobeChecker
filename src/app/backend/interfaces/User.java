@@ -19,5 +19,7 @@ public interface User{
 	public void removeItem(Item item);
 
 	public Collection<Item> search(String[] searchTerms);
+	
+	public Collection<String> suggestTags(String imagePath);
 
 }
