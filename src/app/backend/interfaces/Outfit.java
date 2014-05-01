@@ -1,4 +1,4 @@
-package backend.interfaces; 
+package app.backend.interfaces; 
 
 import java.util.Collection;
 

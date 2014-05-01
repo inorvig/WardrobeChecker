@@ -1,4 +1,4 @@
-package backend.interfaces;
+package app.backend.interfaces;
 
 import java.awt.Color;
 import java.util.Collection;

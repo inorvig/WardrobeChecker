@@ -1,4 +1,4 @@
-package frontend;
+package app.frontend;
 
 import java.awt.LayoutManager;
 

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package frontend;
+package app.frontend;
 import javax.swing.AbstractButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;

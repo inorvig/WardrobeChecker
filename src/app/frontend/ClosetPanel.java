@@ -1,4 +1,4 @@
-package frontend;
+package app.frontend;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

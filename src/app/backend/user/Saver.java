@@ -1,4 +1,4 @@
-package backend.user;
+package app.backend.user;
 
 import java.io.File;
 import java.io.FileInputStream;

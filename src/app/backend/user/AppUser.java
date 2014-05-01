@@ -1,4 +1,4 @@
-package backend.user;
+package app.backend.user;
 
 import java.io.Serializable;
 import java.util.ArrayList;
