@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 
-import backend.interfaces.Item;
-import backend.interfaces.Outfit;
-import backend.interfaces.User;
-import backend.interfaces.Wardrobe;
+import app.backend.interfaces.Item;
+import app.backend.interfaces.Outfit;
+import app.backend.interfaces.User;
+import app.backend.interfaces.Wardrobe;
 
 public class AppUser implements User, Serializable{
 	

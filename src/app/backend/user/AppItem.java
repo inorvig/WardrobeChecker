@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
-import backend.interfaces.Item;
-import backend.interfaces.Outfit;
-import backend.interfaces.Wardrobe;
+import app.backend.interfaces.Item;
+import app.backend.interfaces.Outfit;
+import app.backend.interfaces.Wardrobe;
 
 public class AppItem implements Item, Serializable {
 	
