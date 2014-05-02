@@ -22,7 +22,7 @@ public class AppUser implements User, Serializable {
 	String username;
 	ArrayList<Wardrobe> wardrobeList = new ArrayList<Wardrobe>();
 	ArrayList<Outfit> outfitList = new ArrayList<Outfit>();
-	HashMap<Item, Integer> allItems = new HashMap<Item, Integer>(); // list of
+	HashSet<Item> allItems = new HashSet<Item>(); // set instead of map
 																	// tags
 																	// instead
 																	// of
@@ -85,29 +85,23 @@ public class AppUser implements User, Serializable {
 	}
 
 	private void addItem(Item item) {
-		// add to map of all items for count
-		Integer count = 1;
-		if (allItems.containsKey(item))
-			count = allItems.get(item) + 1;
-
-		allItems.put(item, count);
-		System.out.println("There are now items in allItems");
-
-		// add items tags
+		allItems.add(item);
+		
+		//add items tags
 		HashSet<String> tagsToAdd = item.getTags();
+		
+		for (String tag: tagsToAdd){
 
-		for (String tag : tagsToAdd) {
-
-			if (tagsMap.containsKey(tag)) {
+			if (tagsMap.containsKey(tag)){
 				tagsMap.get(tag).add(item);
-
-			} else {
+				
+			}
+			else{
 				HashSet<Item> itemSet = new HashSet<Item>();
 				itemSet.add(item);
 				tagsMap.put(tag, itemSet);
-			}
+			}	
 		}
-
 	}
 
 	@Override
