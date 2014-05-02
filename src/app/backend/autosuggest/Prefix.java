@@ -33,7 +33,7 @@ public class Prefix implements Feature {
     /**
      * method to build set of results using prefix matching
      */
-    public void resultSet(TreeSet<String> results, String word){ // returns the inputted hashset of all results found with given prefix in trie
+    public void resultSet(Set<String> results, String word){ // returns the inputted hashset of all results found with given prefix in trie
 	    if (prefixOn){
 	    	Node currNode = trie.getRoot();
 	        char[] charArray = word.toCharArray();
@@ -62,7 +62,7 @@ public class Prefix implements Feature {
      * @param results : set to be populated
      * @param word: the word being searched against
      */
-    public void getResults(Node node, TreeSet<String> results, String word){
+    public void getResults(Node node, Set<String> results, String word){
         if (node.isLastLetter()) 
             results.add(word); // if the node that is passed to helper method marks the end of a word, include that word in the results set
         Node currNode = node;

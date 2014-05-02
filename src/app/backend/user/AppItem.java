@@ -48,36 +48,54 @@ public class AppItem implements Item, Serializable {
 	@Override
 	public void addTag(String newTag) {
 		
-		this.tags.add(newTag);
 		HashMap<String, HashSet<Item>> parentTagMap = this.owner.tagsMap;
 		
-		if (parentTagMap.get(newTag) == null){
-			HashSet<Item> itemSet = new HashSet<Item>();
-			itemSet.add(this);
-			parentTagMap.put(newTag, itemSet);
+		String fullTag = newTag.trim();
+		String[] wordArray =  fullTag.split(" ");
+		
+		if (wordArray.length >= 1){
+			for (int i=0; i<wordArray.length ; i++){
+				String word = wordArray[i];
+				word = word.toLowerCase().trim();
+				this.tags.add(word);
+				
+				if (parentTagMap.get(word) == null){
+					HashSet<Item> itemSet = new HashSet<Item>();
+					itemSet.add(this);
+					parentTagMap.put(word, itemSet);
+				}
+				else{
+					parentTagMap.get(word).add(this);
+				}
+				
+				
+
+			}
 		}
-		else{
-			parentTagMap.get(newTag).add(this);
-		}
+		
+
+		
+		
+		
 		
 		//INSERT INTO TRIE UNIGRAM BIGRAM ETC...
 	}
 
 	@Override
 	public void removeTag(String tagToRemove) {
-		
-		this.tags.remove(tagToRemove);
-		HashMap<String, HashSet<Item>> parentTagMap = this.owner.tagsMap;
-		
-		if (parentTagMap.get(tagToRemove) != null){
-			parentTagMap.get(tagToRemove).remove(this);
-			
-			if (parentTagMap.get(tagToRemove).size() == 0){
-				parentTagMap.remove(tagToRemove);
-			}
-		}
-		
-		//REMOVE FROM TRIE UNIGRAM BIGRAM ETC...
+//		
+//		this.tags.remove(tagToRemove);
+//		HashMap<String, HashSet<Item>> parentTagMap = this.owner.tagsMap;
+//		
+//		if (parentTagMap.get(tagToRemove) != null){
+//			parentTagMap.get(tagToRemove).remove(this);
+//			
+//			if (parentTagMap.get(tagToRemove).size() == 0){
+//				parentTagMap.remove(tagToRemove);
+//			}
+//		}
+//		
+//		//REMOVE FROM TRIE UNIGRAM BIGRAM ETC...
 		
 		
 	}

@@ -12,14 +12,14 @@ import java.util.*;
 public class LED implements Feature {
     
     private int led; // the levenshtein edit distance
-    private HashMap<String,Integer> wordMap; 
+    private HashSet<String> wordMap; 
     public boolean ledOn; // boolean to mark if LED search has been turned on by user
     
     /**
      * constructor method
      * @param unigramMap: save space by reusing the unigram map built in main class
      */
-    public LED(HashMap<String,Integer> unigramMap){
+    public LED(HashSet<String> unigramMap){
         this.led = 0;
         this.wordMap = unigramMap;
         this.ledOn = false;
@@ -43,9 +43,9 @@ public class LED implements Feature {
     /**
      * method to build set of results using led calculation
      */
-    public void resultSet(TreeSet<String> results, String word){
+    public void resultSet(Set<String> results, String word){
         if (ledOn){
-	        for(String entry : wordMap.keySet()){ // iterating through keyset of all words in corpus
+	        for(String entry : wordMap){ // iterating through keyset of all words in corpus
 	            if (distance(word, entry)<=led) // finding all words in corpus that are less than or equal to led away from input word
 	                results.add(entry);
 	        }
