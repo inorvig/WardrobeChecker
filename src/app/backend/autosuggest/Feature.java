@@ -13,16 +13,7 @@ import java.util.*;
  * @author sohumchatterjee
  */
 public interface Feature {
-	public void turnOnFeature(); // turns on functionality of feature
 
-	public void resultSet(TreeSet<String> resultList, String word); // method is
-																	// passed in
-																	// a set and
-																	// a word
-																	// and using
-																	// feature,
-																	// returns
-																	// the set
-																	// with
-																	// additions
+    public void turnOnFeature(); //turns on functionality of feature
+    public void resultSet(Set<String> resultList, String word); //method is passed in a set and a word and using feature, returns the set with additions
 }
