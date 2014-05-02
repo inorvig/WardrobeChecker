@@ -1,10 +1,12 @@
 package app.backend.user;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import app.backend.interfaces.Category;
 import app.backend.interfaces.Item;
+import app.backend.interfaces.Wardrobe;
 
 public class AppCategory implements Category, Serializable {
 
@@ -32,6 +34,16 @@ public class AppCategory implements Category, Serializable {
 	@Override
 	public Collection<Item> getItems() {
 		return items;
+	}
+	
+	public Collection<Item> getItemsinWardrobe(Wardrobe wardrobe){
+		Collection<Item> result = new ArrayList<Item>();
+		for (Item i: items){
+			if (i.whichWardrobe() == wardrobe){
+				result.add(i);
+			}
+		}
+		return result;
 	}
 
 	@Override

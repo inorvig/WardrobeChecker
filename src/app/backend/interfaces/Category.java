@@ -9,4 +9,6 @@ public interface Category {
 	public String getImagePath();
 
 	public Collection<Item> getItems();
+	
+	public Collection<Item> getItemsinWardrobe(Wardrobe wardrobe);
 }
