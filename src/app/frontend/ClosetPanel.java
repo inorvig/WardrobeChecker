@@ -13,15 +13,16 @@ public class ClosetPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ClosetPanel() {
+		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblMyWardrobes = new JLabel("Home Closet");
 		lblMyWardrobes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMyWardrobes.setForeground(Color.WHITE);
 		lblMyWardrobes.setBackground(Color.BLACK);
 		lblMyWardrobes.setOpaque(true);
 		add(lblMyWardrobes, BorderLayout.PAGE_START);
-		
+
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBackground(Color.BLACK);
 		tabbedPane.setForeground(Color.WHITE);

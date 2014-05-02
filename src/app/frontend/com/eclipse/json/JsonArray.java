@@ -1,5 +1,4 @@
-package com.eclipse.json;
-
+package app.frontend.com.eclipse.json;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -8,39 +7,42 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-
 /**
- * Represents a JSON array. A JSON array is a sequence of elements, which are JSON values (see
- * {@link JsonValue}).
+ * Represents a JSON array. A JSON array is a sequence of elements, which are
+ * JSON values (see {@link JsonValue}).
  * <p>
- * Elements can be added using one of the different <code>add(...)</code> methods. Accepted values
- * are either instances of {@link JsonValue}, or strings, primitive numbers, or boolean values.
+ * Elements can be added using one of the different <code>add(...)</code>
+ * methods. Accepted values are either instances of {@link JsonValue}, or
+ * strings, primitive numbers, or boolean values.
  * </p>
  * <p>
- * Elements can be accessed by their index using {@link #get(int)}. This class also supports
- * iterating over the elements in document order using an {@link #iterator()} or an enhanced for
- * loop:
+ * Elements can be accessed by their index using {@link #get(int)}. This class
+ * also supports iterating over the elements in document order using an
+ * {@link #iterator()} or an enhanced for loop:
  * </p>
- *
+ * 
  * <pre>
  * for( JsonValue value : jsonArray ) {
  * ...
  * }
  * </pre>
  * <p>
- * A n equivalent {@link List} can be obtained from the method {@link #values()}.
+ * A n equivalent {@link List} can be obtained from the method {@link #values()}
+ * .
  * </p>
  * <p>
- * Note that this class is <strong>not thread-safe</strong>. If multiple threads access a
- * <code>JsonArray</code> instance concurrently, while at least one of these threads modifies the
- * contents of this array, access to the instance must be synchronized externally. Failure to do so
- * may lead to an inconsistent state.
+ * Note that this class is <strong>not thread-safe</strong>. If multiple threads
+ * access a <code>JsonArray</code> instance concurrently, while at least one of
+ * these threads modifies the contents of this array, access to the instance
+ * must be synchronized externally. Failure to do so may lead to an inconsistent
+ * state.
  * </p>
  * <p>
  * This class is <strong>not supposed to be extended</strong> by clients.
  * </p>
  */
-@SuppressWarnings( "serial" ) // use default serial UID
+@SuppressWarnings("serial")
+// use default serial UID
 public class JsonArray extends JsonValue implements Iterable<JsonValue> {
 
 	private final List<JsonValue> values;
@@ -54,151 +56,158 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
 
 	/**
 	 * Creates a new JsonArray with the contents of the specified JSON array.
-	 *
+	 * 
 	 * @param array
-	 * the JsonArray to get the initial contents from, must not be <code>null</code>
+	 *            the JsonArray to get the initial contents from, must not be
+	 *            <code>null</code>
 	 */
-	public JsonArray( JsonArray array ) {
-		this( array, false );
+	public JsonArray(JsonArray array) {
+		this(array, false);
 	}
 
-	private JsonArray( JsonArray array, boolean unmodifiable ) {
-		if( array == null ) {
-			throw new NullPointerException( "array is null" );
+	private JsonArray(JsonArray array, boolean unmodifiable) {
+		if (array == null) {
+			throw new NullPointerException("array is null");
 		}
-		if( unmodifiable ) {
-			values = Collections.unmodifiableList( array.values );
+		if (unmodifiable) {
+			values = Collections.unmodifiableList(array.values);
 		} else {
-			values = new ArrayList<JsonValue>( array.values );
+			values = new ArrayList<JsonValue>(array.values);
 		}
 	}
 
 	/**
 	 * Reads a JSON array from the given reader.
-	 *
+	 * 
 	 * @param reader
-	 * the reader to read the JSON array from
+	 *            the reader to read the JSON array from
 	 * @return the JSON array that has been read
 	 * @throws IOException
-	 * if an I/O error occurs in the reader
+	 *             if an I/O error occurs in the reader
 	 * @throws ParseException
-	 * if the input is not valid JSON
+	 *             if the input is not valid JSON
 	 * @throws UnsupportedOperationException
-	 * if the input does not contain a JSON array
+	 *             if the input does not contain a JSON array
 	 */
-	public static JsonArray readFrom( Reader reader ) throws IOException {
-		return JsonValue.readFrom( reader ).asArray();
+	public static JsonArray readFrom(Reader reader) throws IOException {
+		return JsonValue.readFrom(reader).asArray();
 	}
 
 	/**
 	 * Reads a JSON array from the given string.
-	 *
+	 * 
 	 * @param string
-	 * the string that contains the JSON array
+	 *            the string that contains the JSON array
 	 * @return the JSON array that has been read
 	 * @throws ParseException
-	 * if the input is not valid JSON
+	 *             if the input is not valid JSON
 	 * @throws UnsupportedOperationException
-	 * if the input does not contain a JSON array
+	 *             if the input does not contain a JSON array
 	 */
-	public static JsonArray readFrom( String string ) {
-		return JsonValue.readFrom( string ).asArray();
+	public static JsonArray readFrom(String string) {
+		return JsonValue.readFrom(string).asArray();
 	}
 
 	/**
-	 * Returns an unmodifiable wrapper for the specified JsonArray. This method allows to provide
-	 * read-only access to a JsonArray.
+	 * Returns an unmodifiable wrapper for the specified JsonArray. This method
+	 * allows to provide read-only access to a JsonArray.
 	 * <p>
-	 * The returned JsonArray is backed by the given array and reflects subsequent changes. Attempts
-	 * to modify the returned JsonArray result in an <code>UnsupportedOperationException</code>.
+	 * The returned JsonArray is backed by the given array and reflects
+	 * subsequent changes. Attempts to modify the returned JsonArray result in
+	 * an <code>UnsupportedOperationException</code>.
 	 * </p>
-	 *
+	 * 
 	 * @param array
-	 * the JsonArray for which an unmodifiable JsonArray is to be returned
+	 *            the JsonArray for which an unmodifiable JsonArray is to be
+	 *            returned
 	 * @return an unmodifiable view of the specified JsonArray
 	 */
-	public static JsonArray unmodifiableArray( JsonArray array ) {
-		return new JsonArray( array, true );
+	public static JsonArray unmodifiableArray(JsonArray array) {
+		return new JsonArray(array, true);
 	}
 
 	/**
-	 * Adds the JSON representation of the specified <code>long</code> value to the array.
-	 *
+	 * Adds the JSON representation of the specified <code>long</code> value to
+	 * the array.
+	 * 
 	 * @param value
-	 * the value to add to the array
+	 *            the value to add to the array
 	 * @return the array itself, to enable method chaining
 	 */
-	public JsonArray add( long value ) {
-		values.add( valueOf( value ) );
+	public JsonArray add(long value) {
+		values.add(valueOf(value));
 		return this;
 	}
 
 	/**
-	 * Adds the JSON representation of the specified <code>float</code> value to the array.
-	 *
+	 * Adds the JSON representation of the specified <code>float</code> value to
+	 * the array.
+	 * 
 	 * @param value
-	 * the value to add to the array
+	 *            the value to add to the array
 	 * @return the array itself, to enable method chaining
 	 */
-	public JsonArray add( float value ) {
-		values.add( valueOf( value ) );
+	public JsonArray add(float value) {
+		values.add(valueOf(value));
 		return this;
 	}
 
 	/**
-	 * Adds the JSON representation of the specified <code>double</code> value to the array.
-	 *
+	 * Adds the JSON representation of the specified <code>double</code> value
+	 * to the array.
+	 * 
 	 * @param value
-	 * the value to add to the array
+	 *            the value to add to the array
 	 * @return the array itself, to enable method chaining
 	 */
-	public JsonArray add( double value ) {
-		values.add( valueOf( value ) );
+	public JsonArray add(double value) {
+		values.add(valueOf(value));
 		return this;
 	}
 
 	/**
-	 * Adds the JSON representation of the specified <code>boolean</code> value to the array.
-	 *
+	 * Adds the JSON representation of the specified <code>boolean</code> value
+	 * to the array.
+	 * 
 	 * @param value
-	 * the value to add to the array
+	 *            the value to add to the array
 	 * @return the array itself, to enable method chaining
 	 */
-	public JsonArray add( boolean value ) {
-		values.add( valueOf( value ) );
+	public JsonArray add(boolean value) {
+		values.add(valueOf(value));
 		return this;
 	}
 
 	/**
 	 * Adds the JSON representation of the specified string to the array.
-	 *
+	 * 
 	 * @param value
-	 * the string to add to the array
+	 *            the string to add to the array
 	 * @return the array itself, to enable method chaining
 	 */
-	public JsonArray add( String value ) {
-		values.add( valueOf( value ) );
+	public JsonArray add(String value) {
+		values.add(valueOf(value));
 		return this;
 	}
 
 	/**
 	 * Adds the specified JsonValue to the array.
-	 *
+	 * 
 	 * @param value
-	 * the JsonValue to add to the array
+	 *            the JsonValue to add to the array
 	 * @return the array itself, to enable method chaining
 	 */
-	public JsonArray add( JsonValue value ) {
-		if( value == null ) {
-			throw new NullPointerException( "value is null" );
+	public JsonArray add(JsonValue value) {
+		if (value == null) {
+			throw new NullPointerException("value is null");
 		}
-		values.add( value );
+		values.add(value);
 		return this;
 	}
 
 	/**
 	 * Returns the number of elements in this array.
-	 *
+	 * 
 	 * @return the number of elements in this array
 	 */
 	public int size() {
@@ -207,7 +216,7 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
 
 	/**
 	 * Returns <code>true</code> if this array contains no elements.
-	 *
+	 * 
 	 * @return <code>true</code> if this array contains no elements
 	 */
 	public boolean isEmpty() {
@@ -216,47 +225,49 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
 
 	/**
 	 * Returns the value of the element at the specified position in this array.
-	 *
+	 * 
 	 * @param index
-	 * the index of the array element to return
+	 *            the index of the array element to return
 	 * @return the value of the element at the specified position
 	 * @throws IndexOutOfBoundsException
-	 * if the index is out of range (index &lt; 0 || index &gt;= size()).
+	 *             if the index is out of range (index &lt; 0 || index &gt;=
+	 *             size()).
 	 */
-	public JsonValue get( int index ) {
-		return values.get( index );
+	public JsonValue get(int index) {
+		return values.get(index);
 	}
 
 	/**
-	 * Returns a list of the values in this array in document order. The returned list is backed by
-	 * this array and will reflect subsequent changes. It cannot be used to modify this array.
-	 * Attempts to modify the returned list will result in an exception.
-	 *
+	 * Returns a list of the values in this array in document order. The
+	 * returned list is backed by this array and will reflect subsequent
+	 * changes. It cannot be used to modify this array. Attempts to modify the
+	 * returned list will result in an exception.
+	 * 
 	 * @return a list of the values in this array
 	 */
 	public List<JsonValue> values() {
-		return Collections.unmodifiableList( values );
+		return Collections.unmodifiableList(values);
 	}
 
 	/**
-	 * Returns an iterator over the values of this array in document order. The returned iterator
-	 * cannot be used to modify this array.
-	 *
+	 * Returns an iterator over the values of this array in document order. The
+	 * returned iterator cannot be used to modify this array.
+	 * 
 	 * @return an iterator over the values of this array
 	 */
 	public Iterator<JsonValue> iterator() {
-		return Collections.unmodifiableList( values ).iterator();
+		return Collections.unmodifiableList(values).iterator();
 	}
 
 	@Override
-	protected void write( JsonWriter writer ) throws IOException {
+	protected void write(JsonWriter writer) throws IOException {
 		writer.writeBeginArray();
 		int length = values.size();
-		for( int i = 0; i < length; i++ ) {
-			if( i != 0 ) {
+		for (int i = 0; i < length; i++) {
+			if (i != 0) {
 				writer.writeArrayValueSeparator();
 			}
-			values.get( i ).write( writer );
+			values.get(i).write(writer);
 		}
 		writer.writeEndArray();
 	}
@@ -277,18 +288,18 @@ public class JsonArray extends JsonValue implements Iterable<JsonValue> {
 	}
 
 	@Override
-	public boolean equals( Object object ) {
-		if( this == object ) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
-		if( object == null ) {
+		if (object == null) {
 			return false;
 		}
-		if( getClass() != object.getClass() ) {
+		if (getClass() != object.getClass()) {
 			return false;
 		}
-		JsonArray other = (JsonArray)object;
-		return values.equals( other.values );
+		JsonArray other = (JsonArray) object;
+		return values.equals(other.values);
 	}
 
 }

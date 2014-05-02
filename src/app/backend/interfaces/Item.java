@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.Collection;
 import java.util.HashSet;
 
-public interface Item extends Comparable{
+public interface Item extends Comparable {
 
 	public String getName();
 
@@ -21,12 +21,12 @@ public interface Item extends Comparable{
 	public Collection<Outfit> whichOutfits();
 
 	public void moveItem(Wardrobe destination);
-	
+
 	public String getImagePath();
-	
+
 	public Integer getScore();
-	
+
 	public void incrementScore();
-	
+
 	public void resetScore();
 }

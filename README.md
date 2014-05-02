@@ -1,6 +1,8 @@
 WardrobeChecker
 ===============
 TODO:
-+ Design each page
-+ Verify what each page needs from backend interfaces
-+ 
++ Add new category
++ Add wardrobe
++ Display items
++ Display categories
++ Display wardrobes

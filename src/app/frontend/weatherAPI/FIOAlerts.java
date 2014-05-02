@@ -1,53 +1,53 @@
-package weatherAPI;
+package app.frontend.weatherAPI;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
-import com.eclipsesource.json.JsonValue;
+import app.frontend.com.eclipse.json.*;
 
 public class FIOAlerts {
 
-	private Alert [] alert;
+	private Alert[] alert;
 	private String timezone;
 	private int numberofalerts;
 
 	public FIOAlerts(ForecastIO fio) {
 
-		if(fio.hasAlerts()){
+		if (fio.hasAlerts()) {
 			alert = new Alert[fio.getAlerts().size()];
 			timezone = fio.getTimezone();
 			numberofalerts = fio.getAlerts().size();
 			init(fio);
 		}
 
-
 	}
 
-	private void init(ForecastIO fio){
+	private void init(ForecastIO fio) {
 
 		JsonValue jsonvalue;
 
-		if(fio.hasAlerts()){
+		if (fio.hasAlerts()) {
 
-			for(int i=0; i < NumberOfAlerts(); i++ ){
+			for (int i = 0; i < NumberOfAlerts(); i++) {
 				alert[i] = new Alert();
 				jsonvalue = fio.getAlerts().get(i);
-				alert[i].setTitle( jsonvalue.asObject().get("title").asString() );
-				alert[i].setTime( jsonvalue.asObject().get("time").asLong() );
-				alert[i].setExpire( jsonvalue.asObject().get("expires").asLong() );
-				alert[i].setDescription( jsonvalue.asObject().get("description").asString() );
-				alert[i].setUri( jsonvalue.asObject().get("uri").asString() );
+				alert[i].setTitle(jsonvalue.asObject().get("title").asString());
+				alert[i].setTime(jsonvalue.asObject().get("time").asLong());
+				alert[i].setExpire(jsonvalue.asObject().get("expires").asLong());
+				alert[i].setDescription(jsonvalue.asObject().get("description")
+						.asString());
+				alert[i].setUri(jsonvalue.asObject().get("uri").asString());
 			}
 
 		}
 	}
 
-
 	/**
-	 * Returns the number os alerts in the reply.
-	 * For more information refer to the API Docs:
-	 * <a href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * Returns the number os alerts in the reply. For more information refer to
+	 * the API Docs: <a
+	 * href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * 
 	 * @return int which is the number os alerts
 	 */
 	public int NumberOfAlerts() {
@@ -55,87 +55,96 @@ public class FIOAlerts {
 	}
 
 	/**
-	 * Returns the title for the alert. Returns null if index doesn't exist.
-	 * For more information refer to the API Docs:
-	 * <a href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * Returns the title for the alert. Returns null if index doesn't exist. For
+	 * more information refer to the API Docs: <a
+	 * href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * 
 	 * @return the title for the alert. Null if index doesn't exist.
 	 */
-	public String getAlertTitle(int index){
-		if(index < 0 || index >= alert.length )
+	public String getAlertTitle(int index) {
+		if (index < 0 || index >= alert.length)
 			return null;
 		else
 			return alert[index].getTitle();
 	}
 
 	/**
-	 * Returns the time for the alert. Returns null if index doesn't exist.
-	 * For more information refer to the API Docs:
-	 * <a href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * Returns the time for the alert. Returns null if index doesn't exist. For
+	 * more information refer to the API Docs: <a
+	 * href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * 
 	 * @return the time for the alert. Null if index doesn't exist.
 	 */
-	public String getAlertTime(int index){
-		if(index < 0 || index >= alert.length )
+	public String getAlertTime(int index) {
+		if (index < 0 || index >= alert.length)
 			return null;
 		else {
 			String out = "";
 			DateFormat dfm = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 			dfm.setTimeZone(TimeZone.getTimeZone(timezone));
-			out = dfm.format( Long.parseLong(String.valueOf( alert[index].getTime() * 1000 )));
+			out = dfm.format(Long.parseLong(String.valueOf(alert[index]
+					.getTime() * 1000)));
 			return out;
 		}
 	}
 
 	/**
-	 * Returns the expiration time for the alert. Returns null if index doesn't exist.
-	 * For more information refer to the API Docs:
-	 * <a href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * Returns the expiration time for the alert. Returns null if index doesn't
+	 * exist. For more information refer to the API Docs: <a
+	 * href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * 
 	 * @return the expiration time for the alert. Null if index doesn't exist.
 	 */
-	public String getAlertExpireTime(int index){
-		if(index < 0 || index >= alert.length )
+	public String getAlertExpireTime(int index) {
+		if (index < 0 || index >= alert.length)
 			return null;
 		else {
 			String out = "";
 			DateFormat dfm = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 			dfm.setTimeZone(TimeZone.getTimeZone(timezone));
-			out = dfm.format( Long.parseLong(String.valueOf( alert[index].getExpire() * 1000 )));
+			out = dfm.format(Long.parseLong(String.valueOf(alert[index]
+					.getExpire() * 1000)));
 			return out;
 		}
 	}
 
 	/**
-	 * Returns the description for the alert. Returns null if index doesn't exist.
-	 * For more information refer to the API Docs:
-	 * <a href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * Returns the description for the alert. Returns null if index doesn't
+	 * exist. For more information refer to the API Docs: <a
+	 * href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * 
 	 * @return the description for the alert. Null if index doesn't exist.
 	 */
-	public String getAlertDescription(int index){
-		if(index < 0 || index >= alert.length )
+	public String getAlertDescription(int index) {
+		if (index < 0 || index >= alert.length)
 			return null;
 		else
 			return alert[index].getDescription();
 	}
 
 	/**
-	 * Returns the uri for the alert. Returns null if index doesn't exist.
-	 * For more information refer to the API Docs:
-	 * <a href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * Returns the uri for the alert. Returns null if index doesn't exist. For
+	 * more information refer to the API Docs: <a
+	 * href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * 
 	 * @return the uri for the alert. Null if index doesn't exist.
 	 */
-	public String getAlertURI(int index){
-		if(index < 0 || index >= alert.length )
+	public String getAlertURI(int index) {
+		if (index < 0 || index >= alert.length)
 			return null;
 		else
 			return alert[index].getUri();
 	}
 
 	/**
-	 * Returns a string with all the alert information. Returns null if index doesn't exist.
-	 * For more information refer to the API Docs:
-	 * <a href="https://developer.forecast.io">https://developer.forecast.io</a>
-	 * @return string with all the alert information. Null if index doesn't exist.
+	 * Returns a string with all the alert information. Returns null if index
+	 * doesn't exist. For more information refer to the API Docs: <a
+	 * href="https://developer.forecast.io">https://developer.forecast.io</a>
+	 * 
+	 * @return string with all the alert information. Null if index doesn't
+	 *         exist.
 	 */
-	public String getAlert(int index){
+	public String getAlert(int index) {
 
 		StringBuilder sb = new StringBuilder("");
 
@@ -154,7 +163,7 @@ public class FIOAlerts {
 
 	}
 
-}//public class - end
+}// public class - end
 
 class Alert {
 
@@ -164,7 +173,7 @@ class Alert {
 	private String description;
 	private String uri;
 
-	public Alert(){
+	public Alert() {
 		setTitle("");
 		setTime(0L);
 		setExpire(0L);
@@ -212,4 +221,4 @@ class Alert {
 		this.uri = uri;
 	}
 
-}//class Alert - end
+}// class Alert - end

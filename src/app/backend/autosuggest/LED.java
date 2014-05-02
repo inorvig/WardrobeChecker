@@ -3,13 +3,15 @@
  * and open the template in the editor.
  */
 package app.backend.autosuggest;
+
 import java.util.*;
 
 /**
- *
+ * 
  * @author sohumchatterjee
  */
 public class LED implements Feature {
+
     
     private int led; // the levenshtein edit distance
     private HashSet<String> wordMap; 
@@ -99,4 +101,5 @@ public class LED implements Feature {
         if (c < min) min = c;
         return min;
     }
+
 }

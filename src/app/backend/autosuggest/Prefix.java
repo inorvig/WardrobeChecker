@@ -3,10 +3,11 @@
  * and open the template in the editor.
  */
 package app.backend.autosuggest;
+
 import java.util.*;
 
 /**
- *
+ * 
  * @author sohumchatterjee
  */
 public class Prefix implements Feature {
@@ -76,4 +77,5 @@ public class Prefix implements Feature {
    }
     
     
+
 }

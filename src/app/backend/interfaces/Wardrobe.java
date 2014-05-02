@@ -1,8 +1,10 @@
-package app.backend.interfaces; 
+package app.backend.interfaces;
 
 import java.util.Collection;
 
-public interface Wardrobe{
+import app.backend.user.AppWardrobe.WardrobeType;
+
+public interface Wardrobe {
 
 	public String getName();
 
@@ -11,4 +13,6 @@ public interface Wardrobe{
 	public void addItem(Item toAdd);
 
 	public boolean removeItem(Item toRem);
+	
+	public WardrobeType getType();
 }

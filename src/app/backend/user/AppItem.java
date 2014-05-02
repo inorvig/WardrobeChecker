@@ -8,27 +8,29 @@ import java.util.HashSet;
 
 import app.backend.interfaces.Item;
 import app.backend.interfaces.Outfit;
+import app.backend.interfaces.User;
 import app.backend.interfaces.Wardrobe;
 
 public class AppItem implements Item, Serializable {
-	
+
 	Integer score = 0;
 	String name;
 	HashSet<String> tags;
 	String imagePath;
 	AppUser owner;
-	AppWardrobe wardrobe;
-	
-	public AppItem(AppUser user, AppWardrobe wardrobe, String name, String imagePath){
-		
-		this.owner = user; //owner object passed
-		this.wardrobe = wardrobe; //parent wardrobe object passed
-		this.name = name; //unique identifier name
-		this.imagePath = imagePath; //image path
-		this.tags = new HashSet<String>(); //initialize set of tags
-		
+	Wardrobe wardrobe;
+
+	public AppItem(AppUser user, Wardrobe wardrobeToPut, String name,
+			String imagePath) {
+
+		this.owner = user; // owner object passed
+		this.wardrobe = wardrobeToPut; // parent wardrobe object passed
+		this.name = name; // unique identifier name
+		this.imagePath = imagePath; // image path
+		this.tags = new HashSet<String>(); // initialize set of tags
+
 	}
-	
+
 	@Override
 	public String getName() {
 		return this.name;
@@ -39,7 +41,7 @@ public class AppItem implements Item, Serializable {
 		return this.tags;
 	}
 
-	//CV STUFF ----
+	// CV STUFF ----
 	@Override
 	public Color whichColor() {
 		return null;
@@ -79,25 +81,26 @@ public class AppItem implements Item, Serializable {
 		
 		
 		//INSERT INTO TRIE UNIGRAM BIGRAM ETC...
+
 	}
 
 	@Override
 	public void removeTag(String tagToRemove) {
-//		
+
+//
 //		this.tags.remove(tagToRemove);
 //		HashMap<String, HashSet<Item>> parentTagMap = this.owner.tagsMap;
-//		
-//		if (parentTagMap.get(tagToRemove) != null){
+//
+//		if (parentTagMap.get(tagToRemove) != null) {
 //			parentTagMap.get(tagToRemove).remove(this);
-//			
-//			if (parentTagMap.get(tagToRemove).size() == 0){
+//
+//			if (parentTagMap.get(tagToRemove).size() == 0) {
 //				parentTagMap.remove(tagToRemove);
 //			}
 //		}
-//		
-//		//REMOVE FROM TRIE UNIGRAM BIGRAM ETC...
-		
-		
+//
+//		// REMOVE FROM TRIE UNIGRAM BIGRAM ETC...
+
 	}
 
 	@Override
@@ -114,18 +117,19 @@ public class AppItem implements Item, Serializable {
 	@Override
 	public void moveItem(Wardrobe destination) {
 		this.wardrobe.removeItem(this);
-		
-		//check if destination has the same user -- if not remove all tags etc from the users datastructures
+
+		// check if destination has the same user -- if not remove all tags etc
+		// from the users datastructures
 		destination.addItem(this);
-		
+
 	}
 
-	
-	public boolean resetImagePath(String newImage){
-		//check if newImage exists
+	public boolean resetImagePath(String newImage) {
+		// check if newImage exists
 		this.imagePath = newImage;
 		return true;
 	}
+
 	@Override
 	public String getImagePath() {
 		return this.imagePath;
@@ -134,24 +138,24 @@ public class AppItem implements Item, Serializable {
 	@Override
 	public void resetScore() {
 		this.score = 0;
-		
+
 	}
 
 	@Override
 	public void incrementScore() {
-		this.score +=1;
-		
+		this.score += 1;
+
 	}
 
 	@Override
 	public Integer getScore() {
-		
+
 		return this.score;
 	}
 
 	@Override
 	public int compareTo(Object that) {
-		return -1*this.score.compareTo(((Item) that).getScore());
+		return -1 * this.score.compareTo(((Item) that).getScore());
 	}
 
 }

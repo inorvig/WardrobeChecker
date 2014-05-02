@@ -6,11 +6,12 @@ package app.backend.autosuggest;
 
 import java.util.*;
 
-
 /**
  * implements interface feature
+ * 
  * @author sohumchatterjee
  */
+
 public class Whitespace implements Feature{
     
     private Set<String> wordMap; 
@@ -54,5 +55,5 @@ public class Whitespace implements Feature{
 	    }
     }
 
-	
+
 }
