@@ -30,5 +30,7 @@ public interface User {
 	public Collection<Item> search(String[] searchTerms);
 
 	public Collection<String> suggestTags(String imagePath);
+	
+	public Collection<Item> allItems();
 
 }

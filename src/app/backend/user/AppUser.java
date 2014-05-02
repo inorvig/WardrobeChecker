@@ -34,6 +34,7 @@ public class AppUser implements User, Serializable {
 	public AppUser(String name) {
 		this.username = name;
 		this.tagsuggester = new StubTagger();
+		wardrobeList.add(new AppWardrobe("Home"));
 	}
 
 	@Override
@@ -64,6 +65,9 @@ public class AppUser implements User, Serializable {
 				wardrobeToPut = i;
 			}
 		}
+		if (wardrobeToPut == null){
+			wardrobeToPut = wardrobeList.get(0);
+		}
 		ArrayList<String> allTags = tags;
 		tags.add(color);
 		Item toAdd = new AppItem(this, wardrobeToPut, name, imagePath);
@@ -81,6 +85,7 @@ public class AppUser implements User, Serializable {
 			count = allItems.get(item) + 1;
 
 		allItems.put(item, count);
+		System.out.println("There are now items in allItems");
 
 		// add items tags
 		HashSet<String> tagsToAdd = item.getTags();
@@ -260,6 +265,11 @@ public class AppUser implements User, Serializable {
 	@Override
 	public Collection<Category> getCategories() {
 		return allCategories;
+	}
+
+	@Override
+	public Collection<Item> allItems() {
+		return allItems.keySet();
 	}
 
 }
