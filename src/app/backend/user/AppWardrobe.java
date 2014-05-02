@@ -10,10 +10,20 @@ import app.backend.interfaces.Wardrobe;
 public class AppWardrobe implements Wardrobe, Serializable {
 	String name;
 	HashSet<Item> items;
+	WardrobeType type;
+	
+	public static enum WardrobeType{
+		CLOSET, SUITCASE;
+	}
 
-	public AppWardrobe(String name) {
+	public AppWardrobe(String name, WardrobeType type) {
 		this.name = name;
 		this.items = new HashSet<Item>();
+		this.type = type;
+	}
+	
+	public WardrobeType getType(){
+		return type;
 	}
 
 	@Override
