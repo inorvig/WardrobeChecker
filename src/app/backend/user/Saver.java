@@ -28,11 +28,13 @@ public class Saver implements Savable {
 				in.close();
 				fileIn.close();
 			} catch (IOException e) {
-				System.out
-						.println("ERROR: error while reading input file of saved data: "
+				System.out.println("ERROR: error while reading input file of saved data: "
 								+ e.getMessage());
+				user = new AppUser(name);
+				
 			} catch (ClassNotFoundException e) {
 				System.out.println("ERROR: Not an AppUser file");
+				user = new AppUser(name);
 			}
 		} else {
 			user = new AppUser(name);

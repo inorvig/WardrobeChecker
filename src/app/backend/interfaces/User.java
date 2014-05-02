@@ -1,5 +1,6 @@
 package app.backend.interfaces;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public interface User {
 	public Collection<Category> getCategories();
 
 	public void addItem(String name, String Wardrobe, String category,
-			String color, String imagePath, List<String> tags);
+			String color, String imagePath, ArrayList<String> tags);
 
 	public void saveOutfit(Outfit outfit);
 

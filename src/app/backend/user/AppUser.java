@@ -57,14 +57,14 @@ public class AppUser implements User, Serializable {
 	}
 
 	public void addItem(String name, String wardrobe, String category,
-			String color, String imagePath, List<String> tags) {
+			String color, String imagePath, ArrayList<String> tags) {
 		Wardrobe wardrobeToPut = null;
 		for (Wardrobe i : wardrobeList) {
 			if (i.getName().equals(wardrobe)) {
 				wardrobeToPut = i;
 			}
 		}
-		List<String> allTags = tags;
+		ArrayList<String> allTags = tags;
 		tags.add(color);
 		Item toAdd = new AppItem(this, wardrobeToPut, name, imagePath);
 		for (String i : allTags) {

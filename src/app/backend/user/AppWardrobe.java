@@ -1,12 +1,13 @@
 package app.backend.user;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
 import app.backend.interfaces.Item;
 import app.backend.interfaces.Wardrobe;
 
-public class AppWardrobe implements Wardrobe {
+public class AppWardrobe implements Wardrobe, Serializable {
 	String name;
 	HashSet<Item> items;
 

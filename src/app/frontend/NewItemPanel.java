@@ -35,6 +35,7 @@ public class NewItemPanel extends JPanel {
 	private String imagePath;
 
 	public NewItemPanel(final User user) {
+		System.out.println(user+ " is the user");
 		setLayout(new BorderLayout(0, 0));
 
 		imagePath = "../wardrobe/images/question.gif";
@@ -129,13 +130,13 @@ public class NewItemPanel extends JPanel {
 		btnCreateItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name, wardrobe, category, color;
-				List<String> tags;
+				ArrayList<String> tags;
 				name = txtName.getText();
 				wardrobe = wardrobeComboBox.getSelectedItem().toString();
 				category = categoryComboBox.getSelectedItem().toString();
 				color = txtColor.getText();
 				String tagString = txtTags.getText().replaceAll("\\s",",");
-				tags = Arrays.asList(tagString.split(",+"));
+				tags = new ArrayList<String>(Arrays.asList(tagString.split(",+")));
 				System.out.format("Sending item: %s, %s, %s, %s, %s\n",name,wardrobe,category,color,imagePath);
 				System.out.println("tags: ");
 //				for (String tag : tags){

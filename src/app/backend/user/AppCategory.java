@@ -1,11 +1,12 @@
 package app.backend.user;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import app.backend.interfaces.Category;
 import app.backend.interfaces.Item;
 
-public class AppCategory implements Category {
+public class AppCategory implements Category, Serializable {
 
 	String name;
 	String imagePath;
