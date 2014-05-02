@@ -2,11 +2,16 @@ package app.frontend;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
+
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
 import app.backend.interfaces.User;
+import app.backend.user.AppUser;
 
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
@@ -16,17 +21,23 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import java.awt.Font;
 
 public class NewItemPanel extends JPanel {
-	private JTextField txtCategory;
-	private JTextField txtColor;
-	private JTextField txtName;
+	private JTextField txtCategory, txtColor, txtName;
+	private JTextArea txtTags;
+	private String imagePath;
 
 	public NewItemPanel(final User user) {
 		setLayout(new BorderLayout(0, 0));
+
+		imagePath = "../wardrobe/images/question.gif";
 		
 		JLabel lblNewLabel = new JLabel("New Item");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -34,17 +45,20 @@ public class NewItemPanel extends JPanel {
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setOpaque(true);
 		add(lblNewLabel, BorderLayout.NORTH);
-		
+
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("106px"),
-				ColumnSpec.decode("114px:grow"),
+				ColumnSpec.decode("120px:grow"),
+				ColumnSpec.decode("120px:grow"),
 				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-				ColumnSpec.decode("119px"),},
+				ColumnSpec.decode("200px"),},
 			new RowSpec[] {
 				FormFactory.LINE_GAP_ROWSPEC,
-				RowSpec.decode("24px"),
+				RowSpec.decode("24px:grow"),
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
@@ -63,68 +77,102 @@ public class NewItemPanel extends JPanel {
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
+
+		String[] wardrobeNames = { "Home Closet", "Spring Break" };
+		String[] categoryNames = { "T-Shirts", "Pants", "Dresses" };
+						
+				
+						JLabel lblName = new JLabel("Name");
+						lblName.setHorizontalAlignment(SwingConstants.CENTER);
+						lblName.setForeground(Color.WHITE);
+						lblName.setBackground(Color.BLACK);
+						lblName.setOpaque(true);
+						panel.add(lblName, "2, 2, fill, default");
 		
-		JLabel lblName = new JLabel("Name");
-		lblName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblName.setForeground(Color.WHITE);
-		lblName.setBackground(Color.BLACK);
-		lblName.setOpaque(true);
-		panel.add(lblName, "1, 2, fill, default");
+				txtName = new JTextField();
+				txtName.setText("Name");
+				panel.add(txtName, "4, 2, fill, default");
+				txtName.setColumns(10);
 		
-		String[] wardrobeNames = {"Home Closet","Spring Break"};
-		String[] categoryNames = {"T-Shirts","Pants","Dresses"};
-		
-		txtName = new JTextField();
-		txtName.setText("Name");
-		panel.add(txtName, "2, 2, fill, default");
-		txtName.setColumns(10);
-		
-		JLabel lblWardrobe = new JLabel("Wardrobe");
-		lblWardrobe.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWardrobe.setBackground(Color.BLACK);
-		lblWardrobe.setForeground(Color.WHITE);
-		lblWardrobe.setOpaque(true);
-		panel.add(lblWardrobe, "1, 4, fill, default");
+				JLabel lblWardrobe = new JLabel("Wardrobe");
+				lblWardrobe.setHorizontalAlignment(SwingConstants.CENTER);
+				lblWardrobe.setBackground(Color.BLACK);
+				lblWardrobe.setForeground(Color.WHITE);
+				lblWardrobe.setOpaque(true);
+				panel.add(lblWardrobe, "2, 4, fill, default");
 		final JComboBox wardrobeComboBox = new JComboBox(wardrobeNames);
-		panel.add(wardrobeComboBox, "2, 4, left, top");
+		panel.add(wardrobeComboBox, "4, 4, left, top");
+
 		
-		JLabel lblCategory = new JLabel("Category");
-		lblCategory.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCategory.setBackground(Color.BLACK);
-		lblCategory.setForeground(Color.WHITE);
-		lblCategory.setOpaque(true);
-		panel.add(lblCategory, "1, 6, fill, default");
-		
-		txtCategory.setColumns(10);
+				JLabel lblCategory = new JLabel("Category");
+				lblCategory.setHorizontalAlignment(SwingConstants.CENTER);
+				lblCategory.setBackground(Color.BLACK);
+				lblCategory.setForeground(Color.WHITE);
+				lblCategory.setOpaque(true);
+				panel.add(lblCategory, "2, 6, fill, default");
 		final JComboBox categoryComboBox = new JComboBox(categoryNames);
-		panel.add(categoryComboBox, "2, 6, left, top");
+		panel.add(categoryComboBox, "4, 6, left, top");
+				
+						JLabel lblColor = new JLabel("Color");
+						lblColor.setHorizontalAlignment(SwingConstants.CENTER);
+						lblColor.setBackground(Color.BLACK);
+						lblColor.setForeground(Color.WHITE);
+						lblColor.setOpaque(true);
+						panel.add(lblColor, "2, 8, fill, default");
 		
-		JLabel lblColor = new JLabel("Color");
-		lblColor.setHorizontalAlignment(SwingConstants.CENTER);
-		lblColor.setBackground(Color.BLACK);
-		lblColor.setForeground(Color.WHITE);
-		lblColor.setOpaque(true);
-		panel.add(lblColor, "1, 8, fill, default");
-		
-		txtColor = new JTextField();
-		txtColor.setText("Color");
-		panel.add(txtColor, "2, 8, fill, default");
-		txtColor.setColumns(10);
+				txtColor = new JTextField();
+				txtColor.setText("Color");
+				panel.add(txtColor, "4, 8, fill, default");
+				txtColor.setColumns(10);
 		
 		JButton btnCreateItem = new JButton("Create Item");
 		btnCreateItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name, wardrobe, category, color, imagePath;
-				ArrayList<String> tags;
+				String name, wardrobe, category, color;
+				List<String> tags;
 				name = txtName.getText();
 				wardrobe = wardrobeComboBox.getSelectedItem().toString();
 				category = categoryComboBox.getSelectedItem().toString();
 				color = txtColor.getText();
-				//user.addItem(name, wardrobe, category, color, imagePath, tags);
+				String tagString = txtTags.getText().replaceAll("\\s",",");
+				tags = Arrays.asList(tagString.split(",+"));
+				System.out.format("Sending item: %s, %s, %s, %s, %s\n",name,wardrobe,category,color,imagePath);
+				System.out.println("tags: ");
+//				for (String tag : tags){
+//					System.out.println(tag);
+//				}
+				System.out.println("user: "+user);
+				user.addItem(name, wardrobe, category, color, imagePath,tags);
 			}
 		});
+		
+		AddPhotoPanel addPhotoPanel = new AddPhotoPanel(this);
+		panel.add(addPhotoPanel, "1, 2, fill, fill");
+		
+		JLabel lblTags = new JLabel("Tags");
+		lblTags.setOpaque(true);
+		lblTags.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTags.setForeground(Color.WHITE);
+		lblTags.setBackground(Color.BLACK);
+		panel.add(lblTags, "2, 10");
+		
+		JLabel lblCommaseparated = new JLabel("Comma-separated");
+		lblCommaseparated.setFont(new Font("Dialog", Font.ITALIC, 12));
+		lblCommaseparated.setOpaque(true);
+		lblCommaseparated.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCommaseparated.setForeground(Color.BLACK);
+		lblCommaseparated.setBackground(new Color(255, 255, 255));
+		panel.add(lblCommaseparated, "4, 10");
+		
+		txtTags = new JTextArea(5,30);
+		
+		
+		panel.add(txtTags, "2, 12, 3, 1, fill, default");
 		panel.add(btnCreateItem, "2, 20");
-		// TODO Auto-generated constructor stub
+	}
+	
+	public void setImagePath(String path){
+		this.imagePath = path;
 	}
 
 }

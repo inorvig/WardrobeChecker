@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 
 public class AllItemsPanel extends JPanel {
 
@@ -18,21 +19,23 @@ public class AllItemsPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public AllItemsPanel() {
+		setBackground(Color.WHITE);
 		setLayout(new GridLayout(0, 3, 0, 0));
-		
+
 		JButton btnAddItem = new JButton("Add Item");
 		btnAddItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		ImageIcon icon = new ImageIcon("../wardrobe/images/add.gif");
-        Image img = icon.getImage();
-        Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+		Image img = icon.getImage();
+		Image newimg = img.getScaledInstance(120, 120,
+				java.awt.Image.SCALE_SMOOTH);
 		btnAddItem.setIcon(new ImageIcon(newimg));
 		btnAddItem.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnAddItem.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnAddItem.setPreferredSize(new Dimension(150,150));
+		btnAddItem.setPreferredSize(new Dimension(150, 150));
 		add(btnAddItem);
 	}
 

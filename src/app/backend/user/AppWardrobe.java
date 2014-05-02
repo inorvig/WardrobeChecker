@@ -9,11 +9,12 @@ import app.backend.interfaces.Wardrobe;
 public class AppWardrobe implements Wardrobe {
 	String name;
 	HashSet<Item> items;
-	
-	public AppWardrobe(String name){
+
+	public AppWardrobe(String name) {
 		this.name = name;
 		this.items = new HashSet<Item>();
 	}
+
 	@Override
 	public String getName() {
 		return name;

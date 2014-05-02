@@ -1,10 +1,10 @@
-package app.backend.interfaces; 
+package app.backend.interfaces;
 
 import java.util.Collection;
 
-public interface Outfit{
+public interface Outfit {
 
-	//The outfit's name
+	// The outfit's name
 	public String getName();
 
 	// Any extra tags the outfit has gotten (casual, business, etc.)
@@ -13,7 +13,8 @@ public interface Outfit{
 	// All the items in the outfit
 	public Collection<Item> itemsInOutfit();
 
-	// Gives the wardrobe that all the items belong to; null if the items are spread out amongst various wardrobes 
+	// Gives the wardrobe that all the items belong to; null if the items are
+	// spread out amongst various wardrobes
 	public Wardrobe whatWardrobe();
 
 	// Any info the GUI needs to reconstruct the picture

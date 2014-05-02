@@ -1,9 +1,9 @@
-package app.backend.interfaces; 
+package app.backend.interfaces;
 
 import java.util.Collection;
 import java.util.List;
 
-public interface User{
+public interface User {
 
 	public Collection<Wardrobe> getWardrobes();
 
@@ -14,19 +14,20 @@ public interface User{
 	public int howManyOutfits();
 
 	public void addWardrobe(String name);
-	
+
 	public void addCategory(String categoryName);
-	
+
 	public Collection<Category> getCategories();
-	
-	public void addItem(String name, String Wardrobe, String category, String color, String imagePath, List<String> tags);
+
+	public void addItem(String name, String Wardrobe, String category,
+			String color, String imagePath, List<String> tags);
 
 	public void saveOutfit(Outfit outfit);
 
 	public void removeItem(Item item);
 
 	public Collection<Item> search(String[] searchTerms);
-	
+
 	public Collection<String> suggestTags(String imagePath);
 
 }
