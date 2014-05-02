@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.TreeSet;
 
+import app.backend.interfaces.Category;
 import app.backend.interfaces.Item;
 import app.backend.interfaces.Outfit;
 import app.backend.interfaces.TagSuggesting;
@@ -22,8 +23,9 @@ public class AppUser implements User, Serializable{
 	ArrayList<Wardrobe> wardrobeList = new ArrayList<Wardrobe>();
 	ArrayList<Outfit> outfitList = new ArrayList<Outfit>();
 	HashMap<Item, Integer> allItems = new HashMap<Item, Integer>(); //list of tags instead of integer
-	//HashSet<String> allTags = new HashSet<String>();
+	HashSet<Category> allCategories = new HashSet<Category>();
 	HashMap<String, HashSet<Item>> tagsMap = new HashMap<String, HashSet<Item>>(); 
+
 	TagSuggesting tagsuggester;
 	
 	public AppUser(String name){
@@ -252,9 +254,17 @@ public class AppUser implements User, Serializable{
 
 	@Override
 	public void addCategory(String categoryName) {
-		if ((tagsMap.containsKey(categoryName))){
+		if (!(tagsMap.containsKey(categoryName))){
 		tagsMap.put(categoryName, new HashSet<Item>());
 		}
+		if (!allCategories.contains(categoryName)){
+			allCategories.add(new AppCategory(categoryName, tagsMap.get(categoryName)));
+		}
+	}
+
+	@Override
+	public Collection<Category> getCategories() {
+		return allCategories;
 	}
 	
 	

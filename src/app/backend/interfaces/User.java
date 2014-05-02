@@ -17,6 +17,8 @@ public interface User{
 	
 	public void addCategory(String categoryName);
 	
+	public Collection<Category> getCategories();
+	
 	public void addItem(String name, String Wardrobe, String category, String color, String imagePath, List<String> tags);
 
 	public void saveOutfit(Outfit outfit);
