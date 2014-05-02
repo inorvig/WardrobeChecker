@@ -22,12 +22,16 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
+import app.backend.interfaces.Savable;
+import app.backend.interfaces.User;
+import app.backend.user.Saver;
+
 
 /**
  *
  * @author kbhatia
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 	
 
@@ -53,6 +57,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel weatherAPI;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     private JTextField txtSearch;
+    private Saver _savedUser;
+    private User _user;
     
     /**
 	 * 
@@ -63,9 +69,16 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        _savedUser = new Saver("Bella");
+        _user = _savedUser.getUser();
         
+        addWindowListener(this);
     }
 
+    public void windowClose(WindowEvent e){
+    	_savedUser.saveData();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
