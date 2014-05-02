@@ -1,6 +1,7 @@
 package app.backend.interfaces; 
 
 import java.util.Collection;
+import java.util.List;
 
 public interface User{
 
@@ -12,7 +13,11 @@ public interface User{
 
 	public int howManyOutfits();
 
-	public void addItem(Item item);
+	public void addWardrobe(String name);
+	
+	public void addCategory(String categoryName);
+	
+	public void addItem(String name, String Wardrobe, String category, String color, String imagePath, List<String> tags);
 
 	public void saveOutfit(Outfit outfit);
 

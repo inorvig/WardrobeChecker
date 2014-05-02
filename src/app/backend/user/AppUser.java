@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.TreeSet;
 
 import app.backend.interfaces.Item;
@@ -49,9 +50,26 @@ public class AppUser implements User, Serializable{
 	public int howManyOutfits() {
 		return this.outfitList.size();
 	}
+	
+	public void addItem(String name, String wardrobe, String category, String color, String imagePath, List<String> tags){
+		Wardrobe wardrobeToPut = null;
+		for (Wardrobe i: wardrobeList){
+			if (i.getName().equals(wardrobe)){
+				wardrobeToPut = i;
+			}
+		}
+		List<String> allTags = tags;
+		tags.add(color);
+		Item toAdd = new AppItem(this, wardrobeToPut, name, imagePath);
+		for (String i : allTags){
+			toAdd.addTag(i);
+		}
+		addItem(toAdd);
+		
+	}
 
-	@Override
-	public void addItem(Item item) {
+	
+	private void addItem(Item item) {
 		//add to map of all items for count
 		Integer count = 1;
 		if (allItems.containsKey(item))
@@ -81,15 +99,7 @@ public class AppUser implements User, Serializable{
 	public void saveOutfit(Outfit outfit) {
 	   
 		this.outfitList.add(outfit);
-		
 	}
-
-	@Override
-	public void removeItem(Item item) {
-		//MAKE CHANGES FOR CASE WHEN COUNT IS GREATER THAN ONE....
-		allItems.remove(item);
-	}
-
 
 	public HashSet<Item> searchItem(String[] searchTerms) {
 		
@@ -144,7 +154,7 @@ public class AppUser implements User, Serializable{
 	}
 	
 	
-	public static void main(String[] args){
+/*	public static void main(String[] args){
 		
 		AppUser a = new AppUser("Sohum");
 		
@@ -221,11 +231,30 @@ public class AppUser implements User, Serializable{
 		
 		
 		
-	}
+	}*/
 
 	@Override
 	public Collection<String> suggestTags(String imagePath) {
 		return tagsuggester.suggestTags(imagePath);
+	}
+
+	@Override
+	public void removeItem(Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addWardrobe(String name) {
+		wardrobeList.add(new AppWardrobe(name));
+		
+	}
+
+	@Override
+	public void addCategory(String categoryName) {
+		if ((tagsMap.containsKey(categoryName))){
+		tagsMap.put(categoryName, new HashSet<Item>());
+		}
 	}
 	
 	
