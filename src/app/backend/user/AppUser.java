@@ -110,53 +110,57 @@ public class AppUser implements User, Serializable {
 		this.outfitList.add(outfit);
 	}
 
-	public HashSet<Item> searchItem(String[] searchTerms) {
+	// public HashSet<Item> searchItem(String[] searchTerms) {
 
-		HashSet<Item> matchingItems = new HashSet<Item>();
-		// unigram bigram searching needed?
+	// 	HashSet<Item> matchingItems = new HashSet<Item>();
+	// 	// unigram bigram searching needed?
 
-		String unigram = null;
-		for (int i = 0; i < searchTerms.length; i++) {
+	// 	String unigram = null;
+	// 	for (int i = 0; i < searchTerms.length; i++) {
 
-			unigram = searchTerms[i];
+	// 		unigram = searchTerms[i];
 
-			if (tagsMap.containsKey(unigram)) {
-				matchingItems.addAll(tagsMap.get(unigram));
-			}
+	// 		if (tagsMap.containsKey(unigram)) {
+	// 			matchingItems.addAll(tagsMap.get(unigram));
+	// 		}
 
-		}
+	// 	}
 
-		return matchingItems;
+	// 	return matchingItems;
 
-	}
+	// }
 
 	@Override
-	public Collection<Item> search(String[] searchTerms) {
-
-		HashSet<Item> matchingItems = searchItem(searchTerms);
-
-		ArrayList<Item> toReturn = new ArrayList<Item>();
-
-		for (Item item : matchingItems) {
-
-			for (int i = 0; i < searchTerms.length; i++) {
-
-				String tag = searchTerms[i];
-
-				if (item.getTags().contains(tag)) {
-					item.incrementScore();
-				}
-			}
-
-			toReturn.add(item);
-		}
-
-		Collections.sort(toReturn);
-
-		for (Item item : matchingItems) {
+	public Collection<Item> search(String searchTerms) {
+		
+		for (Item item: allItems){
 			item.resetScore();
 		}
+		
+		HashSet<Item> matchingItems = new HashSet<Item>();
+		ArrayList<Item> toReturn = new ArrayList<Item>();
 
+		
+		Set<String> matchingTags = autosuggest.lookup(searchTerms);
+		
+		
+		for (String tag: matchingTags){
+			
+			HashSet<Item> items = tagsMap.get(tag);
+			
+			for (Item item: items){
+				item.incrementScore();
+				matchingItems.add(item);
+			}
+			
+		}
+		
+		for (Item item: matchingItems){
+			toReturn.add(item);
+		}
+		
+		Collections.sort(toReturn);
+		
 		return toReturn;
 	}
 
