@@ -23,16 +23,16 @@ public class ByWardrobePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ByWardrobePanel(User user) {
+	public ByWardrobePanel(final MainFrame parent, User user) {
 		setBackground(Color.WHITE);
 
 		setLayout(new GridLayout(0, 3, 0, 0));
 
-		for (Wardrobe w : user.getWardrobes()){
+		for (final Wardrobe w : user.getWardrobes()){
 			JButton btnWardrobe = new JButton(w.getName());
 			btnWardrobe.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//TODO: open wardrobe
+					parent.openWardrobe(w.getName());
 				}
 			});
 			ImageIcon icon = new ImageIcon("../wardrobe/images/closet.gif");
@@ -49,7 +49,7 @@ public class ByWardrobePanel extends JPanel {
 		JButton btnAddWardrobe = new JButton("Add Wardrobe");
 		btnAddWardrobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				//TODO: add wardrobe
 			}
 		});
 		ImageIcon icon = new ImageIcon("../wardrobe/images/add.gif");

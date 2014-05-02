@@ -3,6 +3,9 @@ package app.frontend;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import app.backend.interfaces.User;
+
 import java.awt.Color;
 
 public class OutfitDesignPanel extends JPanel {
@@ -10,7 +13,7 @@ public class OutfitDesignPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public OutfitDesignPanel() {
+	public OutfitDesignPanel(MainFrame parent, User user) {
 		setBackground(Color.WHITE);
 
 		JButton jButton1 = new javax.swing.JButton();

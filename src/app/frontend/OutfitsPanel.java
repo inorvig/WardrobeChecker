@@ -10,6 +10,9 @@ import java.awt.Image;
 import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+
+import app.backend.interfaces.User;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +22,7 @@ public class OutfitsPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public OutfitsPanel() {
+	public OutfitsPanel(MainFrame parent, User user) {
 		setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
