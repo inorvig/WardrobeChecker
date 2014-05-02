@@ -243,6 +243,19 @@ public class AppUser implements User, Serializable{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void addWardrobe(String name) {
+		wardrobeList.add(new AppWardrobe(name));
+		
+	}
+
+	@Override
+	public void addCategory(String categoryName) {
+		if ((tagsMap.containsKey(categoryName))){
+		tagsMap.put(categoryName, new HashSet<Item>());
+		}
+	}
 	
 	
 	
