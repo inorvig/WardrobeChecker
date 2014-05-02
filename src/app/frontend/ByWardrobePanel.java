@@ -24,6 +24,22 @@ public class ByWardrobePanel extends JPanel {
 
 		setLayout(new GridLayout(0, 3, 0, 0));
 
+		JButton btnHomeWardrobe = new JButton("Home Closet");
+		btnHomeWardrobe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		ImageIcon icon2 = new ImageIcon("../wardrobe/images/closet.gif");
+		Image img2 = icon2.getImage();
+		Image newimg2 = img2.getScaledInstance(120, 120,
+				java.awt.Image.SCALE_SMOOTH);
+		btnHomeWardrobe.setIcon(new ImageIcon(newimg2));
+		btnHomeWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnHomeWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnHomeWardrobe.setPreferredSize(new Dimension(150, 150));
+		add(btnHomeWardrobe);
+		
 		JButton btnAddWardrobe = new JButton("Add Wardrobe");
 		btnAddWardrobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -39,6 +55,8 @@ public class ByWardrobePanel extends JPanel {
 		btnAddWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnAddWardrobe.setPreferredSize(new Dimension(150, 150));
 		add(btnAddWardrobe);
+		
+		
 
 	}
 

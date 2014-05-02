@@ -15,6 +15,8 @@ public interface User {
 	public int howManyOutfits();
 
 	public void addWardrobe(String name);
+	
+	public Wardrobe searchWardrobe(String name);
 
 	public void addCategory(String categoryName);
 

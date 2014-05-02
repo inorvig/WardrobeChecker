@@ -109,7 +109,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		ResultsPanel = new javax.swing.JScrollPane();
 		logoPanel = new javax.swing.JPanel();
 		OutfitDesignPanel = new OutfitDesignPanel();
-		newItemPanel = new NewItemPanel(_user);
+		newItemPanel = new NewItemPanel(this, _user);
 		WardrobePanel = new WardrobePanel();
 		OutfitsPanel = new OutfitsPanel();
 
@@ -394,6 +394,14 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	 * @param args
 	 *            the command line arguments
 	 */
+	
+	public void returnToHome(){
+		OutfitDesignPanel.setVisible(true);
+		WardrobePanel.setVisible(false);
+		OutfitsPanel.setVisible(false);
+		newItemPanel.setVisible(false);
+		pack();
+	}
 	public static void main(String args[]) {
 
 		System.out.println("We found the main");

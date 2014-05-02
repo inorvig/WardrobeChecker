@@ -34,7 +34,7 @@ public class NewItemPanel extends JPanel {
 	private JTextArea txtTags;
 	private String imagePath;
 
-	public NewItemPanel(final User user) {
+	public NewItemPanel(final MainFrame parent, final User user) {
 		System.out.println(user+ " is the user");
 		setLayout(new BorderLayout(0, 0));
 
@@ -139,11 +139,12 @@ public class NewItemPanel extends JPanel {
 				tags = new ArrayList<String>(Arrays.asList(tagString.split(",+")));
 				System.out.format("Sending item: %s, %s, %s, %s, %s\n",name,wardrobe,category,color,imagePath);
 				System.out.println("tags: ");
-//				for (String tag : tags){
-//					System.out.println(tag);
-//				}
+				for (String tag : tags){
+					System.out.println(tag);
+				}
 				System.out.println("user: "+user);
 				user.addItem(name, wardrobe, category, color, imagePath,tags);
+				parent.returnToHome();
 			}
 		});
 		
