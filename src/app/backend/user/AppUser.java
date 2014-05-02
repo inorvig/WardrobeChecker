@@ -15,6 +15,7 @@ import app.backend.interfaces.Outfit;
 import app.backend.interfaces.TagSuggesting;
 import app.backend.interfaces.User;
 import app.backend.interfaces.Wardrobe;
+import app.backend.user.AppWardrobe.WardrobeType;
 
 public class AppUser implements User, Serializable {
 
@@ -34,7 +35,7 @@ public class AppUser implements User, Serializable {
 	public AppUser(String name) {
 		this.username = name;
 		this.tagsuggester = new StubTagger();
-		wardrobeList.add(new AppWardrobe("Home Closet"));
+		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET));
 	}
 
 	@Override
@@ -252,7 +253,7 @@ public class AppUser implements User, Serializable {
 
 	@Override
 	public void addWardrobe(String name) {
-		wardrobeList.add(new AppWardrobe(name));
+		wardrobeList.add(new AppWardrobe(name, WardrobeType.CLOSET));
 
 	}
 
