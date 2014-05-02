@@ -146,6 +146,7 @@ public class AppUser implements User, Serializable{
 		Collections.sort(toReturn);
 		
 		return toReturn;
+	}
  
 		
 		
@@ -175,7 +176,7 @@ public class AppUser implements User, Serializable{
 //		}
 //		
 //		return toReturn;
-	}
+//	}	
 	
 	
 	public static void main(String[] args){
