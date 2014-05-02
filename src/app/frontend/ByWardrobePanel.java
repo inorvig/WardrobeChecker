@@ -10,6 +10,10 @@ import java.awt.Image;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+
+import app.backend.interfaces.User;
+import app.backend.interfaces.Wardrobe;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -19,27 +23,29 @@ public class ByWardrobePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ByWardrobePanel() {
+	public ByWardrobePanel(User user) {
 		setBackground(Color.WHITE);
 
 		setLayout(new GridLayout(0, 3, 0, 0));
 
-		JButton btnHomeWardrobe = new JButton("Home Closet");
-		btnHomeWardrobe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		for (Wardrobe w : user.getWardrobes()){
+			JButton btnWardrobe = new JButton(w.getName());
+			btnWardrobe.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					//TODO: open wardrobe
+				}
+			});
+			ImageIcon icon = new ImageIcon("../wardrobe/images/closet.gif");
+			Image img = icon.getImage();
+			Image newimg = img.getScaledInstance(120, 120,
+					java.awt.Image.SCALE_SMOOTH);
+			btnWardrobe.setIcon(new ImageIcon(newimg));
+			btnWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
+			btnWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
+			btnWardrobe.setPreferredSize(new Dimension(150, 150));
+			add(btnWardrobe);
+		}
 
-			}
-		});
-		ImageIcon icon2 = new ImageIcon("../wardrobe/images/closet.gif");
-		Image img2 = icon2.getImage();
-		Image newimg2 = img2.getScaledInstance(120, 120,
-				java.awt.Image.SCALE_SMOOTH);
-		btnHomeWardrobe.setIcon(new ImageIcon(newimg2));
-		btnHomeWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnHomeWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnHomeWardrobe.setPreferredSize(new Dimension(150, 150));
-		add(btnHomeWardrobe);
-		
 		JButton btnAddWardrobe = new JButton("Add Wardrobe");
 		btnAddWardrobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
