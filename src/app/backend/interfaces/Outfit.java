@@ -17,5 +17,5 @@ public interface Outfit{
 	public Wardrobe whatWardrobe();
 
 	// Any info the GUI needs to reconstruct the picture
-	//public Displayer getDisplayInfo();
+	public Displayer getDisplayInfo();
 }
