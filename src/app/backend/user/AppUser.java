@@ -36,6 +36,7 @@ public class AppUser implements User, Serializable {
 		this.username = name;
 		this.tagsuggester = new StubTagger();
 		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET));
+		allCategories.add(new AppCategory())
 	}
 
 	@Override
