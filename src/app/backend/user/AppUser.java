@@ -41,7 +41,11 @@ public class AppUser implements User, Serializable {
 		autosuggest.setUp();
 		this.tagsuggester = new StubTagger();
 		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET));
+<<<<<<< HEAD
+		allCategories.add(new AppCategory())
+=======
 
+>>>>>>> b816914109c23ecccb6f80da1274dddb203d4fad
 	}
 
 	@Override
