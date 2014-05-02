@@ -34,7 +34,7 @@ public class AppUser implements User, Serializable {
 	public AppUser(String name) {
 		this.username = name;
 		this.tagsuggester = new StubTagger();
-		wardrobeList.add(new AppWardrobe("Home"));
+		wardrobeList.add(new AppWardrobe("Home Closet"));
 	}
 
 	@Override
@@ -56,15 +56,20 @@ public class AppUser implements User, Serializable {
 	public int howManyOutfits() {
 		return this.outfitList.size();
 	}
+	
+	public Wardrobe searchWardrobe(String name){
+		Wardrobe result = null;
+		for (Wardrobe i : wardrobeList){
+			if (i.getName().equals(name)){
+				result = i;
+			}
+		}
+		return result;
+	}
 
 	public void addItem(String name, String wardrobe, String category,
 			String color, String imagePath, ArrayList<String> tags) {
-		Wardrobe wardrobeToPut = null;
-		for (Wardrobe i : wardrobeList) {
-			if (i.getName().equals(wardrobe)) {
-				wardrobeToPut = i;
-			}
-		}
+		Wardrobe wardrobeToPut = searchWardrobe(wardrobe);
 		if (wardrobeToPut == null){
 			wardrobeToPut = wardrobeList.get(0);
 		}
