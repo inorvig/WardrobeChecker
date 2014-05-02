@@ -1,10 +1,10 @@
-package weatherAPI;
+package app.frontend.weatherAPI;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
 
-import com.eclipsesource.json.JsonValue;
+import app.frontend.com.eclipse.json.*;
 
 public class FIOAlerts {
 

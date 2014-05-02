@@ -1,8 +1,8 @@
-package frontend;
+package app.frontend;
 
 import java.util.HashMap;
 
-import weatherAPI.*;
+import app.frontend.weatherAPI.*;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import weatherAPI.ForecastIO;
 
 
 public class weatherAPI extends JPanel{

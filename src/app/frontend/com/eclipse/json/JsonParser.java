@@ -1,4 +1,4 @@
-package com.eclipse.json;
+package app.frontend.com.eclipse.json;
 
 import java.io.IOException;
 import java.io.Reader;
