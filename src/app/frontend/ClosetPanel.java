@@ -21,7 +21,7 @@ public class ClosetPanel extends JPanel {
 		name = null;
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
-		all = new AllItemsPanel(user);
+		all = new AllItemsPanel(parent, user);
 		category = new ByCategoryPanel(user);
 
 		JLabel lblMyWardrobes = new JLabel("Home Closet");

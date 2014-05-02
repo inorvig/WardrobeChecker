@@ -4,13 +4,14 @@
  */
 package app.backend.autosuggest;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * 
  * @author sohumchatterjee
  */
-public class Node {
+public class Node implements Serializable {
 
 	// private Node parent;
 	public char letter;

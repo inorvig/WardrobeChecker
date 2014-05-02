@@ -4,13 +4,14 @@
  */
 package app.backend.autosuggest;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * 
  * @author sohumchatterjee
  */
-public class LED implements Feature {
+public class LED implements Feature, Serializable {
 
     
     private int led; // the levenshtein edit distance

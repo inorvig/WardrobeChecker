@@ -21,14 +21,16 @@ public class AllItemsPanel extends JPanel {
 
 	private String closet;
 	private User user;
+	private MainFrame parent;
 	/**
 	 * Create the panel.
 	 */
-	public AllItemsPanel(User user) {
+	public AllItemsPanel(MainFrame parent, User user) {
 		setBackground(Color.WHITE);
 		setLayout(new GridLayout(0, 3, 0, 0));
 		closet = "all";
 		this.user = user;
+		this.parent = parent;
 		
 		addButton();
 	}
@@ -68,7 +70,7 @@ public class AllItemsPanel extends JPanel {
 		JButton btnAddItem = new JButton("Add Item");
 		btnAddItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				parent.addItem();
 			}
 		});
 		ImageIcon icon = new ImageIcon("../wardrobe/images/add.gif");

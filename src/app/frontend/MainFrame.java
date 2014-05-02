@@ -70,7 +70,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public MainFrame() {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
-		_savedUser = new Saver("test2");
+		_savedUser = new Saver("Gabe");
 		_user = _savedUser.getUser();
 		System.out.println("mainframe user: "+_user);
 		initComponents();
@@ -406,6 +406,15 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	 *            the command line arguments
 	 */
 	
+	public void addItem(){
+		OutfitDesignPanel.setVisible(false);
+		WardrobePanel.setVisible(false);
+		OutfitsPanel.setVisible(false);
+		closetPanel.setVisible(false);
+		newItemPanel.setVisible(true);
+		pack();
+	}
+	
 	public void updateItems(){
 		closetPanel.reset();
 		pack();
@@ -415,6 +424,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		newItemPanel.setVisible(false);
+		closetPanel.setVisible(false);
 		pack();
 	}
 	

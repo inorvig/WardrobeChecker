@@ -19,7 +19,7 @@ public class WardrobePanel extends JPanel {
 	public WardrobePanel(MainFrame parent,User user) {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
-		all = new AllItemsPanel(user);
+		all = new AllItemsPanel(parent, user);
 		wardrobe = new ByWardrobePanel(parent, user);
 		
 		JLabel lblMyWardrobes = new JLabel("My Wardrobes");

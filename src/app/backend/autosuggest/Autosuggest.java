@@ -1,5 +1,6 @@
 package app.backend.autosuggest;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,7 +9,7 @@ import java.util.TreeSet;
 
 import app.backend.interfaces.Item;
 
-public class Autosuggest {
+public class Autosuggest implements Serializable {
 	
 	Trie trie;
 	//HashMap<String, Integer> unigram;

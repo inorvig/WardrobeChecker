@@ -4,13 +4,14 @@
  */
 package app.backend.autosuggest;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * 
  * @author sohumchatterjee
  */
-public class Prefix implements Feature {
+public class Prefix implements Feature, Serializable {
     
     private Trie trie;
     public boolean prefixOn; // boolean to mark if prefix search has been turned on by user

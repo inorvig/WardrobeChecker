@@ -4,11 +4,13 @@
  */
 package app.backend.autosuggest;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author sohumchatterjee
  */
-public class Trie {
+public class Trie implements Serializable {
 
 	private Node root;
 

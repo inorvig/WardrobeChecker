@@ -4,6 +4,7 @@
  */
 package app.backend.autosuggest;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -12,7 +13,7 @@ import java.util.*;
  * @author sohumchatterjee
  */
 
-public class Whitespace implements Feature{
+public class Whitespace implements Feature, Serializable{
     
     private Set<String> wordMap; 
     public boolean whitespaceOn; // boolean to indicate whether this feature has been turned on by user
