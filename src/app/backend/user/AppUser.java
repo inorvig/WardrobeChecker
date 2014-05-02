@@ -22,7 +22,7 @@ public class AppUser implements User, Serializable {
 	String username;
 	ArrayList<Wardrobe> wardrobeList = new ArrayList<Wardrobe>();
 	ArrayList<Outfit> outfitList = new ArrayList<Outfit>();
-	HashMap<Item, Integer> allItems = new HashMap<Item, Integer>(); // list of
+	HashSet<Item> allItems = new HashSet<Item>(); // set instead of map
 																	// tags
 																	// instead
 																	// of
@@ -85,29 +85,23 @@ public class AppUser implements User, Serializable {
 	}
 
 	private void addItem(Item item) {
-		// add to map of all items for count
-		Integer count = 1;
-		if (allItems.containsKey(item))
-			count = allItems.get(item) + 1;
-
-		allItems.put(item, count);
-		System.out.println("There are now items in allItems");
-
-		// add items tags
+		allItems.add(item);
+		
+		//add items tags
 		HashSet<String> tagsToAdd = item.getTags();
+		
+		for (String tag: tagsToAdd){
 
-		for (String tag : tagsToAdd) {
-
-			if (tagsMap.containsKey(tag)) {
+			if (tagsMap.containsKey(tag)){
 				tagsMap.get(tag).add(item);
-
-			} else {
+				
+			}
+			else{
 				HashSet<Item> itemSet = new HashSet<Item>();
 				itemSet.add(item);
 				tagsMap.put(tag, itemSet);
-			}
+			}	
 		}
-
 	}
 
 	@Override
@@ -116,53 +110,57 @@ public class AppUser implements User, Serializable {
 		this.outfitList.add(outfit);
 	}
 
-	public HashSet<Item> searchItem(String[] searchTerms) {
+	// public HashSet<Item> searchItem(String[] searchTerms) {
 
-		HashSet<Item> matchingItems = new HashSet<Item>();
-		// unigram bigram searching needed?
+	// 	HashSet<Item> matchingItems = new HashSet<Item>();
+	// 	// unigram bigram searching needed?
 
-		String unigram = null;
-		for (int i = 0; i < searchTerms.length; i++) {
+	// 	String unigram = null;
+	// 	for (int i = 0; i < searchTerms.length; i++) {
 
-			unigram = searchTerms[i];
+	// 		unigram = searchTerms[i];
 
-			if (tagsMap.containsKey(unigram)) {
-				matchingItems.addAll(tagsMap.get(unigram));
-			}
+	// 		if (tagsMap.containsKey(unigram)) {
+	// 			matchingItems.addAll(tagsMap.get(unigram));
+	// 		}
 
-		}
+	// 	}
 
-		return matchingItems;
+	// 	return matchingItems;
 
-	}
+	// }
 
 	@Override
-	public Collection<Item> search(String[] searchTerms) {
-
-		HashSet<Item> matchingItems = searchItem(searchTerms);
-
-		ArrayList<Item> toReturn = new ArrayList<Item>();
-
-		for (Item item : matchingItems) {
-
-			for (int i = 0; i < searchTerms.length; i++) {
-
-				String tag = searchTerms[i];
-
-				if (item.getTags().contains(tag)) {
-					item.incrementScore();
-				}
-			}
-
-			toReturn.add(item);
-		}
-
-		Collections.sort(toReturn);
-
-		for (Item item : matchingItems) {
+	public Collection<Item> search(String searchTerms) {
+		
+		for (Item item: allItems){
 			item.resetScore();
 		}
+		
+		HashSet<Item> matchingItems = new HashSet<Item>();
+		ArrayList<Item> toReturn = new ArrayList<Item>();
 
+		
+		Set<String> matchingTags = autosuggest.lookup(searchTerms);
+		
+		
+		for (String tag: matchingTags){
+			
+			HashSet<Item> items = tagsMap.get(tag);
+			
+			for (Item item: items){
+				item.incrementScore();
+				matchingItems.add(item);
+			}
+			
+		}
+		
+		for (Item item: matchingItems){
+			toReturn.add(item);
+		}
+		
+		Collections.sort(toReturn);
+		
 		return toReturn;
 	}
 
