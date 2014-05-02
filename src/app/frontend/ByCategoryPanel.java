@@ -27,7 +27,7 @@ public class ByCategoryPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		ImageIcon icon2 = new ImageIcon("../wardrobe/images/t-shirts.gif");
+		ImageIcon icon2 = new ImageIcon("../wardrobe/images/categories/t-shirts.gif");
         Image img2 = icon2.getImage();
         Image newimg2 = img2.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
         btnTShirts.setIcon(new ImageIcon(newimg2));
@@ -41,7 +41,7 @@ public class ByCategoryPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		ImageIcon icon3 = new ImageIcon("../wardrobe/images/pants.gif");
+		ImageIcon icon3 = new ImageIcon("../wardrobe/images/categories/pants.gif");
         Image img3 = icon3.getImage();
         Image newimg3 = img3.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
         btnTShirts.setIcon(new ImageIcon(newimg3));
@@ -55,7 +55,7 @@ public class ByCategoryPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		ImageIcon icon4 = new ImageIcon("../wardrobe/images/skirt.gif");
+		ImageIcon icon4 = new ImageIcon("../wardrobe/images/categories/skirt.gif");
         Image img4 = icon4.getImage();
         Image newimg4 = img4.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
         btnSkirts.setIcon(new ImageIcon(newimg4));
@@ -69,7 +69,7 @@ public class ByCategoryPanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		ImageIcon icon5 = new ImageIcon("../wardrobe/images/t-shirts.gif");
+		ImageIcon icon5 = new ImageIcon("../wardrobe/images/categories/t-shirts.gif");
         Image img5 = icon5.getImage();
         Image newimg5 = img5.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
         btnDresses.setIcon(new ImageIcon(newimg5));
@@ -84,7 +84,7 @@ public class ByCategoryPanel extends JPanel {
 				
 			}
 		});
-		ImageIcon icon = new ImageIcon("../wardrobe/images/add.gif");
+		ImageIcon icon = new ImageIcon("../wardrobe/images/categories/add.gif");
         Image img = icon.getImage();
         Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
 		btnAddCategory.setIcon(new ImageIcon(newimg));

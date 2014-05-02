@@ -1,12 +1,13 @@
 package app.frontend;
 
-import java.awt.LayoutManager;
-
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+
+import app.backend.interfaces.User;
+
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
@@ -14,6 +15,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -23,7 +25,7 @@ public class NewItemPanel extends JPanel {
 	private JTextField txtColor;
 	private JTextField txtName;
 
-	public NewItemPanel() {
+	public NewItemPanel(final User user) {
 		setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("New Item");
@@ -70,6 +72,7 @@ public class NewItemPanel extends JPanel {
 		panel.add(lblName, "1, 2, fill, default");
 		
 		String[] wardrobeNames = {"Home Closet","Spring Break"};
+		String[] categoryNames = {"T-Shirts","Pants","Dresses"};
 		
 		txtName = new JTextField();
 		txtName.setText("Name");
@@ -82,8 +85,8 @@ public class NewItemPanel extends JPanel {
 		lblWardrobe.setForeground(Color.WHITE);
 		lblWardrobe.setOpaque(true);
 		panel.add(lblWardrobe, "1, 4, fill, default");
-		JComboBox comboBox = new JComboBox(wardrobeNames);
-		panel.add(comboBox, "2, 4, left, top");
+		final JComboBox wardrobeComboBox = new JComboBox(wardrobeNames);
+		panel.add(wardrobeComboBox, "2, 4, left, top");
 		
 		JLabel lblCategory = new JLabel("Category");
 		lblCategory.setHorizontalAlignment(SwingConstants.CENTER);
@@ -92,10 +95,9 @@ public class NewItemPanel extends JPanel {
 		lblCategory.setOpaque(true);
 		panel.add(lblCategory, "1, 6, fill, default");
 		
-		txtCategory = new JTextField();
-		txtCategory.setText("Category");
-		panel.add(txtCategory, "2, 6, fill, default");
 		txtCategory.setColumns(10);
+		final JComboBox categoryComboBox = new JComboBox(categoryNames);
+		panel.add(categoryComboBox, "2, 6, left, top");
 		
 		JLabel lblColor = new JLabel("Color");
 		lblColor.setHorizontalAlignment(SwingConstants.CENTER);
@@ -112,7 +114,13 @@ public class NewItemPanel extends JPanel {
 		JButton btnCreateItem = new JButton("Create Item");
 		btnCreateItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String name, wardrobe, category, color;
+				ArrayList<String> tags;
+				name = txtName.getText();
+				wardrobe = wardrobeComboBox.getSelectedItem().toString();
+				category = categoryComboBox.getSelectedItem().toString();
+				color = txtColor.getText();
+				//user.addItem(name, wardrobe, category, color, tags);
 			}
 		});
 		panel.add(btnCreateItem, "2, 20");
