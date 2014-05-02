@@ -103,7 +103,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
         ResultsPanel = new javax.swing.JScrollPane();
         logoPanel = new javax.swing.JPanel();
         OutfitDesignPanel = new OutfitDesignPanel();
-        newItemPanel = new NewItemPanel();
+        newItemPanel = new NewItemPanel(_user);
         WardrobePanel = new WardrobePanel();
         OutfitsPanel = new OutfitsPanel();
 

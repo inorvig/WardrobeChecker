@@ -114,13 +114,13 @@ public class NewItemPanel extends JPanel {
 		JButton btnCreateItem = new JButton("Create Item");
 		btnCreateItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name, wardrobe, category, color;
+				String name, wardrobe, category, color, imagePath;
 				ArrayList<String> tags;
 				name = txtName.getText();
 				wardrobe = wardrobeComboBox.getSelectedItem().toString();
 				category = categoryComboBox.getSelectedItem().toString();
 				color = txtColor.getText();
-				//user.addItem(name, wardrobe, category, color, tags);
+				//user.addItem(name, wardrobe, category, color, imagePath, tags);
 			}
 		});
 		panel.add(btnCreateItem, "2, 20");
