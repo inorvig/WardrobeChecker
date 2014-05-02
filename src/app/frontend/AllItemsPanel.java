@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.util.Collection;
+import java.awt.FlowLayout;
 
 public class AllItemsPanel extends JPanel {
 
@@ -27,7 +28,6 @@ public class AllItemsPanel extends JPanel {
 	 */
 	public AllItemsPanel(MainFrame parent, User user) {
 		setBackground(Color.WHITE);
-		setLayout(new GridLayout(0, 3, 0, 0));
 		closet = "all";
 		this.user = user;
 		this.parent = parent;
@@ -57,7 +57,7 @@ public class AllItemsPanel extends JPanel {
 			item.setIcon(new ImageIcon(newimg));
 			item.setVerticalTextPosition(SwingConstants.BOTTOM);
 			item.setHorizontalTextPosition(SwingConstants.CENTER);
-			item.setPreferredSize(new Dimension(150, 150));
+			item.setSize(new Dimension(150, 150));
 			add(item);
 		}
 		
@@ -77,10 +77,11 @@ public class AllItemsPanel extends JPanel {
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(120, 120,
 				java.awt.Image.SCALE_SMOOTH);
+		setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		btnAddItem.setIcon(new ImageIcon(newimg));
 		btnAddItem.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnAddItem.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnAddItem.setPreferredSize(new Dimension(150, 150));
+		btnAddItem.setSize(new Dimension(150, 150));
 		add(btnAddItem);
 	}
 

@@ -5,7 +5,6 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.JButton;
@@ -17,6 +16,7 @@ import app.backend.interfaces.Wardrobe;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.FlowLayout;
 
 public class ByWardrobePanel extends JPanel {
 
@@ -24,9 +24,9 @@ public class ByWardrobePanel extends JPanel {
 	 * Create the panel.
 	 */
 	public ByWardrobePanel(final MainFrame parent, User user) {
+		FlowLayout flowLayout = (FlowLayout) getLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
 		setBackground(Color.WHITE);
-
-		setLayout(new GridLayout(0, 3, 0, 0));
 
 		for (final Wardrobe w : user.getWardrobes()){
 			JButton btnWardrobe = new JButton(w.getName());
@@ -42,7 +42,7 @@ public class ByWardrobePanel extends JPanel {
 			btnWardrobe.setIcon(new ImageIcon(newimg));
 			btnWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
 			btnWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
-			btnWardrobe.setPreferredSize(new Dimension(150, 150));
+			btnWardrobe.setSize(new Dimension(150, 150));
 			add(btnWardrobe);
 		}
 
@@ -59,7 +59,7 @@ public class ByWardrobePanel extends JPanel {
 		btnAddWardrobe.setIcon(new ImageIcon(newimg));
 		btnAddWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnAddWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnAddWardrobe.setPreferredSize(new Dimension(150, 150));
+		btnAddWardrobe.setSize(new Dimension(130, 150));
 		add(btnAddWardrobe);
 		
 		

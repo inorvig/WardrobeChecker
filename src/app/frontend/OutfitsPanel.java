@@ -16,6 +16,10 @@ import app.backend.interfaces.User;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import java.awt.FlowLayout;
 
 public class OutfitsPanel extends JPanel {
 
@@ -24,18 +28,19 @@ public class OutfitsPanel extends JPanel {
 	 */
 	public OutfitsPanel(MainFrame parent, User user) {
 		setLayout(new BorderLayout(0, 0));
-
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(0, 3, 0, 0));
-
+		
+				
 		JLabel lblAllOutfits = new JLabel("All Outfits");
 		lblAllOutfits.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAllOutfits.setForeground(Color.WHITE);
 		lblAllOutfits.setBackground(Color.BLACK);
 		lblAllOutfits.setOpaque(true);
 		add(lblAllOutfits, BorderLayout.NORTH);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		add(panel, BorderLayout.CENTER);
+		panel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 
 		JButton btnNewOutfit = new JButton("New Outfit");
 		btnNewOutfit.addActionListener(new ActionListener() {
@@ -51,7 +56,7 @@ public class OutfitsPanel extends JPanel {
 		btnNewOutfit.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewOutfit.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnNewOutfit.setPreferredSize(new Dimension(150, 150));
-		add(btnNewOutfit);
+		panel.add(btnNewOutfit);
 
 	}
 
