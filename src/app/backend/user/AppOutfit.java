@@ -46,4 +46,7 @@ public class AppOutfit implements Outfit {
 		return wardrobe;
 	}
 
+	public Displayer getDisplayinfo(){
+		return null;
+	}
 }
