@@ -3,6 +3,7 @@ package app.backend.user;
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import app.backend.interfaces.Item;
@@ -11,17 +12,23 @@ import app.backend.interfaces.Wardrobe;
 
 public class AppItem implements Item, Serializable {
 	
-	private Integer score = 0;
+	Integer score = 0;
 	String name;
-	HashSet<String> tags = new HashSet<String>();
+	HashSet<String> tags;
 	String imagePath;
+	AppUser owner;
+	AppWardrobe wardrobe;
 	
-	public AppItem(String name, String imagePath){
-		this.name = name;
-		this.imagePath = imagePath;
+	public AppItem(AppUser user, AppWardrobe wardrobe, String name, String imagePath){
+		
+		this.owner = user; //owner object passed
+		this.wardrobe = wardrobe; //parent wardrobe object passed
+		this.name = name; //unique identifier name
+		this.imagePath = imagePath; //image path
+		this.tags = new HashSet<String>(); //initialize set of tags
 		
 	}
-
+	
 	@Override
 	public String getName() {
 		return this.name;
@@ -32,9 +39,9 @@ public class AppItem implements Item, Serializable {
 		return this.tags;
 	}
 
+	//CV STUFF ----
 	@Override
 	public Color whichColor() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -42,21 +49,42 @@ public class AppItem implements Item, Serializable {
 	public void addTag(String newTag) {
 		
 		this.tags.add(newTag);
+		HashMap<String, HashSet<Item>> parentTagMap = this.owner.tagsMap;
 		
-		//SO FAR THIS METHOD DOES NOT UPDATE THE USERS TAGS MAP WHEN A NEW TAG IS ADDED TO THE ITEM! NEED TO FIX THIS...
+		if (parentTagMap.get(newTag) == null){
+			HashSet<Item> itemSet = new HashSet<Item>();
+			itemSet.add(this);
+			parentTagMap.put(newTag, itemSet);
+		}
+		else{
+			parentTagMap.get(newTag).add(this);
+		}
 		
+		//INSERT INTO TRIE UNIGRAM BIGRAM ETC...
 	}
 
 	@Override
 	public void removeTag(String tagToRemove) {
 		
 		this.tags.remove(tagToRemove);
+		HashMap<String, HashSet<Item>> parentTagMap = this.owner.tagsMap;
+		
+		if (parentTagMap.get(tagToRemove) != null){
+			parentTagMap.get(tagToRemove).remove(this);
+			
+			if (parentTagMap.get(tagToRemove).size() == 0){
+				parentTagMap.remove(tagToRemove);
+			}
+		}
+		
+		//REMOVE FROM TRIE UNIGRAM BIGRAM ETC...
+		
+		
 	}
 
 	@Override
 	public Wardrobe whichWardrobe() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.wardrobe;
 	}
 
 	@Override
@@ -67,13 +95,19 @@ public class AppItem implements Item, Serializable {
 
 	@Override
 	public void moveItem(Wardrobe destination) {
+		this.wardrobe.removeItem(this);
 		
+		//check if destination has the same user -- if not remove all tags etc from the users datastructures
 		destination.addItem(this);
 		
 	}
 
 	
-	//HAVE RESET IMAGE FUNCTION TOOO
+	public boolean resetImagePath(String newImage){
+		//check if newImage exists
+		this.imagePath = newImage;
+		return true;
+	}
 	@Override
 	public String getImagePath() {
 		return this.imagePath;
