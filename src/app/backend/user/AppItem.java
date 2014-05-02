@@ -8,6 +8,7 @@ import java.util.HashSet;
 
 import app.backend.interfaces.Item;
 import app.backend.interfaces.Outfit;
+import app.backend.interfaces.User;
 import app.backend.interfaces.Wardrobe;
 
 public class AppItem implements Item, Serializable {
@@ -17,12 +18,12 @@ public class AppItem implements Item, Serializable {
 	HashSet<String> tags;
 	String imagePath;
 	AppUser owner;
-	AppWardrobe wardrobe;
+	Wardrobe wardrobe;
 	
-	public AppItem(AppUser user, AppWardrobe wardrobe, String name, String imagePath){
+	public AppItem(AppUser user, Wardrobe wardrobeToPut, String name, String imagePath){
 		
 		this.owner = user; //owner object passed
-		this.wardrobe = wardrobe; //parent wardrobe object passed
+		this.wardrobe = wardrobeToPut; //parent wardrobe object passed
 		this.name = name; //unique identifier name
 		this.imagePath = imagePath; //image path
 		this.tags = new HashSet<String>(); //initialize set of tags

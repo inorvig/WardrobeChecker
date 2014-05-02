@@ -3,6 +3,7 @@ package app.backend.user;
 import java.util.Collection;
 import java.util.HashSet;
 
+import app.backend.interfaces.Displayer;
 import app.backend.interfaces.Item;
 import app.backend.interfaces.Outfit;
 import app.backend.interfaces.Wardrobe;
@@ -47,6 +48,13 @@ public class AppOutfit implements Outfit {
 	}
 
 	public Displayer getDisplayinfo(){
+		return null;
+	}
+
+
+	@Override
+	public Displayer getDisplayInfo() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }
