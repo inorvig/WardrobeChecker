@@ -103,6 +103,7 @@ public class ByCategoryPanel extends JPanel {
 	
 	public void setCloset(String name){
 		closet = name;
+		reset();
 	}
 	
 	//TODO: items of certain category in certain wardrobe
@@ -124,11 +125,11 @@ public class ByCategoryPanel extends JPanel {
 	}
 	public void reset(){
 		this.removeAll();
-		for (Category c : user.getCategories()){
+		for (final Category c : user.getCategories()){
 			JButton cat = new JButton(c.getName());
 			cat.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//parent.openWardrobe(w.getName());
+					displayCategory(c.getName());
 				}
 			});
 			ImageIcon icon = new ImageIcon(c.getImagePath());
@@ -142,6 +143,7 @@ public class ByCategoryPanel extends JPanel {
 		}
 		
 		addButton();
+		this.repaint();
 	}
 	
 	private void addButton(){

@@ -144,6 +144,7 @@ public class NewItemPanel extends JPanel {
 				}
 				System.out.println("user: "+user);
 				user.addItem(name, wardrobe, category, color, imagePath,tags);
+				parent.updateItems();
 				parent.returnToHome();
 			}
 		});

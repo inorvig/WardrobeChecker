@@ -32,6 +32,7 @@ public class Autosuggest {
 		this.led = new LED(alltags);
 		led.turnOnFeature();
 		led.inputDistance(1);
+		this.alltags = new HashSet<String>();
 		
 		//initialize whitespace matching
 		this.whitespace = new Whitespace(alltags);

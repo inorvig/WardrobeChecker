@@ -406,6 +406,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	 *            the command line arguments
 	 */
 	
+	public void updateItems(){
+		closetPanel.reset();
+		pack();
+	}
 	public void returnToHome(){
 		OutfitDesignPanel.setVisible(true);
 		WardrobePanel.setVisible(false);

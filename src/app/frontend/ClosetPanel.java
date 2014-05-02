@@ -50,5 +50,11 @@ public class ClosetPanel extends JPanel {
 		all.setCloset(name);
 		category.setCloset(name);
 	}
+	
+	public void reset(){
+		all.reset();
+		category.reset();
+		this.repaint();
+	}
 
 }

@@ -15,6 +15,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.util.Collection;
 
 public class AllItemsPanel extends JPanel {
 
@@ -34,12 +35,19 @@ public class AllItemsPanel extends JPanel {
 	
 	public void setCloset(String name){
 		closet = name;
-		
+		reset();
 	}
 	
 	public void reset(){
 		this.removeAll();
-		for (Item i : user.searchWardrobe(closet).getItems()){
+		System.out.println("searching for wardrobe "+closet+" in user "+user);
+		Collection<Item> items;
+		if (closet.equals("all")){
+			items = user.allItems();
+		} else {
+			items = user.searchWardrobe(closet).getItems();
+		}
+		for (Item i : items){
 			JLabel item = new JLabel(i.getName());
 			ImageIcon icon = new ImageIcon(i.getImagePath());
 			Image img = icon.getImage();
@@ -52,6 +60,8 @@ public class AllItemsPanel extends JPanel {
 		}
 		
 		addButton();
+		
+		this.repaint();
 	}
 	
 	private void addButton(){
