@@ -29,7 +29,7 @@ public class Saver implements Savable{
 				fileIn.close();
 			}
 			catch (IOException e){
-				System.out.println("ERROR: error while reading input file of saved data");
+				System.out.println("ERROR: error while reading input file of saved data: "+e.getMessage());
 			}
 			catch (ClassNotFoundException e){
 				System.out.println("ERROR: Not an AppUser file");
@@ -51,10 +51,12 @@ public class Saver implements Savable{
 			out.writeObject(user);
 			out.close();
 			fileOut.close();
+			System.out.println("saved");
 		}
 		catch (IOException e){
-			System.out.println("ERROR: while saving data");
+			System.out.println("ERROR: while saving data: "+e.getMessage());
 		}
+		
 	}
 	
 	public static void main(String[] args){

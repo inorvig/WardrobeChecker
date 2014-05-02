@@ -22,23 +22,21 @@ public class ByWardrobePanel extends JPanel {
 		
 		setLayout(new GridLayout(0, 3, 0, 0)); 
 		
-		JButton btnHomeCloset = new JButton("Home Closet");
-		btnHomeCloset.addActionListener(new ActionListener() {
+		JButton btnAddWardrobe = new JButton("Add Wardrobe");
+		btnAddWardrobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
-		ImageIcon icon = new ImageIcon("../wardrobe/images/closet.gif");
+		ImageIcon icon = new ImageIcon("../wardrobe/images/add.gif");
         Image img = icon.getImage();
         Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
-		btnHomeCloset.setIcon(new ImageIcon(newimg));
-		btnHomeCloset.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnHomeCloset.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnHomeCloset.setPreferredSize(new Dimension(150,150));
-		add(btnHomeCloset);
+		btnAddWardrobe.setIcon(new ImageIcon(newimg));
+		btnAddWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnAddWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnAddWardrobe.setPreferredSize(new Dimension(150,150));
+		add(btnAddWardrobe);
 		
-		JButton btnSpringBreak = new JButton("Spring Break");
-		add(btnSpringBreak);
 
 	}
 
