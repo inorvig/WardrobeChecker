@@ -110,7 +110,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		logoPanel = new javax.swing.JPanel();
 		OutfitDesignPanel = new OutfitDesignPanel();
 		newItemPanel = new NewItemPanel(this, _user);
-		WardrobePanel = new WardrobePanel();
+		WardrobePanel = new WardrobePanel(_user);
 		OutfitsPanel = new OutfitsPanel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
