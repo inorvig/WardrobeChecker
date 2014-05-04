@@ -160,10 +160,11 @@ public class AppUser implements User, Serializable {
 
 
 	@Override
-	public Collection<Item> search(String searchTerms) {
+	public ArrayList<Item> search(String searchTerms) {
 		
 		for (Item item: allItems){
 			item.resetScore();
+			System.out.println(item.getScore() + " should be reset to 0");
 		}
 		
 		HashSet<Item> matchingItems = new HashSet<Item>();
@@ -187,11 +188,12 @@ public class AppUser implements User, Serializable {
 		
 		for (Item item: matchingItems){
 			toReturn.add(item);
+			System.out.println(item.getName() + " <- name, " + item.getScore() + " <- score" );
 		}
 		
 		Collections.sort(toReturn);
 		
-		return toReturn;
+		return (ArrayList<Item>) toReturn;
 	}
 
 

@@ -46,22 +46,10 @@ public class Autosuggest implements Serializable {
 	 */
 	public void setUp(){
 		
-		//initialize prefix matching
-				this.trie = new Trie();
-				this.prefix = new Prefix(trie);
-				prefix.turnOnFeature();
-				
-				//initialize led matching
-				this.led = new LED(alltags);
-				led.turnOnFeature();
-				led.inputDistance(1);
-				this.alltags = new HashSet<String>();
-				
-				//initialize whitespace matching
-				this.whitespace = new Whitespace(alltags);
-				whitespace.turnOnFeature();
-			
+		
+		this.trie = new Trie();
 		Set<String> usersTags = tagsMap.keySet();
+		this.alltags = new HashSet<String>();
 		
 		for (String tag:usersTags){
 			trie.insert(tag);
@@ -70,14 +58,27 @@ public class Autosuggest implements Serializable {
 		if (usersTags != null)
 			alltags.addAll(usersTags);
 		
+		//initialize prefix matching
+		
+		this.prefix = new Prefix(trie);
+		prefix.turnOnFeature();
+		
+		//initialize led matching
+		this.led = new LED(alltags);
+		led.turnOnFeature();
+		led.inputDistance(1);
+		
+		
+		//initialize whitespace matching
+		this.whitespace = new Whitespace(alltags);
+		whitespace.turnOnFeature();
+		
 	}
 	
 	
 	public Set<String> lookup(String query){
 		
 		setUp();
-		
-		HashSet<Item> toReturn = new HashSet<Item>();
 		
 		Set<String> matchingTags = new HashSet<String>();
 

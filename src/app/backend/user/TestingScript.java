@@ -1,6 +1,7 @@
 package app.backend.user;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import app.backend.interfaces.Item;
 import app.backend.interfaces.User;
@@ -49,8 +50,10 @@ public class TestingScript {
 		u.addItem(item3);
 		u.addItem(item4);
 		
-		for (Item i :u.search("pant")){
-			System.out.println(i.getName() + "-----------");
+		ArrayList<Item> r = u.search("awebad ");
+		
+		for (int i = 0; i<r.size();i++){
+			System.out.println( "<< "+ i + " >> ---" + r.get(i).getName() );
 		}
 		
 		
