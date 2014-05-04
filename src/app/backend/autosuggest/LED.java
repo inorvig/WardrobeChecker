@@ -53,6 +53,7 @@ public class LED implements Feature, Serializable {
      */
     @Override
 	public void resultSet(Set<String> results, String word){
+    	
         if (ledOn){
 	        for(String entry : wordMap){ // iterating through keyset of all words in corpus
 	            if (distance(word, entry)<=led) // finding all words in corpus that are less than or equal to led away from input word

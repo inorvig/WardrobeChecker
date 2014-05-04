@@ -87,6 +87,9 @@ public class Autosuggest implements Serializable {
 				
 				//get prefix, led and whitespace results
 				prefix.resultSet(matchingTags, word);
+				
+				for (String s: matchingTags)
+					System.out.println(s);
 				led.resultSet(matchingTags, word);
 				whitespace.resultSet(matchingTags, word);
 
