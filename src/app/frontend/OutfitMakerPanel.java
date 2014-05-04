@@ -40,7 +40,6 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	private JLayeredPane layeredPane;
 	private JLabel lblNewLabel;
 	private JLabel savedLabel = null;
-	private SearchPanels panel;
 	
 	private ArrayList<JLabel> draggable = new ArrayList<JLabel>();
 
@@ -48,6 +47,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	 * Create the panel.
 	 */
 	public OutfitMakerPanel(MainFrame parent, User user) {
+		setBackground(Color.WHITE);
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(35, 35, 170, 372);
@@ -84,10 +84,6 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		
 		lblNewLabel.setIcon(new ImageIcon(newimg));
 		layeredPane.add(lblNewLabel);
-		
-		panel = new SearchPanels();
-		panel.setBounds(253, 12, 183, 396);
-		add(panel);
 		
 	}
 	
