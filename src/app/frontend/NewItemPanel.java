@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 
 import javax.swing.SwingConstants;
@@ -32,9 +33,11 @@ public class NewItemPanel extends JPanel {
 	private JTextField txtCategory, txtColor, txtName;
 	private JTextArea txtTags;
 	private String imagePath;
+	private User user;
 
 	public NewItemPanel(final MainFrame parent, final User user) {
 		System.out.println(user+ " is the user");
+		this.user = user;
 		setLayout(new BorderLayout(0, 0));
 
 		imagePath = "../wardrobe/images/question.gif";
@@ -180,11 +183,20 @@ public class NewItemPanel extends JPanel {
 
 	public void clear() {
 
-		//txtCategory.setText("");
 		txtColor.setText("");
 		txtName.setText("");
 		txtTags.setText("");
 		imagePath = "../wardrobe/images/question.gif";
+	}
+
+	public void addTags(String string) {
+		System.out.println("generating tags for"+ string);
+		Collection<String> tags = user.suggestTags(string);
+		String toAdd = "";
+		for (String tag: tags){
+			toAdd+=(tag+", ");
+		}
+		txtTags.setText(toAdd);
 	}
 
 }

@@ -62,6 +62,7 @@ public class AddPhotoPanel extends JPanel implements ActionListener {
                 label.setIcon(new ImageIcon(newimg));
                 photoPanel.removeAll();
                 photoPanel.add(label);
+                parent.addTags(imageFile.getAbsolutePath());
                 this.revalidate();
                 this.repaint();
 
