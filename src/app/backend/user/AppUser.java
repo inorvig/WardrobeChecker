@@ -41,6 +41,7 @@ public class AppUser implements User, Serializable {
 		this.tagsuggester = new StubTagger();
 		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET));
 		addCategory("shirts");
+		System.out.println("allCategories is now "+ allCategories.size());
 		addCategory("dresses");
 		addCategory("shoes");
 		addCategory("skirts");
@@ -48,6 +49,8 @@ public class AppUser implements User, Serializable {
 		addCategory("sweaters");
 		addCategory("jeans");
 		addCategory("jackets");
+
+
 	}
 
 	@Override
@@ -81,6 +84,13 @@ public class AppUser implements User, Serializable {
 		return result;
 	}
 
+	public Collection<String> getCategoryList(){
+		Collection<String> result = new ArrayList<String>();
+		for (Category i : allCategories){
+			result.add(i.getName());
+		}
+		return result;
+	}
 
 	@Override
 	public void addItem(String name, String wardrobe, String category,
@@ -352,6 +362,15 @@ public class AppUser implements User, Serializable {
 	@Override
 	public Collection<Item> allItems() {
 		return allItems;
+	}
+
+	@Override
+	public Collection<String> getWardrobeList() {
+		Collection<String> result = new ArrayList<String>();
+		for (Wardrobe i : wardrobeList){
+			result.add(i.getName());
+		}
+		return result;
 	}
 
 }

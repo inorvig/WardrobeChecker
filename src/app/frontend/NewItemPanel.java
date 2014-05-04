@@ -18,6 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -76,8 +78,8 @@ public class NewItemPanel extends JPanel {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 
-		String[] wardrobeNames = { "Home Closet", "Spring Break" };
-		String[] categoryNames = { "T-Shirts", "Pants", "Dresses" };
+		String[] wardrobeNames = user.getWardrobeList().toArray(new String[user.getCategoryList().size()]);
+		String[] categoryNames = user.getCategoryList().toArray(new String[user.getCategoryList().size()]);
 						
 				
 						JLabel lblName = new JLabel("Name");
