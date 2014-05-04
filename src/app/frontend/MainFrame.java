@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.List;
 import java.awt.event.*;
 
 import javax.swing.JLabel;
@@ -27,6 +28,8 @@ import app.backend.interfaces.Item;
 import app.backend.interfaces.User;
 import app.backend.user.Saver;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * 
@@ -108,7 +111,6 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		RightPanel = new javax.swing.JPanel();
 		RightPanel.setBackground(Color.WHITE);
 		weatherAPI = new WeatherPanel();
-		ResultsPanel = new SearchPanels();
 		logoPanel = new javax.swing.JPanel();
 		OutfitMakerPanel = new OutfitMakerPanel(this, _user);
 		newItemPanel = new NewItemPanel(this, _user);
@@ -249,9 +251,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch.setColumns(10);
 		
 		ItemDisplayTester test = new ItemDisplayTester();
-		for (Item tem : test.getItems()){
-			ResultsPanel.createPanel(tem);
-		}
+		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()));
+
 		
 	//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
 		
