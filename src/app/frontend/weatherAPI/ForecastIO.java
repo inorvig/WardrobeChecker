@@ -1,4 +1,4 @@
-package weatherAPI;
+package app.frontend.weatherAPI;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,8 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.zip.GZIPInputStream;
 
-import com.eclipse.json.JsonArray;
-import com.eclipse.json.JsonObject;
+import app.frontend.com.eclipse.json.JsonArray;
+import app.frontend.com.eclipse.json.JsonObject;
 
 public class ForecastIO {
 

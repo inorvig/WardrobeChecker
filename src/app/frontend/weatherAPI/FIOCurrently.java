@@ -1,4 +1,4 @@
-package weatherAPI;
+package app.frontend.weatherAPI;
 
 public class FIOCurrently {
 

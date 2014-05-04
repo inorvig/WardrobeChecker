@@ -1,14 +1,14 @@
-package com.eclipse.json;
+package app.frontend.com.eclipse.json;
 
 import java.io.IOException;
 
 @SuppressWarnings("serial")
 // use default serial UID
-class JsonNumber extends JsonValue {
+class JsonString extends JsonValue {
 
 	private final String string;
 
-	JsonNumber(String string) {
+	JsonString(String string) {
 		if (string == null) {
 			throw new NullPointerException("string is null");
 		}
@@ -16,38 +16,18 @@ class JsonNumber extends JsonValue {
 	}
 
 	@Override
-	public String toString() {
-		return string;
-	}
-
-	@Override
 	protected void write(JsonWriter writer) throws IOException {
-		writer.write(string);
+		writer.writeString(string);
 	}
 
 	@Override
-	public boolean isNumber() {
+	public boolean isString() {
 		return true;
 	}
 
 	@Override
-	public int asInt() {
-		return Integer.parseInt(string, 10);
-	}
-
-	@Override
-	public long asLong() {
-		return Long.parseLong(string, 10);
-	}
-
-	@Override
-	public float asFloat() {
-		return Float.parseFloat(string);
-	}
-
-	@Override
-	public double asDouble() {
-		return Double.parseDouble(string);
+	public String asString() {
+		return string;
 	}
 
 	@Override
@@ -66,7 +46,7 @@ class JsonNumber extends JsonValue {
 		if (getClass() != object.getClass()) {
 			return false;
 		}
-		JsonNumber other = (JsonNumber) object;
+		JsonString other = (JsonString) object;
 		return string.equals(other.string);
 	}
 

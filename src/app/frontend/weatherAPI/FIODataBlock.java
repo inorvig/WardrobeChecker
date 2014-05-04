@@ -1,7 +1,7 @@
-package weatherAPI;
+package app.frontend.weatherAPI;
 
-import com.eclipse.json.JsonArray;
-import com.eclipse.json.JsonObject;
+import app.frontend.com.eclipse.json.JsonArray;
+import app.frontend.com.eclipse.json.JsonObject;
 
 public class FIODataBlock {
 
