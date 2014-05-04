@@ -80,7 +80,7 @@ public class NewItemPanel extends JPanel {
 
 		String[] wardrobeNames = user.getWardrobeList().toArray(new String[user.getCategoryList().size()]);
 		String[] categoryNames = user.getCategoryList().toArray(new String[user.getCategoryList().size()]);
-						
+			//String[] wardrobeNames = new String[]{"hello"};
 				
 						JLabel lblName = new JLabel("Name");
 						lblName.setHorizontalAlignment(SwingConstants.CENTER);
