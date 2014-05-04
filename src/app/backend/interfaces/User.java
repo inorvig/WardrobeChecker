@@ -3,6 +3,8 @@ package app.backend.interfaces;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import app.backend.user.AppWardrobe.WardrobeType;
+
 public interface User {
 
 	public Collection<Wardrobe> getWardrobes();
@@ -13,7 +15,7 @@ public interface User {
 
 	public int howManyOutfits();
 
-	public void addWardrobe(String name);
+	public void addWardrobe(String name, WardrobeType type);
 	
 	public Wardrobe searchWardrobe(String name);
 

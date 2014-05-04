@@ -1,5 +1,6 @@
 package app.frontend;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -11,6 +12,7 @@ import javax.swing.ImageIcon;
 
 import app.backend.interfaces.User;
 import app.backend.interfaces.Wardrobe;
+import app.backend.user.AppWardrobe.WardrobeType;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,7 +29,7 @@ public class ByWardrobePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ByWardrobePanel(final MainFrame parent, User user) {
+	public ByWardrobePanel(final MainFrame parent, final User user) {
 		FlowLayout flowLayout = (FlowLayout) getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		setBackground(Color.WHITE);
@@ -55,7 +57,18 @@ public class ByWardrobePanel extends JPanel {
 		btnAddWardrobe.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO: add wardrobe
+				System.out.println("add wardrobe pressed");
+				WardrobeDialog wd = new WardrobeDialog(parent);
+				wd.setLocationRelativeTo(parent);
+				String name = wd.getName();
+				String style = wd.getStyle();
+				if (name!=null){
+					if (style.equals("closet")){
+						user.addWardrobe(name, WardrobeType.CLOSET);
+					} else {
+						user.addWardrobe(name, WardrobeType.SUITCASE);
+					}
+				}
 			}
 		});
 		ImageIcon icon = new ImageIcon("../wardrobe/images/add.gif");

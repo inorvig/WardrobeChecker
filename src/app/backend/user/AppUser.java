@@ -328,8 +328,8 @@ public class AppUser implements User, Serializable {
 	}
 
 	@Override
-	public void addWardrobe(String name) {
-		wardrobeList.add(new AppWardrobe(name, WardrobeType.CLOSET));
+	public void addWardrobe(String name, WardrobeType type) {
+		wardrobeList.add(new AppWardrobe(name, type));
 
 	}
 
