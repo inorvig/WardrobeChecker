@@ -186,7 +186,7 @@ public class NewItemPanel extends JPanel {
 		txtColor.setText("");
 		txtName.setText("");
 		txtTags.setText("");
-		imagePath = "../wardrobe/images/question.gif";
+		imagePath = "images/question.gif";
 	}
 
 	public void addTags(String string) {
