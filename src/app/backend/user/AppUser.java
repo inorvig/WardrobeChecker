@@ -115,10 +115,12 @@ public class AppUser implements User, Serializable {
 		}
 		return result;
 	}
-
+	
+	/**
+	 * wrapper around addItem that contructs Item and then passes
+	 */
 	@Override
-	public void addItem(String name, String wardrobe, String category,
-			String color, String imagePath, ArrayList<String> tags) {
+	public void addItem(String name, String wardrobe, String category, String color, String imagePath, ArrayList<String> tags) {
 		Wardrobe wardrobeToPut = searchWardrobe(wardrobe);
 		if (wardrobeToPut == null){
 			wardrobeToPut = wardrobeList.get(0);
@@ -132,7 +134,6 @@ public class AppUser implements User, Serializable {
 		addItem(toAdd);
 
 	}
-
 
 	private void addItem(Item item) {
 
@@ -198,28 +199,6 @@ public class AppUser implements User, Serializable {
 		return toReturn;
 	}
 
-
-	public static void main(String[] args){
-
-
-
-		AppUser u = new AppUser("TestOwner");
-		System.out.println(u.howManyWardrobes());
-
-//		AppItem item1 = new AppItem(u,)
-//		u.addItem(item1);
-
-
-
-
-
-
-
-
-
-
-
-	}
 
 
 

@@ -23,8 +23,7 @@ public class AppItem implements Item, Serializable {
 	AppUser owner;
 	Wardrobe wardrobe;
 
-	public AppItem(AppUser user, Wardrobe wardrobeToPut, String name,
-			String imagePath) {
+	public AppItem(AppUser user, Wardrobe wardrobeToPut, String name, String imagePath) {
 
 		this.owner = user; // owner object passed
 		this.wardrobe = wardrobeToPut; // parent wardrobe object passed
@@ -72,8 +71,6 @@ public class AppItem implements Item, Serializable {
 				else{
 					parentTagMap.get(word).add(this);
 				}
-				
-				
 
 			}
 		}

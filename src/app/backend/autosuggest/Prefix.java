@@ -42,6 +42,7 @@ public class Prefix implements Feature, Serializable {
      */
     @Override
 	public void resultSet(Set<String> results, String word){ // returns the inputted hashset of all results found with given prefix in trie
+    	
 	    if (prefixOn){
 	    	Node currNode = trie.getRoot();
 	        char[] charArray = word.toCharArray();
