@@ -66,11 +66,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public MainFrame() {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
-<<<<<<< HEAD
 		_savedUser = new Saver("otherest");
-=======
-		_savedUser = new Saver("test");
->>>>>>> 1d7aa31fa501a3c49d1c81cdb9395d98835e6331
+
 		_user = _savedUser.getUser();
 		System.out.println("mainframe user: "+_user);
 		initComponents();
