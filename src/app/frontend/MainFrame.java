@@ -90,7 +90,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		LeftPanel = new javax.swing.JPanel();
 		LeftPanel.setBackground(Color.WHITE);
 		newWindow = new javax.swing.JButton();
-		newWindow.setIcon(new ImageIcon("../wardrobe/images/plus.gif"));
+		newWindow.setIcon(new ImageIcon("images/plus.gif"));
 		toggleGroup = new javax.swing.ButtonGroup();
 		myWardrobes = new javax.swing.JToggleButton();
 		addNewItem = new javax.swing.JToggleButton();
@@ -116,7 +116,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 		newWindow.setBackground(new java.awt.Color(127, 110, 186));
 		newWindow.setForeground(new java.awt.Color(255, 255, 255));
-		ImageIcon icon = new ImageIcon("../wardrobe/images/newwindow.gif");
+		ImageIcon icon = new ImageIcon("images/newwindow.gif");
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(75, 75,
 				java.awt.Image.SCALE_SMOOTH);
@@ -159,7 +159,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 		searchWeb.setBackground(new java.awt.Color(127, 110, 186));
 		searchWeb.setForeground(new java.awt.Color(255, 255, 255));
-		ImageIcon icon2 = new ImageIcon("../wardrobe/images/search-web.gif");
+		ImageIcon icon2 = new ImageIcon("images/search-web.gif");
 		Image img2 = icon2.getImage();
 		Image newimg2 = img2.getScaledInstance(150, 75,
 				java.awt.Image.SCALE_SMOOTH);
@@ -168,12 +168,12 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 		helpButton.setBackground(new java.awt.Color(127, 110, 186));
 		helpButton.setForeground(new java.awt.Color(255, 255, 255));
-		ImageIcon icon3 = new ImageIcon("../wardrobe/images/help.gif");
+		ImageIcon icon3 = new ImageIcon("images/help.gif");
 		Image img3 = icon3.getImage();
 		Image newimg3 = img3.getScaledInstance(75, 120,
 				java.awt.Image.SCALE_SMOOTH);
 		helpButton.setIcon(new ImageIcon(newimg3));
-		// helpButton.setIcon(new ImageIcon("../wardrobe/images/question.gif"));
+		// helpButton.setIcon(new ImageIcon("images/question.gif"));
 		// // NOI18N
 		helpButton.setText("<html><center>Help</center></html>");
 
@@ -224,7 +224,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				Short.MAX_VALUE));
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("../wardrobe/images/logo.gif"));
+		lblNewLabel.setIcon(new ImageIcon("images/logo.gif"));
 
 		javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(
 				logoPanel);
