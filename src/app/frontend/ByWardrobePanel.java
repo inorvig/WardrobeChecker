@@ -88,8 +88,6 @@ public class ByWardrobePanel extends JPanel {
 		btnAddWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnAddWardrobe.setPreferredSize(new Dimension(130, 150));
 		add(btnAddWardrobe);
-		
-		
 
 	}
 
