@@ -138,7 +138,8 @@ public class AppUser implements User, Serializable {
 		HashSet<String> tagsToAdd = item.getTags();
 		
 		for (String tag: tagsToAdd){
-
+			autosuggest.addTag(tag);
+			
 			if (tagsMap.containsKey(tag)){
 				tagsMap.get(tag).add(item);
 				
@@ -150,9 +151,7 @@ public class AppUser implements User, Serializable {
 			}	
 		}
 		
-		for (Item i : allItems){
-			System.out.println(i.getName()+ " is in the items");
-		}
+
 	}
 
 	@Override
@@ -168,7 +167,7 @@ public class AppUser implements User, Serializable {
 		
 		for (Item item: allItems){
 			item.resetScore();
-			System.out.println(item.getScore() + " should be reset to 0");
+			System.out.println(item.getName() + " should be reset to 0");
 		}
 		
 		HashSet<Item> matchingItems = new HashSet<Item>();

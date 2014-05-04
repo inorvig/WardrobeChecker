@@ -2,6 +2,7 @@ package app.frontend;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,7 +19,7 @@ public class WardrobePanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -1109275360431582813L;
 	private AllItemsPanel all;
-	private ByWardrobePanel wardrobe;
+	private JScrollPane wardrobe;
 	/**
 	 * Create the panel.
 	 */
@@ -26,7 +27,7 @@ public class WardrobePanel extends JPanel {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
 		all = new AllItemsPanel(parent, user);
-		wardrobe = new ByWardrobePanel(parent, user);
+		wardrobe = new JScrollPane(new ByWardrobePanel(parent, user));
 		
 		JLabel lblMyWardrobes = new JLabel("My Wardrobes");
 		lblMyWardrobes.setHorizontalAlignment(SwingConstants.CENTER);
