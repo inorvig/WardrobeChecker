@@ -23,23 +23,24 @@ public class AppUser implements User, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5405996534890993199L;
-	String username;
-	ArrayList<Wardrobe> wardrobeList = new ArrayList<Wardrobe>();
-	ArrayList<Outfit> outfitList = new ArrayList<Outfit>();
-
-	HashSet<Item> allItems = new HashSet<Item>(); 
-																	
-	HashSet<Category> allCategories = new HashSet<Category>();
-	HashMap<String, HashSet<Item>> tagsMap = new HashMap<String, HashSet<Item>>();
-	Autosuggest autosuggest;
-	TagSuggesting tagsuggester;
+	String username; //user's name
+	ArrayList<Wardrobe> wardrobeList; //list of all wardrobes  
+	ArrayList<Outfit> outfitList; //list of all saved outfits
+	HashSet<String> itemNames; //set of all item names
+	HashSet<Item> allItems; //set of all items								
+	HashSet<Category> allCategories; //set of all categories
+	HashMap<String, HashSet<Item>> tagsMap;  //map of all tags saved by user, mapped to set of all items that contain the tag
+	Autosuggest autosuggest; //autosuggester
+	TagSuggesting tagsuggester; //cv tag suggester
 
 	public AppUser(String name) {
-		this.username = name;
-		this.autosuggest = new Autosuggest(tagsMap);
-		autosuggest.setUp();
-		this.tagsuggester = new StubTagger();
-		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET));
+
+		this.username = name; //initialize name
+
+		this.wardrobeList = new ArrayList<Wardrobe>(); //initialize empty list
+		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET)); //add default home closet
+
+		this.allCategories = new HashSet<Category>(); //initialize category set
 		addCategory("shirts");
 		addCategory("dresses");
 		addCategory("shoes");
@@ -49,6 +50,17 @@ public class AppUser implements User, Serializable {
 		addCategory("jeans");
 		addCategory("jackets");
 
+		this.allItems = new HashSet<Item>(); //initialize set of all items 
+		this.itemNames = new HashSet<String>(); //initialize set of all itemNames
+
+		this.outfitList = new ArrayList<Outfit>(); //initialize list of outfits
+
+		this.tagsMap = new HashMap<String, HashSet<Item>>(); //initialize map of tags to items
+
+		this.autosuggest = new Autosuggest(tagsMap); //set up autosuggest
+		autosuggest.setUp();
+
+		this.tagsuggester = new StubTagger();
 
 	}
 
@@ -71,7 +83,7 @@ public class AppUser implements User, Serializable {
 	public int howManyOutfits() {
 		return this.outfitList.size();
 	}
-	
+
 	@Override
 	public Wardrobe searchWardrobe(String name){
 		Wardrobe result = null;
@@ -107,20 +119,20 @@ public class AppUser implements User, Serializable {
 		addItem(toAdd);
 
 	}
-	
-	
+
+
 	private void addItem(Item item) {
 
 		allItems.add(item);
-		
+
 		//add items tags
 		HashSet<String> tagsToAdd = item.getTags();
-		
+
 		for (String tag: tagsToAdd){
 
 			if (tagsMap.containsKey(tag)){
 				tagsMap.get(tag).add(item);
-				
+
 			}
 			else{
 				HashSet<Item> itemSet = new HashSet<Item>();
@@ -140,40 +152,61 @@ public class AppUser implements User, Serializable {
 
 	@Override
 	public Collection<Item> search(String searchTerms) {
-		
+
 		for (Item item: allItems){
 			item.resetScore();
 		}
-		
+
 		HashSet<Item> matchingItems = new HashSet<Item>();
 		ArrayList<Item> toReturn = new ArrayList<Item>();
 
-		
+
 
 		Set<String> matchingTags = autosuggest.lookup(searchTerms);
-		
-		
+
+
 		for (String tag: matchingTags){
-			
+
 			HashSet<Item> items = tagsMap.get(tag);
-			
+
 			for (Item item: items){
 				item.incrementScore();
 				matchingItems.add(item);
 			}
-			
+
 		}
-		
+
 		for (Item item: matchingItems){
 			toReturn.add(item);
 		}
-		
+
 		Collections.sort(toReturn);
-		
+
 		return toReturn;
 	}
 
- 
+
+	public static void main(String[] args){
+
+
+
+		AppUser u = new AppUser("TestOwner");
+		System.out.println(u.howManyWardrobes());
+
+//		AppItem item1 = new AppItem(u,)
+//		u.addItem(item1);
+
+
+
+
+
+
+
+
+
+
+
+	}
 
 
 

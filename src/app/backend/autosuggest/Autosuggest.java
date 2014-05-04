@@ -64,8 +64,8 @@ public class Autosuggest implements Serializable {
 			trie.insert(tag);
 			
 		}
-		
-		alltags.addAll(usersTags);
+		if (usersTags != null)
+			alltags.addAll(usersTags);
 		
 	}
 	
