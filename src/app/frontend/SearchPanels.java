@@ -35,7 +35,6 @@ public class SearchPanels extends JPanel {
 		setLayout(new GridLayout(0, 1));
 
 	}
-	
 
 
 }

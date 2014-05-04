@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import app.backend.interfaces.Item;
 import app.backend.interfaces.User;
 import app.backend.user.Saver;
 import java.awt.Color;
@@ -69,7 +70,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public MainFrame() {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
-		_savedUser = new Saver("dfsq");
+		_savedUser = new Saver("Bella");
 
 		_user = _savedUser.getUser();
 		System.out.println("mainframe user: "+_user);
@@ -246,6 +247,11 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch = new JTextField();
 		txtSearch.setText("Search");
 		txtSearch.setColumns(10);
+		
+		ItemDisplayTester test = new ItemDisplayTester();
+		for (Item tem : test.getItems()){
+			ResultsPanel.createPanel(tem);
+		}
 		
 	//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
 		
