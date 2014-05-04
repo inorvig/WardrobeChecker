@@ -7,9 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.zip.GZIPInputStream;
 
-import com.eclipsesource.json.JsonArray;
-import com.eclipsesource.json.JsonObject;
-
 public class ForecastIO {
 
 	private static final String ForecastIOURL = "https://api.forecast.io/forecast/";

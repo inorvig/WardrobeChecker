@@ -1,16 +1,18 @@
 package app.backend.autosuggest;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
-
 import app.backend.interfaces.Item;
 
 public class Autosuggest implements Serializable {
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6889241739311488761L;
 	Trie trie;
 	//HashMap<String, Integer> unigram;
 	//HashMap<String, Integer> bigram;

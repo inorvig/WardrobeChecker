@@ -15,7 +15,11 @@ import java.util.*;
 
 public class Whitespace implements Feature, Serializable{
     
-    private Set<String> wordMap; 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 46300299665887737L;
+	private Set<String> wordMap; 
     public boolean whitespaceOn; // boolean to indicate whether this feature has been turned on by user
     
     /**
@@ -30,14 +34,16 @@ public class Whitespace implements Feature, Serializable{
     /**
      * method to turn on whitespace insertion
      */
-    public void turnOnFeature() {
+    @Override
+	public void turnOnFeature() {
         whitespaceOn = true;
     }
     
     /**
      * method to build set of results using whitespace insertion
      */
-    public void resultSet(Set<String> results, String word) {
+    @Override
+	public void resultSet(Set<String> results, String word) {
         if (whitespaceOn){
 	        int wordLength = word.length();
 	        String word1 , word2, returnWord;

@@ -11,6 +11,11 @@ import java.awt.Color;
 public class OutfitDesignPanel extends JPanel {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1803901267296321638L;
+
+	/**
 	 * Create the panel.
 	 */
 	public OutfitDesignPanel(MainFrame parent, User user) {

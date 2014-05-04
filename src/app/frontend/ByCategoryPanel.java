@@ -21,6 +21,10 @@ import java.awt.Color;
 
 public class ByCategoryPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3463027705622908506L;
 	private String closet;
 	private User user;
 	/**
@@ -128,6 +132,7 @@ public class ByCategoryPanel extends JPanel {
 		for (final Category c : user.getCategories()){
 			JButton cat = new JButton(c.getName());
 			cat.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent e) {
 					displayCategory(c.getName());
 				}
@@ -149,6 +154,7 @@ public class ByCategoryPanel extends JPanel {
 	private void addButton(){
 		JButton btnAddItem = new JButton("Add Category");
 		btnAddItem.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 			}

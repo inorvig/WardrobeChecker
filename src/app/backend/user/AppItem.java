@@ -8,11 +8,14 @@ import java.util.HashSet;
 
 import app.backend.interfaces.Item;
 import app.backend.interfaces.Outfit;
-import app.backend.interfaces.User;
 import app.backend.interfaces.Wardrobe;
 
 public class AppItem implements Item, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -852602098811815755L;
 	Integer score = 0;
 	String name;
 	HashSet<String> tags;

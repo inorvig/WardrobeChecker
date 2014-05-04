@@ -3,8 +3,6 @@ package weatherAPI;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import com.eclipsesource.json.JsonArray;
-
 public class FIOFlags {
 
 	private HashMap<String, String[]> flags;

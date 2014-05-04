@@ -14,7 +14,11 @@ import java.util.*;
 public class LED implements Feature, Serializable {
 
     
-    private int led; // the levenshtein edit distance
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6489848329361994920L;
+	private int led; // the levenshtein edit distance
     private HashSet<String> wordMap; 
     public boolean ledOn; // boolean to mark if LED search has been turned on by user
     
@@ -31,7 +35,8 @@ public class LED implements Feature, Serializable {
     /**
      * method to turn on led calculation
      */
-    public void turnOnFeature(){
+    @Override
+	public void turnOnFeature(){
         ledOn = true;
     }
 
@@ -46,7 +51,8 @@ public class LED implements Feature, Serializable {
     /**
      * method to build set of results using led calculation
      */
-    public void resultSet(Set<String> results, String word){
+    @Override
+	public void resultSet(Set<String> results, String word){
         if (ledOn){
 	        for(String entry : wordMap){ // iterating through keyset of all words in corpus
 	            if (distance(word, entry)<=led) // finding all words in corpus that are less than or equal to led away from input word

@@ -10,6 +10,10 @@ import app.backend.interfaces.Wardrobe;
 
 public class AppCategory implements Category, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4567651211184531887L;
 	String name;
 	String imagePath;
 	Collection<Item> items;
@@ -36,6 +40,7 @@ public class AppCategory implements Category, Serializable {
 		return items;
 	}
 	
+	@Override
 	public Collection<Item> getItemsinWardrobe(Wardrobe wardrobe){
 		Collection<Item> result = new ArrayList<Item>();
 		for (Item i: items){

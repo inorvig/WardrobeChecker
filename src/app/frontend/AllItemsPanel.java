@@ -10,7 +10,6 @@ import app.backend.interfaces.Item;
 import app.backend.interfaces.User;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +19,10 @@ import java.awt.FlowLayout;
 
 public class AllItemsPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6528705150591742324L;
 	private String closet;
 	private User user;
 	private MainFrame parent;
@@ -69,6 +72,7 @@ public class AllItemsPanel extends JPanel {
 	private void addButton(){
 		JButton btnAddItem = new JButton("Add Item");
 		btnAddItem.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				parent.addItem();
 			}

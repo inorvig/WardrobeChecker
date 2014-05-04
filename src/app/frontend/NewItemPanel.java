@@ -3,16 +3,12 @@ package app.frontend;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 
 import app.backend.interfaces.User;
-import app.backend.user.AppUser;
-
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
@@ -22,14 +18,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
 import java.awt.Font;
 
 public class NewItemPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7431096162115865092L;
 	private JTextField txtCategory, txtColor, txtName;
 	private JTextArea txtTags;
 	private String imagePath;
@@ -128,6 +125,7 @@ public class NewItemPanel extends JPanel {
 		
 		JButton btnCreateItem = new JButton("Create Item");
 		btnCreateItem.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String name, wardrobe, category, color;
 				ArrayList<String> tags;
@@ -176,6 +174,15 @@ public class NewItemPanel extends JPanel {
 	
 	public void setImagePath(String path){
 		this.imagePath = path;
+	}
+
+	public void clear() {
+
+		//txtCategory.setText("");
+		txtColor.setText("");
+		txtName.setText("");
+		txtTags.setText("");
+		imagePath = "../wardrobe/images/question.gif";
 	}
 
 }

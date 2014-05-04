@@ -2,7 +2,6 @@ package app.backend.interfaces;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public interface User {
 

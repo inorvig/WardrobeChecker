@@ -10,6 +10,10 @@ import app.backend.interfaces.Outfit;
 import app.backend.interfaces.Wardrobe;
 
 public class AppOutfit implements Outfit, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2053839682943380075L;
 	String name;
 	HashSet<Item> items;
 	Wardrobe wardrobe;

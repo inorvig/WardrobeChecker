@@ -7,12 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
-
 import app.backend.autosuggest.Autosuggest;
-import java.util.List;
-import java.util.TreeSet;
-
 import app.backend.interfaces.Category;
 
 import app.backend.interfaces.Item;
@@ -24,6 +19,10 @@ import app.backend.user.AppWardrobe.WardrobeType;
 
 public class AppUser implements User, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5405996534890993199L;
 	String username;
 	ArrayList<Wardrobe> wardrobeList = new ArrayList<Wardrobe>();
 	ArrayList<Outfit> outfitList = new ArrayList<Outfit>();
@@ -63,6 +62,7 @@ public class AppUser implements User, Serializable {
 		return this.outfitList.size();
 	}
 	
+	@Override
 	public Wardrobe searchWardrobe(String name){
 		Wardrobe result = null;
 		for (Wardrobe i : wardrobeList){
@@ -74,6 +74,7 @@ public class AppUser implements User, Serializable {
 	}
 
 
+	@Override
 	public void addItem(String name, String wardrobe, String category,
 			String color, String imagePath, ArrayList<String> tags) {
 		Wardrobe wardrobeToPut = searchWardrobe(wardrobe);
