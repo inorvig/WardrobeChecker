@@ -25,13 +25,14 @@ public class SearchPanels extends JPanel {
 		 String imagePath = item.getImagePath();
          JPanel p = new JPanel(new BorderLayout());
          p.add(new JLabel(s+ "   ", JLabel.RIGHT), BorderLayout.EAST);
-         ImageIcon icon2 = new ImageIcon(OutfitMakerPanel.class.getResource(imagePath));
+         ImageIcon icon2 = new ImageIcon(imagePath);
 			Image img2 = icon2.getImage();
 			Image newimg2 = img2.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
 			icon2 = new ImageIcon(newimg2);
          p.add(new JLabel(icon2, JLabel.LEFT), BorderLayout.WEST);
          p.setBorder(BorderFactory.createLineBorder(Color.blue));
          clickables.add(p);
+         System.out.println("just made a panel with title "+ s+ " and path "+ imagePath);
          return p;
 	 }
 }
