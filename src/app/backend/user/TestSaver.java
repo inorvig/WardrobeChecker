@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import app.backend.interfaces.Item;
 import app.backend.interfaces.Savable;
 import app.backend.interfaces.User;
+import app.backend.user.AppWardrobe.WardrobeType;
 
 public class TestSaver implements Savable {
 
@@ -37,7 +38,7 @@ public class TestSaver implements Savable {
 			}
 		} else {
 			user = new AppUser(name);
-			user.addWardrobe("other closet");
+			user.addWardrobe("other closet", WardrobeType.CLOSET);
 			user.addCategory("shirts");
 			user.addCategory("dresses");
 			user.addCategory("shoes");

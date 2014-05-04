@@ -48,7 +48,7 @@ public class AppUser implements User, Serializable {
 		addCategory("sweaters");
 		addCategory("jeans");
 		addCategory("jackets");
-		addWardrobe("df");
+		addWardrobe("df", WardrobeType.CLOSET);
 
 
 	}
