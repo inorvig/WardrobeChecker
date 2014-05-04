@@ -1,9 +1,9 @@
-package weatherAPI;
+package app.frontend.weatherAPI;
 
 import java.util.HashMap;
 import java.util.Iterator;
 
-import com.eclipse.json.JsonArray;
+import app.frontend.com.eclipse.json.JsonArray;
 
 public class FIOFlags {
 

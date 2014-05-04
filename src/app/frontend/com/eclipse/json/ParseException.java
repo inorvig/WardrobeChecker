@@ -1,4 +1,4 @@
-package com.eclipse.json;
+package app.frontend.com.eclipse.json;
 
 /**
  * An unchecked exception to indicate that an input does not qualify as valid

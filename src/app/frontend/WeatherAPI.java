@@ -2,9 +2,9 @@ package app.frontend;
 
 import java.util.HashMap;
 
-import weatherAPI.*;
+import app.frontend.weatherAPI.*;
 
-import weatherAPI.ForecastIO;
+
 
 
 public class WeatherAPI{
