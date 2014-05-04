@@ -151,7 +151,7 @@ public class AppUser implements User, Serializable {
 			}	
 		}
 		
-		
+
 	}
 
 	@Override
