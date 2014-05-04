@@ -33,7 +33,7 @@ public class WeatherPanel extends JPanel {
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		ImageIcon icon2 = new ImageIcon("/gpfs/main/home/inorvig/course/cs032/wardrobe/images/weather/f.gif");
+		ImageIcon icon2 = new ImageIcon("images/weather/f.gif");
 		Image img2 = icon2.getImage();
 		Image newimg2 = img2.getScaledInstance(27, 27, java.awt.Image.SCALE_SMOOTH);
 		lblNewLabel_2.setIcon(new ImageIcon(newimg2));
