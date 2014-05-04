@@ -48,6 +48,9 @@ public class AppUser implements User, Serializable {
 		addCategory("sweaters");
 		addCategory("jeans");
 		addCategory("jackets");
+		addWardrobe("df");
+
+
 	}
 
 	@Override
@@ -81,6 +84,13 @@ public class AppUser implements User, Serializable {
 		return result;
 	}
 
+	public Collection<String> getCategoryList(){
+		Collection<String> result = new ArrayList<String>();
+		for (Category i : allCategories){
+			result.add(i.getName());
+		}
+		return result;
+	}
 
 	@Override
 	public void addItem(String name, String wardrobe, String category,
@@ -166,155 +176,7 @@ public class AppUser implements User, Serializable {
 
  
 
-	
-//	public static void main(String[] args){
-		
-//		AppUser a = new AppUser("Sohum");
-//		
-//		AppItem redShirt = new AppItem("redShirt", null);
-//		
-//		redShirt.addTag("red");
-//		redShirt.addTag("shirt");
-//		redShirt.addTag("fits like a condom");
-//		
-//		AppItem blueShirt = new AppItem("blueShirt", null);
-//		
-//		blueShirt.addTag("blue");
-//		blueShirt.addTag("shirt");
-//		blueShirt.addTag("fits like a sack");
-//		
-//		AppItem greenShirt = new AppItem("greenShirt", null);
-//		
-//		greenShirt.addTag("green");
-//		greenShirt.addTag("shirt");
-//		greenShirt.addTag("fits like a glove");
-//		
-//		AppItem redShirt2 = new AppItem("redShirt2", null);
-//		
-//		redShirt2.addTag("red");
-//		redShirt2.addTag("shirt");
-//		redShirt2.addTag("fits like a glove");
-//		
-//		a.addItem(redShirt);
-//		a.addItem(blueShirt);
-//		a.addItem(greenShirt);
-//		a.addItem(redShirt2);
-//		
-//
-//		
-//		
-//		
-//		String[] toSearch = new String[]{"red", "shirt", "fits like a glove"};
-//		
-//
-//		ArrayList<Item> result = (ArrayList<Item>) a.search(toSearch);
-//		
-//		System.out.println(result.size());
-//		
-//		for (int i=0; i<result.size();i++){
-//			System.out.println(result.get(i).getName());
-//		}
-//		
-//		
-//		String[] toSearch2 = new String[]{"green", "fits like a sack", "fits like a glove"};
-//		
-//
-//		ArrayList<Item> result2 = (ArrayList<Item>) a.search(toSearch2);
-//		
-//		System.out.println(result2.size());
-//		
-//		for (int i=0; i<result2.size();i++){
-//			System.out.println(result2.get(i).getName());
-//		}
-//		
-//		
-//		String[] toSearch3 = new String[]{"green", "fits like a sack", "fits like a glove", "shirt"};
-//		
-//
-//		ArrayList<Item> result3 = (ArrayList<Item>) a.search(toSearch3);
-//		
-//		System.out.println(result3.size());
-//		
-//		for (int i=0; i<result3.size();i++){
-//			System.out.println(result3.get(i).getName());
-//		}
-		
-		
 
-	/*
-	 * public static void main(String[] args){
-	 * 
-	 * AppUser a = new AppUser("Sohum");
-	 * 
-	 * AppItem redShirt = new AppItem("redShirt", null);
-	 * 
-	 * redShirt.addTag("red"); redShirt.addTag("shirt");
-	 * redShirt.addTag("fits like a condom");
-	 * 
-	 * AppItem blueShirt = new AppItem("blueShirt", null);
-	 * 
-	 * blueShirt.addTag("blue"); blueShirt.addTag("shirt");
-	 * blueShirt.addTag("fits like a sack");
-	 * 
-	 * AppItem greenShirt = new AppItem("greenShirt", null);
-	 * 
-	 * greenShirt.addTag("green"); greenShirt.addTag("shirt");
-	 * greenShirt.addTag("fits like a glove");
-	 * 
-	 * AppItem redShirt2 = new AppItem("redShirt2", null);
-	 * 
-	 * redShirt2.addTag("red"); redShirt2.addTag("shirt");
-	 * redShirt2.addTag("fits like a glove");
-	 * 
-	 * a.addItem(redShirt); a.addItem(blueShirt); a.addItem(greenShirt);
-	 * a.addItem(redShirt2);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * String[] toSearch = new String[]{"red", "shirt", "fits like a glove"};
-	 * 
-	 * 
-	 * ArrayList<Item> result = (ArrayList<Item>) a.search(toSearch);
-	 * 
-	 * System.out.println(result.size());
-	 * 
-	 * for (int i=0; i<result.size();i++){
-	 * System.out.println(result.get(i).getName()); }
-	 * 
-	 * 
-	 * String[] toSearch2 = new String[]{"green", "fits like a sack",
-	 * "fits like a glove"};
-	 * 
-	 * 
-	 * ArrayList<Item> result2 = (ArrayList<Item>) a.search(toSearch2);
-	 * 
-	 * System.out.println(result2.size());
-	 * 
-	 * for (int i=0; i<result2.size();i++){
-	 * System.out.println(result2.get(i).getName()); }
-	 * 
-	 * 
-	 * String[] toSearch3 = new String[]{"green", "fits like a sack",
-	 * "fits like a glove", "shirt"};
-	 * 
-	 * 
-	 * ArrayList<Item> result3 = (ArrayList<Item>) a.search(toSearch3);
-	 * 
-	 * System.out.println(result3.size());
-	 * 
-	 * for (int i=0; i<result3.size();i++){
-	 * System.out.println(result3.get(i).getName()); }
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
-	//}
 
 	@Override
 	public Collection<String> suggestTags(String imagePath) {
@@ -335,6 +197,7 @@ public class AppUser implements User, Serializable {
 
 	@Override
 	public void addCategory(String categoryName) {
+		//check whether it exists
 		if (!(tagsMap.containsKey(categoryName))) {
 			tagsMap.put(categoryName, new HashSet<Item>());
 		}
@@ -352,6 +215,16 @@ public class AppUser implements User, Serializable {
 	@Override
 	public Collection<Item> allItems() {
 		return allItems;
+	}
+
+	@Override
+	public Collection<String> getWardrobeList() {
+		Collection<String> result = new ArrayList<String>();
+		System.out.println("wardrobe list is "+ wardrobeList.size());
+		for (Wardrobe i : wardrobeList){
+			result.add(i.getName());
+		}
+		return result;
 	}
 
 }

@@ -19,6 +19,7 @@ public class AppCategory implements Category, Serializable {
 	Collection<Item> items;
 
 	public AppCategory(String name, Collection<Item> items) {
+		System.out.println("just made the name"+ name);
 		this.name = name;
 		this.imagePath = "defaultpath";
 		this.items = items;
@@ -53,8 +54,7 @@ public class AppCategory implements Category, Serializable {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 
 }

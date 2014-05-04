@@ -61,45 +61,4 @@ public class Saver implements Savable {
 
 	}
 
-	public static void main(String[] args) {
-		Saver saved = new Saver("Sohum");
-		User user = saved.getUser();
-
-		/*
-		 * AppItem redShirt = new AppItem("redShirt", null);
-		 * 
-		 * redShirt.addTag("red"); redShirt.addTag("shirt");
-		 * redShirt.addTag("fits like a condom");
-		 * 
-		 * AppItem blueShirt = new AppItem("blueShirt", null);
-		 * 
-		 * blueShirt.addTag("blue"); blueShirt.addTag("shirt");
-		 * blueShirt.addTag("fits like a sack");
-		 * 
-		 * AppItem greenShirt = new AppItem("greenShirt", null);
-		 * 
-		 * greenShirt.addTag("green"); greenShirt.addTag("shirt");
-		 * greenShirt.addTag("fits like a glove");
-		 * 
-		 * AppItem redShirt2 = new AppItem("redShirt2", null);
-		 * 
-		 * redShirt2.addTag("red"); redShirt2.addTag("shirt");
-		 * redShirt2.addTag("fits like a glove");
-		 * 
-		 * user.addItem((Item) redShirt); user.addItem((Item) blueShirt);
-		 * user.addItem((Item) greenShirt); user.addItem((Item) redShirt2);
-		 */
-
-		String toSearch = " red shirt fits like a glove";
-
-		ArrayList<Item> result = (ArrayList<Item>) user.search(toSearch);
-
-		System.out.println(result.size());
-
-		for (int i = 0; i < result.size(); i++) {
-			System.out.println(result.get(i).getName());
-		}
-
-		saved.saveData();
-	}
 }

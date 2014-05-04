@@ -31,11 +31,15 @@ public interface User {
 	public void removeItem(Item item);
 
 
+	public Collection<String> getCategoryList();
+	
 	public Collection<Item> search(String searchTerms);
 	
 
 	public Collection<String> suggestTags(String imagePath);
 	
 	public Collection<Item> allItems();
+
+	public Collection<String> getWardrobeList();
 
 }
