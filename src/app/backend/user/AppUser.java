@@ -149,6 +149,10 @@ public class AppUser implements User, Serializable {
 				tagsMap.put(tag, itemSet);
 			}	
 		}
+		
+		for (Item i : allItems){
+			System.out.println(i.getName()+ " is in the items");
+		}
 	}
 
 	@Override
