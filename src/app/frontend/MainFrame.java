@@ -20,6 +20,9 @@ import java.awt.event.*;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 import app.backend.interfaces.User;
 import app.backend.user.Saver;
 import java.awt.Color;
@@ -243,7 +246,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch = new JTextField();
 		txtSearch.setText("Search");
 		txtSearch.setColumns(10);
-
+		
 		javax.swing.GroupLayout RightPanelLayout = new javax.swing.GroupLayout(
 				RightPanel);
 		RightPanelLayout.setHorizontalGroup(RightPanelLayout
@@ -439,6 +442,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		closetPanel.setVisible(true);
 		pack();
 	}
+	
 	public static void main(String args[]) {
 
 		System.out.println("We found the main");
