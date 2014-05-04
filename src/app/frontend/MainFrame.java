@@ -32,7 +32,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JPanel LeftPanel;
-	private javax.swing.JScrollPane ResultsPanel;
+	private SearchPanels ResultsPanel;
 	private javax.swing.JPanel RightPanel;
 	private javax.swing.ButtonGroup toggleGroup;
 	private javax.swing.JToggleButton addNewItem;
@@ -104,7 +104,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		RightPanel = new javax.swing.JPanel();
 		RightPanel.setBackground(Color.WHITE);
 		weatherAPI = new WeatherPanel();
-		ResultsPanel = new javax.swing.JScrollPane();
+		ResultsPanel = new SearchPanels();
 		logoPanel = new javax.swing.JPanel();
 		OutfitMakerPanel = new OutfitMakerPanel(this, _user);
 		newItemPanel = new NewItemPanel(this, _user);
