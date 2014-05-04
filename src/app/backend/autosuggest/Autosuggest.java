@@ -26,37 +26,9 @@ public class Autosuggest implements Serializable {
 	public Autosuggest(HashMap<String, HashSet<Item>> usertagsmap){
 		
 		this.tagsMap = usertagsmap;
-		
-		
-	}
-	
-	/**
-	 * useful when tag is added after setup is done
-	 * @param tag
-	 */
-	public void addTag(String tag){
-		this.trie.insert(tag);
-		this.alltags.add(tag);
-		
-	}
-	
-	/**
-	 * retrieve past stored tags and initialize prefix and led matching
-	 * @param tagsMap
-	 */
-	public void setUp(){
-		
-		
 		this.trie = new Trie();
-		Set<String> usersTags = tagsMap.keySet();
 		this.alltags = new HashSet<String>();
-		
-		for (String tag:usersTags){
-			trie.insert(tag);
-			
-		}
-		if (usersTags != null)
-			alltags.addAll(usersTags);
+	
 		
 		//initialize prefix matching
 		
@@ -72,13 +44,46 @@ public class Autosuggest implements Serializable {
 		//initialize whitespace matching
 		this.whitespace = new Whitespace(alltags);
 		whitespace.turnOnFeature();
+
+		
+	}
+	
+	/**
+	 * useful when tag is added after setup is done
+	 * @param tag
+	 */
+	public void addTag(String tag){
+		System.out.println("TAG ADDED: " + tag);
+		this.trie.insert(tag);
+		this.alltags.add(tag);
+		
+	}
+	
+	/**
+	 * retrieve past stored tags and initialize prefix and led matching
+	 * @param tagsMap
+	 */
+	public void setUp(){
+		
+		
+	
+		Set<String> usersTags = tagsMap.keySet();
+		
+		for (String tag:usersTags){
+			trie.insert(tag);
+			
+		}
+		if (usersTags != null)
+			alltags.addAll(usersTags);
+		
+	
 		
 	}
 	
 	
 	public Set<String> lookup(String query){
 		
-		setUp();
+		
 		
 		Set<String> matchingTags = new HashSet<String>();
 
@@ -90,6 +95,9 @@ public class Autosuggest implements Serializable {
 		
 		String[] queryArray = query.split(" ");
 		
+		if (queryArray.length == 1 && queryArray[0] == "")
+			return matchingTags;
+			
 		if (queryArray.length >=1){
 			for (int i=0; i < queryArray.length; i++){
 				String word = queryArray[i];
@@ -101,7 +109,6 @@ public class Autosuggest implements Serializable {
 
 			}
 		}
-
 		
 		return matchingTags;
 	}
