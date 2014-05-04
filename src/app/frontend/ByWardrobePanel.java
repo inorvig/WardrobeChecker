@@ -65,6 +65,7 @@ public class ByWardrobePanel extends JPanel {
 				if (name!=null){
 					if (style.equals("closet")){
 						user.addWardrobe(name, WardrobeType.CLOSET);
+						//this.repaint();
 					} else {
 						user.addWardrobe(name, WardrobeType.SUITCASE);
 					}

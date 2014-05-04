@@ -15,6 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import weatherAPI.FIOCurrently;
+import weatherAPI.ForecastIO;
+
 public class weatherAPI extends JPanel {
 
 	/**
