@@ -25,7 +25,6 @@ public class WardrobePanel extends JPanel {
 	public WardrobePanel(MainFrame parent,User user) {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
-		setPreferredSize(new Dimension(467,460));
 		all = new AllItemsPanel(parent, user);
 		wardrobe = new ByWardrobePanel(parent, user);
 		
@@ -48,6 +47,7 @@ public class WardrobePanel extends JPanel {
 
 		add(tabbedPane, BorderLayout.CENTER);
 
+		parent.pack();
 	}
 	
 //	public void reset(){
