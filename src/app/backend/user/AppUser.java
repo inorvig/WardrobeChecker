@@ -28,7 +28,7 @@ public class AppUser implements User, Serializable {
 	ArrayList<Wardrobe> wardrobeList = new ArrayList<Wardrobe>();
 	ArrayList<Outfit> outfitList = new ArrayList<Outfit>();
 
-	HashSet<Item> allItems = new HashSet<Item>(); // set instead of map
+	HashSet<Item> allItems = new HashSet<Item>(); 
 																	
 	HashSet<Category> allCategories = new HashSet<Category>();
 	HashMap<String, HashSet<Item>> tagsMap = new HashMap<String, HashSet<Item>>();
@@ -41,6 +41,14 @@ public class AppUser implements User, Serializable {
 		autosuggest.setUp();
 		this.tagsuggester = new StubTagger();
 		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET));
+		addCategory("shirts");
+		addCategory("dresses");
+		addCategory("shoes");
+		addCategory("skirts");
+		addCategory("pants");
+		addCategory("sweaters");
+		addCategory("jeans");
+		addCategory("jackets");
 	}
 
 	@Override
@@ -158,7 +166,7 @@ public class AppUser implements User, Serializable {
  
 
 	
-	public static void main(String[] args){
+//	public static void main(String[] args){
 		
 //		AppUser a = new AppUser("Sohum");
 //		
@@ -305,7 +313,7 @@ public class AppUser implements User, Serializable {
 	 * 
 	 * }
 	 */
-	}
+	//}
 
 	@Override
 	public Collection<String> suggestTags(String imagePath) {
