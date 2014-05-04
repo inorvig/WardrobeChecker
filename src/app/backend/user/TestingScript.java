@@ -35,15 +35,23 @@ public class TestingScript {
 		AppItem item16 = new AppItem(u,u.searchWardrobe("Home Closet"), "item sixteen", "");
 		AppItem item17 = new AppItem(u,u.searchWardrobe("Home Closet"), "item seventeen", "");
 		
-		item1.addTag(" green holidays awesome");
+		item1.addTag("shirt green holidays awesome");
+		item2.addTag("shirt blue hilidays bad");
+		item3.addTag("pants green holidays awe");
+		item4.addTag("shit shirt want");
 		
 		
+//		for (String s : item1.getTags())
+//			System.out.println(s);
 		
-		for (String s : item1.getTags())
-			System.out.println(s);
-		//u.addItem(item1);
+		u.addItem(item1);
+		u.addItem(item2);
+		u.addItem(item3);
+		u.addItem(item4);
 		
-		System.out.println(u.search("shi"));
+		for (Item i :u.search("pant")){
+			System.out.println(i.getName() + "-----------");
+		}
 		
 		
 		

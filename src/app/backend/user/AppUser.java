@@ -130,7 +130,7 @@ public class AppUser implements User, Serializable {
 	 * add an Item object
 	 * @param item
 	 */
-	private void addItem(Item item) {
+	public void addItem(Item item) {
 
 		allItems.add(item);
 		
