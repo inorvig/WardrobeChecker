@@ -33,6 +33,7 @@ public class ByWardrobePanel extends JPanel {
 		FlowLayout flowLayout = (FlowLayout) getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		setBackground(Color.WHITE);
+		setPreferredSize(new Dimension(467,440));
 		
 		for (final Wardrobe w : user.getWardrobes()){
 			JButton btnWardrobe = new JButton(w.getName());
@@ -42,7 +43,12 @@ public class ByWardrobePanel extends JPanel {
 					parent.openWardrobe(w.getName());
 				}
 			});
-			ImageIcon icon = new ImageIcon("images/closet.gif");
+			ImageIcon icon;
+			if (w.getType()==WardrobeType.CLOSET){
+				icon = new ImageIcon("images/closet.gif");
+			} else {
+				icon = new ImageIcon("images/luggage.gif");
+			}
 			Image img = icon.getImage();
 			Image newimg = img.getScaledInstance(120, 120,
 					java.awt.Image.SCALE_SMOOTH);
