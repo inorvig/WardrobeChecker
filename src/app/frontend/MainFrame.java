@@ -247,6 +247,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch.setText("Search");
 		txtSearch.setColumns(10);
 		
+		ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
+		
 		javax.swing.GroupLayout RightPanelLayout = new javax.swing.GroupLayout(
 				RightPanel);
 		RightPanelLayout.setHorizontalGroup(RightPanelLayout
