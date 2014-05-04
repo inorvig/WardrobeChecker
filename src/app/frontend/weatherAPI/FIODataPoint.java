@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.TimeZone;
 
-import com.eclipsesource.json.JsonObject;
-
 public class FIODataPoint {
 
 	HashMap<String, Object> datapoint;

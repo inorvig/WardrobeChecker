@@ -11,6 +11,10 @@ import app.backend.interfaces.User;
 
 public class ClosetPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3190971077461927196L;
 	private String name;
 	private AllItemsPanel all;
 	private ByCategoryPanel category;
@@ -31,7 +35,7 @@ public class ClosetPanel extends JPanel {
 		lblMyWardrobes.setOpaque(true);
 		add(lblMyWardrobes, BorderLayout.PAGE_START);
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		tabbedPane.setBackground(Color.BLACK);
 		tabbedPane.setForeground(Color.WHITE);
 		tabbedPane.addTab("All Items", all);

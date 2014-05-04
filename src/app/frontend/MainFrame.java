@@ -20,10 +20,6 @@ import java.awt.event.*;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
-
-import app.backend.interfaces.Savable;
 import app.backend.interfaces.User;
 import app.backend.user.Saver;
 import java.awt.Color;
@@ -70,7 +66,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public MainFrame() {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
-		_savedUser = new Saver("Gabe");
+		_savedUser = new Saver("otherest");
+
 		_user = _savedUser.getUser();
 		System.out.println("mainframe user: "+_user);
 		initComponents();
@@ -125,8 +122,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				java.awt.Image.SCALE_SMOOTH);
 		newWindow.setIcon(new ImageIcon(newimg));
 		// newWindow.setText("<html><center>New<br>Window</center></html>");
-		newWindow.setVerticalTextPosition(AbstractButton.BOTTOM);
-		newWindow.setHorizontalTextPosition(AbstractButton.CENTER);
+		newWindow.setVerticalTextPosition(SwingConstants.BOTTOM);
+		newWindow.setHorizontalTextPosition(SwingConstants.CENTER);
 		newWindow.setToolTipText("");
 		newWindow.setAlignmentX(0.5F);
 		newWindow.setAutoscrolls(true);
@@ -150,6 +147,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		bindingGroup.addBinding(binding);
 
 		addNewItem.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				addNewItemActionPerformed(evt);
 			}
@@ -337,6 +335,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		getContentPane().setLayout(layout);
 
 		myWardrobes.addItemListener(new ItemListener() {
+			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (myWardrobes.isSelected()) {
 					OutfitDesignPanel.setVisible(false);
@@ -355,6 +354,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		});
 
 		addNewItem.addItemListener(new ItemListener() {
+			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (addNewItem.isSelected()) {
 					OutfitDesignPanel.setVisible(false);
@@ -365,6 +365,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					pack();
 					System.out.println("addNewItem selected");
 				} else {
+					newItemPanel.clear();
 					newItemPanel.setVisible(false);
 					OutfitDesignPanel.setVisible(true);
 					pack();
@@ -374,6 +375,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		});
 
 		favoriteOutfits.addItemListener(new ItemListener() {
+			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (favoriteOutfits.isSelected()) {
 					OutfitDesignPanel.setVisible(false);
@@ -474,6 +476,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				final MainFrame frame = new MainFrame();
 				frame.setVisible(true);

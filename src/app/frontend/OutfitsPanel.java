@@ -13,15 +13,16 @@ import javax.swing.SwingConstants;
 
 import app.backend.interfaces.User;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import java.awt.FlowLayout;
 
 public class OutfitsPanel extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2466177652642787961L;
 
 	/**
 	 * Create the panel.
@@ -44,6 +45,7 @@ public class OutfitsPanel extends JPanel {
 
 		JButton btnNewOutfit = new JButton("New Outfit");
 		btnNewOutfit.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 
 			}

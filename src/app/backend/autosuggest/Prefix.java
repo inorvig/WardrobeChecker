@@ -13,7 +13,11 @@ import java.util.*;
  */
 public class Prefix implements Feature, Serializable {
     
-    private Trie trie;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7849350132426834134L;
+	private Trie trie;
     public boolean prefixOn; // boolean to mark if prefix search has been turned on by user
     
     /**
@@ -28,14 +32,16 @@ public class Prefix implements Feature, Serializable {
     /**
      * method to turn on prefix matching
      */
-    public void turnOnFeature(){
+    @Override
+	public void turnOnFeature(){
         prefixOn = true;
     }
     
     /**
      * method to build set of results using prefix matching
      */
-    public void resultSet(Set<String> results, String word){ // returns the inputted hashset of all results found with given prefix in trie
+    @Override
+	public void resultSet(Set<String> results, String word){ // returns the inputted hashset of all results found with given prefix in trie
 	    if (prefixOn){
 	    	Node currNode = trie.getRoot();
 	        char[] charArray = word.toCharArray();

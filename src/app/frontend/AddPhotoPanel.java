@@ -3,7 +3,6 @@ package app.frontend;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +12,6 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.io.*;
@@ -21,6 +19,10 @@ import java.io.*;
 
 public class AddPhotoPanel extends JPanel implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9073375689800475191L;
 	private JButton btnAddPhoto;
 	private JFileChooser fc;
 	private NewItemPanel parent;

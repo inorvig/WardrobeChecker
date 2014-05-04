@@ -13,6 +13,10 @@ import java.util.*;
  */
 public class Node implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7341222782417236507L;
 	// private Node parent;
 	public char letter;
 	private boolean isLastLetter; // boolean indicating if this node's letter

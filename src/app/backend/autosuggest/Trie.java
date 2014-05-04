@@ -12,6 +12,10 @@ import java.io.Serializable;
  */
 public class Trie implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3169287185553983624L;
 	private Node root;
 
 	/**

@@ -41,10 +41,12 @@ public class Saver implements Savable {
 		}
 	}
 
+	@Override
 	public User getUser() {
-		return (User) user;
+		return user;
 	}
 
+	@Override
 	public void saveData() {
 		try {
 			FileOutputStream fileOut = new FileOutputStream(name + ".ser");
@@ -88,7 +90,7 @@ public class Saver implements Savable {
 		 * user.addItem((Item) greenShirt); user.addItem((Item) redShirt2);
 		 */
 
-		String[] toSearch = new String[] { "red", "shirt", "fits like a glove" };
+		String toSearch = " red shirt fits like a glove";
 
 		ArrayList<Item> result = (ArrayList<Item>) user.search(toSearch);
 

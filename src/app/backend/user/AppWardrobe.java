@@ -8,6 +8,10 @@ import app.backend.interfaces.Item;
 import app.backend.interfaces.Wardrobe;
 
 public class AppWardrobe implements Wardrobe, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 106311970249868006L;
 	String name;
 	HashSet<Item> items;
 	WardrobeType type;
@@ -22,6 +26,7 @@ public class AppWardrobe implements Wardrobe, Serializable {
 		this.type = type;
 	}
 	
+	@Override
 	public WardrobeType getType(){
 		return type;
 	}

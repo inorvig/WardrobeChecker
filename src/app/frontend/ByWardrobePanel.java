@@ -1,7 +1,6 @@
 package app.frontend;
 
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import java.awt.Dimension;
@@ -21,6 +20,11 @@ import java.awt.FlowLayout;
 public class ByWardrobePanel extends JPanel {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5125816748670380176L;
+
+	/**
 	 * Create the panel.
 	 */
 	public ByWardrobePanel(final MainFrame parent, User user) {
@@ -31,6 +35,7 @@ public class ByWardrobePanel extends JPanel {
 		for (final Wardrobe w : user.getWardrobes()){
 			JButton btnWardrobe = new JButton(w.getName());
 			btnWardrobe.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent e) {
 					parent.openWardrobe(w.getName());
 				}
@@ -48,6 +53,7 @@ public class ByWardrobePanel extends JPanel {
 
 		JButton btnAddWardrobe = new JButton("Add Wardrobe");
 		btnAddWardrobe.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				//TODO: add wardrobe
 			}

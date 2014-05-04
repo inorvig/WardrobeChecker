@@ -1,8 +1,5 @@
 package weatherAPI;
 
-import com.eclipsesource.json.JsonArray;
-import com.eclipsesource.json.JsonObject;
-
 public class FIODataBlock {
 
 	private String summary;
