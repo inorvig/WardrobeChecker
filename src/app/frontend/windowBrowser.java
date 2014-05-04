@@ -1,4 +1,4 @@
-package frontend;
+package app.frontend;
 
 public class windowBrowser {
 	public static void main(String[] args) {

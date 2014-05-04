@@ -39,7 +39,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private javax.swing.JToggleButton favoriteOutfits;
 	private javax.swing.JToggleButton helpButton;
 	private javax.swing.JButton jButton1;
-	private OutfitDesignPanel OutfitDesignPanel;
+	private OutfitMakerPanel OutfitMakerPanel;
 	private WardrobePanel WardrobePanel;
 	private OutfitsPanel OutfitsPanel;
 	private NewItemPanel newItemPanel;
@@ -49,7 +49,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private javax.swing.JToggleButton myWardrobes;
 	private javax.swing.JButton newWindow;
 	private javax.swing.JToggleButton searchWeb;
-	private javax.swing.JPanel weatherAPI;
+	private WeatherPanel weatherAPI;
 	private org.jdesktop.beansbinding.BindingGroup bindingGroup;
 	private JTextField txtSearch;
 	private Saver _savedUser;
@@ -103,10 +103,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		helpButton.setFont(new Font("Dialog", Font.BOLD, 12));
 		RightPanel = new javax.swing.JPanel();
 		RightPanel.setBackground(Color.WHITE);
-		weatherAPI = new javax.swing.JPanel();
+		weatherAPI = new WeatherPanel();
 		ResultsPanel = new javax.swing.JScrollPane();
 		logoPanel = new javax.swing.JPanel();
-		OutfitDesignPanel = new OutfitDesignPanel(this, _user);
+		OutfitMakerPanel = new OutfitMakerPanel(this, _user);
 		newItemPanel = new NewItemPanel(this, _user);
 		WardrobePanel = new WardrobePanel(this,_user);
 		OutfitsPanel = new OutfitsPanel(this, _user);
@@ -294,7 +294,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				.addGroup(layout.createSequentialGroup()
 					.addComponent(LeftPanel, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(OutfitDesignPanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+					.addComponent(OutfitMakerPanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -316,7 +316,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					.addComponent(newItemPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(layout.createSequentialGroup()
-					.addComponent(OutfitDesignPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+					.addComponent(OutfitMakerPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(layout.createSequentialGroup()
 					.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
@@ -338,7 +338,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (myWardrobes.isSelected()) {
-					OutfitDesignPanel.setVisible(false);
+					OutfitMakerPanel.setVisible(false);
 					newItemPanel.setVisible(false);
 					OutfitsPanel.setVisible(false);
 					WardrobePanel.setVisible(true);
@@ -346,7 +346,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					System.out.println("wardrobes selected");
 				} else {
 					WardrobePanel.setVisible(false);
-					OutfitDesignPanel.setVisible(true);
+					OutfitMakerPanel.setVisible(true);
 					pack();
 					System.out.println("wardrobes deselected");
 				}
@@ -357,7 +357,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (addNewItem.isSelected()) {
-					OutfitDesignPanel.setVisible(false);
+					OutfitMakerPanel.setVisible(false);
 					WardrobePanel.setVisible(false);
 					OutfitsPanel.setVisible(false);
 					closetPanel.setVisible(false);
@@ -367,7 +367,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				} else {
 					newItemPanel.clear();
 					newItemPanel.setVisible(false);
-					OutfitDesignPanel.setVisible(true);
+					OutfitMakerPanel.setVisible(true);
 					pack();
 					System.out.println("addNewItem deselected");
 				}
@@ -378,7 +378,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (favoriteOutfits.isSelected()) {
-					OutfitDesignPanel.setVisible(false);
+					OutfitMakerPanel.setVisible(false);
 					WardrobePanel.setVisible(false);
 					newItemPanel.setVisible(false);
 					closetPanel.setVisible(false);
@@ -387,7 +387,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					System.out.println("addNewItem selected");
 				} else {
 					OutfitsPanel.setVisible(false);
-					OutfitDesignPanel.setVisible(true);
+					OutfitMakerPanel.setVisible(true);
 					pack();
 					System.out.println("addNewItem deselected");
 				}
@@ -409,7 +409,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	 */
 	
 	public void addItem(){
-		OutfitDesignPanel.setVisible(false);
+		OutfitMakerPanel.setVisible(false);
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		closetPanel.setVisible(false);
@@ -422,7 +422,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		pack();
 	}
 	public void returnToHome(){
-		OutfitDesignPanel.setVisible(true);
+		OutfitMakerPanel.setVisible(true);
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		newItemPanel.setVisible(false);
@@ -435,7 +435,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		newItemPanel.setVisible(false);
-		OutfitDesignPanel.setVisible(false);
+		OutfitMakerPanel.setVisible(false);
 		closetPanel.setVisible(true);
 		pack();
 	}
