@@ -16,6 +16,7 @@ public class WeatherPanel extends JPanel {
 	 */
 	public WeatherPanel() {
 		setBackground(new java.awt.Color(127, 110, 186));
+		
 		setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
