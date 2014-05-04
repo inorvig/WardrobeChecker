@@ -40,7 +40,7 @@ public class NewItemPanel extends JPanel {
 		this.user = user;
 		setLayout(new BorderLayout(0, 0));
 
-		imagePath = "../wardrobe/images/question.gif";
+		imagePath = "images/question.gif";
 		
 		JLabel lblNewLabel = new JLabel("New Item");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);

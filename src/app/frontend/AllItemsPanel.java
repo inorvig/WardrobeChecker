@@ -77,7 +77,7 @@ public class AllItemsPanel extends JPanel {
 				parent.addItem();
 			}
 		});
-		ImageIcon icon = new ImageIcon("../wardrobe/images/add.gif");
+		ImageIcon icon = new ImageIcon("images/add.gif");
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(120, 120,
 				java.awt.Image.SCALE_SMOOTH);
