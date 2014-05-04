@@ -33,7 +33,7 @@ public interface User {
 
 	public Collection<String> getCategoryList();
 	
-	public Collection<Item> search(String searchTerms);
+	public ArrayList<Item> search(String searchTerms);
 	
 
 	public Collection<String> suggestTags(String imagePath);

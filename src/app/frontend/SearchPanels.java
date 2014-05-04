@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import app.backend.interfaces.Item;
+
 @SuppressWarnings("serial")
 public class SearchPanels extends JPanel {
 	
@@ -18,7 +20,9 @@ public class SearchPanels extends JPanel {
 		clickables = new ArrayList<JPanel>();
 		
 	}
-	 public JPanel createPanel(String s, String imagePath) {
+	 public JPanel createPanel(Item item) {
+		 String s = item.getName();
+		 String imagePath = item.getImagePath();
          JPanel p = new JPanel(new BorderLayout());
          p.add(new JLabel(s+ "   ", JLabel.RIGHT), BorderLayout.EAST);
          ImageIcon icon2 = new ImageIcon(OutfitMakerPanel.class.getResource(imagePath));

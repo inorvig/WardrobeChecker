@@ -56,6 +56,8 @@ public class LED implements Feature, Serializable {
     	
         if (ledOn){
 	        for(String entry : wordMap){ // iterating through keyset of all words in corpus
+	        	System.out.println(entry + "--ENTRY");
+	        			
 	            if (distance(word, entry)<=led) // finding all words in corpus that are less than or equal to led away from input word
 	                results.add(entry);
 	        }

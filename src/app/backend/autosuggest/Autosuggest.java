@@ -13,6 +13,7 @@ public class Autosuggest implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -6889241739311488761L;
+	
 	Trie trie;
 	//HashMap<String, Integer> unigram;
 	//HashMap<String, Integer> bigram;
@@ -26,20 +27,7 @@ public class Autosuggest implements Serializable {
 		
 		this.tagsMap = usertagsmap;
 		
-		//initialize prefix matching
-		this.trie = new Trie();
-		this.prefix = new Prefix(trie);
-		prefix.turnOnFeature();
 		
-		//initialize led matching
-		this.led = new LED(alltags);
-		led.turnOnFeature();
-		led.inputDistance(1);
-		this.alltags = new HashSet<String>();
-		
-		//initialize whitespace matching
-		this.whitespace = new Whitespace(alltags);
-		whitespace.turnOnFeature();
 	}
 	
 	/**
@@ -57,8 +45,11 @@ public class Autosuggest implements Serializable {
 	 * @param tagsMap
 	 */
 	public void setUp(){
-			
+		
+		
+		this.trie = new Trie();
 		Set<String> usersTags = tagsMap.keySet();
+		this.alltags = new HashSet<String>();
 		
 		for (String tag:usersTags){
 			trie.insert(tag);
@@ -67,17 +58,35 @@ public class Autosuggest implements Serializable {
 		if (usersTags != null)
 			alltags.addAll(usersTags);
 		
+		//initialize prefix matching
+		
+		this.prefix = new Prefix(trie);
+		prefix.turnOnFeature();
+		
+		//initialize led matching
+		this.led = new LED(alltags);
+		led.turnOnFeature();
+		led.inputDistance(1);
+		
+		
+		//initialize whitespace matching
+		this.whitespace = new Whitespace(alltags);
+		whitespace.turnOnFeature();
+		
 	}
 	
 	
 	public Set<String> lookup(String query){
 		
-		HashSet<Item> toReturn = new HashSet<Item>();
+		setUp();
 		
 		Set<String> matchingTags = new HashSet<String>();
 
 		
 		String queryWords = query.trim();
+		
+		for (String s: tagsMap.keySet())
+			System.out.println("TAG:  " + s);
 		
 		String[] queryArray = query.split(" ");
 		
@@ -87,9 +96,6 @@ public class Autosuggest implements Serializable {
 				
 				//get prefix, led and whitespace results
 				prefix.resultSet(matchingTags, word);
-				
-				for (String s: matchingTags)
-					System.out.println(s);
 				led.resultSet(matchingTags, word);
 				whitespace.resultSet(matchingTags, word);
 
