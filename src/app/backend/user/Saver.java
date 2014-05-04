@@ -20,6 +20,7 @@ public class Saver implements Savable {
 	public Saver(String name) {
 		this.name = name;
 		File savedData = new File(name + ".ser");
+		System.out.println("we are reading from "+ savedData.getAbsolutePath());
 		if (savedData.exists()) {
 			try {
 				FileInputStream fileIn = new FileInputStream(name + ".ser");

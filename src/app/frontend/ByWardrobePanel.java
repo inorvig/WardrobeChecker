@@ -33,7 +33,8 @@ public class ByWardrobePanel extends JPanel {
 		FlowLayout flowLayout = (FlowLayout) getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		setBackground(Color.WHITE);
-
+		setPreferredSize(new Dimension(467,440));
+		
 		for (final Wardrobe w : user.getWardrobes()){
 			JButton btnWardrobe = new JButton(w.getName());
 			btnWardrobe.addActionListener(new ActionListener() {
@@ -42,14 +43,19 @@ public class ByWardrobePanel extends JPanel {
 					parent.openWardrobe(w.getName());
 				}
 			});
-			ImageIcon icon = new ImageIcon("../wardrobe/images/closet.gif");
+			ImageIcon icon;
+			if (w.getType()==WardrobeType.CLOSET){
+				icon = new ImageIcon("images/closet.gif");
+			} else {
+				icon = new ImageIcon("images/luggage.gif");
+			}
 			Image img = icon.getImage();
 			Image newimg = img.getScaledInstance(120, 120,
 					java.awt.Image.SCALE_SMOOTH);
 			btnWardrobe.setIcon(new ImageIcon(newimg));
 			btnWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
 			btnWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
-			btnWardrobe.setSize(new Dimension(150, 150));
+			btnWardrobe.setPreferredSize(new Dimension(150, 150));
 			add(btnWardrobe);
 		}
 
@@ -65,21 +71,22 @@ public class ByWardrobePanel extends JPanel {
 				if (name!=null){
 					if (style.equals("closet")){
 						user.addWardrobe(name, WardrobeType.CLOSET);
-						//this.repaint();
+						revalidate();
+						repaint();
 					} else {
 						user.addWardrobe(name, WardrobeType.SUITCASE);
 					}
 				}
 			}
 		});
-		ImageIcon icon = new ImageIcon("../wardrobe/images/add.gif");
+		ImageIcon icon = new ImageIcon("images/add.gif");
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(120, 120,
 				java.awt.Image.SCALE_SMOOTH);
 		btnAddWardrobe.setIcon(new ImageIcon(newimg));
 		btnAddWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnAddWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnAddWardrobe.setSize(new Dimension(130, 150));
+		btnAddWardrobe.setPreferredSize(new Dimension(130, 150));
 		add(btnAddWardrobe);
 		
 		

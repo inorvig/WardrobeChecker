@@ -38,8 +38,9 @@ public class AppUser implements User, Serializable {
 	 * @param name
 	 */
 	public AppUser(String name) {
-		
+
 		this.username = name; //initialize name
+
 		
 		this.allItems = new HashSet<Item>(); //initialize set of all items 
 		this.itemNames = new HashSet<String>(); //initialize set of all itemNames
@@ -50,7 +51,7 @@ public class AppUser implements User, Serializable {
 		
 		this.wardrobeList = new ArrayList<Wardrobe>(); //initialize empty list
 		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET)); //add default home closet
-		
+
 		this.allCategories = new HashSet<Category>(); //initialize category set
 		addCategory("shirts");
 		addCategory("dresses");
@@ -60,12 +61,20 @@ public class AppUser implements User, Serializable {
 		addCategory("sweaters");
 		addCategory("jeans");
 		addCategory("jackets");
-		
+
+
+		this.allItems = new HashSet<Item>(); //initialize set of all items 
+		this.itemNames = new HashSet<String>(); //initialize set of all itemNames
+
+		this.outfitList = new ArrayList<Outfit>(); //initialize list of outfits
+
+		this.tagsMap = new HashMap<String, HashSet<Item>>(); //initialize map of tags to items
+
 		this.autosuggest = new Autosuggest(tagsMap); //set up autosuggest
 		autosuggest.setUp();
-		
+
 		this.tagsuggester = new StubTagger();
-		
+
 	}
 
 	@Override
@@ -87,7 +96,7 @@ public class AppUser implements User, Serializable {
 	public int howManyOutfits() {
 		return this.outfitList.size();
 	}
-	
+
 	@Override
 	public Wardrobe searchWardrobe(String name){
 		Wardrobe result = null;
@@ -125,23 +134,19 @@ public class AppUser implements User, Serializable {
 		addItem(toAdd);
 
 	}
-	
-	/**
-	 * add an Item object
-	 * @param item
-	 */
+
 	private void addItem(Item item) {
 
 		allItems.add(item);
-		
+
 		//add items tags
 		HashSet<String> tagsToAdd = item.getTags();
-		
+
 		for (String tag: tagsToAdd){
 
 			if (tagsMap.containsKey(tag)){
 				tagsMap.get(tag).add(item);
-				
+
 			}
 			else{
 				HashSet<Item> itemSet = new HashSet<Item>();
@@ -161,41 +166,39 @@ public class AppUser implements User, Serializable {
 
 	@Override
 	public Collection<Item> search(String searchTerms) {
-		
+
 		for (Item item: allItems){
 			item.resetScore();
 		}
-		
+
 		HashSet<Item> matchingItems = new HashSet<Item>();
 		ArrayList<Item> toReturn = new ArrayList<Item>();
 
-		
+
 
 		Set<String> matchingTags = autosuggest.lookup(searchTerms);
-		
-		
+
+
 		for (String tag: matchingTags){
-			
+
 			HashSet<Item> items = tagsMap.get(tag);
-			
+
 			for (Item item: items){
 				item.incrementScore();
 				matchingItems.add(item);
 			}
-			
+
 		}
-		
+
 		for (Item item: matchingItems){
 			toReturn.add(item);
 		}
-		
+
 		Collections.sort(toReturn);
-		
+
 		return toReturn;
 	}
 
-	
-	
 
 
 
