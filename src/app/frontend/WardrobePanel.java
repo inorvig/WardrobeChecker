@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.SwingConstants;
 
 import app.backend.interfaces.User;
@@ -23,6 +25,7 @@ public class WardrobePanel extends JPanel {
 	public WardrobePanel(MainFrame parent,User user) {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
+		setPreferredSize(new Dimension(467,460));
 		all = new AllItemsPanel(parent, user);
 		wardrobe = new ByWardrobePanel(parent, user);
 		

@@ -28,6 +28,7 @@ import javax.swing.JTextArea;
 import javax.swing.JLayeredPane;
 
 import app.backend.interfaces.User;
+import javax.swing.JTextField;
 
 
 public class OutfitMakerPanel extends JPanel implements ActionListener, MouseListener, MouseMotionListener{
@@ -48,9 +49,6 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	 */
 	public OutfitMakerPanel(MainFrame parent, User user) {
 		setBackground(Color.WHITE);
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(35, 35, 170, 372);
 		ImageIcon icon = new ImageIcon(("/gpfs/main/home/inorvig/course/cs032/wardrobe/images/person.gif"));
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(170, 372, java.awt.Image.SCALE_SMOOTH);
@@ -63,27 +61,29 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		saveButton.addActionListener(this);
 		add(saveButton);
 		
-		
-		JTextArea txtrNameYourOutfit = new JTextArea();
-		txtrNameYourOutfit.setText("Name your outfit...");
-		txtrNameYourOutfit.setBounds(56, 460, 130, 20);
-		add(txtrNameYourOutfit);
-		
 		testButton = new JButton("testButton");
 		testButton.setBounds(124, 10, 117, 25);
 		testButton.addActionListener(this);
 		add(testButton);
 		
 		layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 35, 241, 400);
+		layeredPane.setBounds(15, 10, 241, 400);
 		layeredPane.setBackground(Color.WHITE);
 		layeredPane.setOpaque(true);
 		add(layeredPane);
 		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(0, 28, 170, 372);
+		layeredPane.add(lblNewLabel);
+		
 		
 		
 		lblNewLabel.setIcon(new ImageIcon(newimg));
-		layeredPane.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(40, 417, 114, 19);
+		add(textField);
+		textField.setColumns(10);
 		
 	}
 	
@@ -159,6 +159,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	private int mouseX;
 	private int mouseY;
 	private JLabel toMove = null;
+	private JTextField textField;
 
 	@Override
 	public void mouseDragged(MouseEvent e) {

@@ -33,7 +33,7 @@ public class ByWardrobePanel extends JPanel {
 		FlowLayout flowLayout = (FlowLayout) getLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		setBackground(Color.WHITE);
-
+		
 		for (final Wardrobe w : user.getWardrobes()){
 			JButton btnWardrobe = new JButton(w.getName());
 			btnWardrobe.addActionListener(new ActionListener() {
@@ -49,7 +49,7 @@ public class ByWardrobePanel extends JPanel {
 			btnWardrobe.setIcon(new ImageIcon(newimg));
 			btnWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
 			btnWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
-			btnWardrobe.setSize(new Dimension(150, 150));
+			btnWardrobe.setPreferredSize(new Dimension(150, 150));
 			add(btnWardrobe);
 		}
 
@@ -65,7 +65,8 @@ public class ByWardrobePanel extends JPanel {
 				if (name!=null){
 					if (style.equals("closet")){
 						user.addWardrobe(name, WardrobeType.CLOSET);
-						//this.repaint();
+						revalidate();
+						repaint();
 					} else {
 						user.addWardrobe(name, WardrobeType.SUITCASE);
 					}
@@ -79,7 +80,7 @@ public class ByWardrobePanel extends JPanel {
 		btnAddWardrobe.setIcon(new ImageIcon(newimg));
 		btnAddWardrobe.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnAddWardrobe.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnAddWardrobe.setSize(new Dimension(130, 150));
+		btnAddWardrobe.setPreferredSize(new Dimension(130, 150));
 		add(btnAddWardrobe);
 		
 		
