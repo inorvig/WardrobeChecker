@@ -21,9 +21,10 @@ public class SearchPanels extends JPanel {
 	 */
 	
 	public static JPanel createPanel(Item x) {
+		System.out.println(x.getName());
         JPanel p = new JPanel(new BorderLayout());
         p.add(new JLabel(x.getName()+ "   ", JLabel.RIGHT), BorderLayout.EAST);
-        ImageIcon icon2 = new ImageIcon(OutfitMakerPanel.class.getResource(x.getImagePath()));
+        ImageIcon icon2 = new ImageIcon(x.getImagePath());
 		Image img2 = icon2.getImage();
 		Image newimg2 = img2.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
 		icon2 = new ImageIcon(newimg2);

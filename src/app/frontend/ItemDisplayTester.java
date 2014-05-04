@@ -20,7 +20,6 @@ public class ItemDisplayTester {
 		items.add(new AppItem(user, wardrobe, "Yellow Shirt", "images/yellowshirt.jpg"));
 		items.add(new AppItem(user, wardrobe, "Green Shirt", "images/greenshirt.jpg"));
 		items.add(new AppItem(user, wardrobe, "Blue Shirt", "images/blueshirt.jpg"));
-		System.out.println("Size is"+ items.size());
 	}
 	
 	public Collection<Item> getItems(){
