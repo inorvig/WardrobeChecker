@@ -50,7 +50,7 @@ public class WeatherAPI{
 	public void setIcon(){
 		
 		String icontype = data.get("icon");
-		iconpath = "/gpfs/main/home/inorvig/course/cs032/wardrobe/images/weather/";
+		iconpath = "images/weather/";
 		
 		if(icontype.equals("clear-day")){
 			iconpath = iconpath+"clear-day.gif";
