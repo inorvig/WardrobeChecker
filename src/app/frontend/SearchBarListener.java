@@ -30,17 +30,9 @@ public class SearchBarListener implements DocumentListener {
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		ArrayList<Item> results = user.search(searchBar.getText());
-		/*
-		frame.setResultsPanel(new SearchPanels(results, frame));
-		frame.getResultsPanel().reset(results);*/
-		System.out.println(tempResults.size());
+
 		
-		if (tempResults.size() >=2){
-			tempResults.remove(1);
-		}
-		
-		
-		frame.getResultsPanel().refresh(tempResults);
+		frame.getResultsPanel().refresh(results);
 		frame.revalidate();
 		frame.repaint();
 	}
