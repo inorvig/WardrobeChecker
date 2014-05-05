@@ -349,6 +349,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				if (myWardrobes.isSelected()) {
 					OutfitMakerPanel.setVisible(false);
 					newItemPanel.setVisible(false);
+					closetPanel.setVisible(false);
 					OutfitsPanel.setVisible(false);
 					WardrobePanel.setVisible(true);
 					pack();
@@ -498,6 +499,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	}
 	
 	public void openWardrobe(String name){
+		toggleGroup.clearSelection();
 		closetPanel.setName(name);
 		closetPanel.reset();
 		WardrobePanel.setVisible(false);
