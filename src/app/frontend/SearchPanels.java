@@ -77,6 +77,17 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 
 	}
 	
+	public void refresh(List<Item> list){
+		this.removeAll();
+		System.out.println("GETTING HERE!");
+		for(Item x: list){
+			this.add(createPanel(x));
+			System.out.println("ITEM: "+x.getName());
+		}
+		revalidate();
+		repaint();
+	}
+	
 	private boolean toDrag = false;
 	private int mouseX;
 	private int mouseY;

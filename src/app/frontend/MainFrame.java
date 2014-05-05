@@ -41,7 +41,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JPanel LeftPanel;
-	private SearchPanels ResultsPanel;
+	public SearchPanels ResultsPanel;
 	private javax.swing.JPanel RightPanel;
 	private javax.swing.ButtonGroup toggleGroup;
 	private javax.swing.JToggleButton addNewItem;
