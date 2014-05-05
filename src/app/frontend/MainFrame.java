@@ -73,7 +73,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public MainFrame() {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
-		_savedUser = new Saver("Bella");
+		_savedUser = new Saver("test");
 
 		_user = _savedUser.getUser();
 		System.out.println("mainframe user: "+_user);
@@ -250,16 +250,11 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch.setText("Search");
 		txtSearch.setColumns(10);
 		
-<<<<<<< HEAD
-//		ItemDisplayTester test = new ItemDisplayTester();
-//		for (Item tem : test.getItems()){
-//			ResultsPanel.createPanel(tem);
-//		}
-=======
+
 		ItemDisplayTester test = new ItemDisplayTester();
 		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()), OutfitMakerPanel);
 
->>>>>>> 3d47d12a877c1478682ecd3a07d3330d089acc8c
+
 		
 	//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
 		
@@ -452,6 +447,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	
 	public void openWardrobe(String name){
 		closetPanel.setName(name);
+		closetPanel.reset();
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		newItemPanel.setVisible(false);
