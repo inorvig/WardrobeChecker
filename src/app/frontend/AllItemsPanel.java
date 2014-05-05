@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 
 import app.backend.interfaces.Item;
 import app.backend.interfaces.User;
+import app.backend.interfaces.Wardrobe;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -62,6 +63,7 @@ public class AllItemsPanel extends JPanel {
 	}
 	
 	public void reset(){
+		System.out.println("all items panel resetting with name "+closet);
 		removeAll();
 		count = 0;
 		row = 0;
@@ -71,11 +73,12 @@ public class AllItemsPanel extends JPanel {
 	}
 	
 	private void addItems(){
-		//System.out.println("searching for wardrobe "+closet+" in user "+user);
 		Collection<Item> items;
 		if (closet.equals("all")){
 			items = user.allItems();
 		} else {
+			Wardrobe w = user.searchWardrobe(closet);
+			System.out.println("search returned "+w.getItems().size()+" items");
 			items = user.searchWardrobe(closet).getItems();
 		}
 		for (Item i : items){

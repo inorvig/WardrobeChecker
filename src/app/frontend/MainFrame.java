@@ -7,6 +7,7 @@
 package app.frontend;
 
 import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.JMenuItem;
@@ -559,12 +560,14 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	}
 
 	public void addItem(){
+		toggleGroup.clearSelection();
 		OutfitMakerPanel.setVisible(false);
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		closetPanel.setVisible(false);
 		newItemPanel.clear();
 		newItemPanel.setVisible(true);
+		System.out.println("new item");
 		pack();
 	}
 

@@ -113,6 +113,7 @@ public class AppUser implements User, Serializable {
 		for (Wardrobe i : wardrobeList){
 			if (i.getName().equals(name)){
 				result = i;
+				break;
 			}
 		}
 		return result;

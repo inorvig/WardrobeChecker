@@ -108,6 +108,7 @@ public class ByCategoryPanel extends JPanel {
 	
 
 	public void reset(){
+		System.out.println("category panel resetting with name "+closet);
 		this.removeAll();
 		count = 0;
 		row = 0;

@@ -318,7 +318,16 @@ public class NewItemPanel extends JPanel implements ActionListener{
 				color = txtColor.getText();
 				String tagString = txtTags.getText().replaceAll("\\s",",");
 				tags = new ArrayList<String>(Arrays.asList(tagString.split(",+")));
+<<<<<<< HEAD
+				System.out.format("Sending item: %s, %s, %s, %s, %s\n",name,wardrobe,category,color,imagePath);
+				System.out.println("tags: ");
+				for (String tag : tags){
+					System.out.println(tag);
+				}
+				System.out.println("adding "+name+" to "+wardrobe);
+=======
 
+>>>>>>> f84362ea79320d6ee4224c566279818ce35eb3c4
 				user.addItem(name, wardrobe, category, color, imagePath,tags);
 				parent.updateItems();
 				if(!parent.twoOpen){
