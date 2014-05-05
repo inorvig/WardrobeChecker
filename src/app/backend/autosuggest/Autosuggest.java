@@ -53,7 +53,7 @@ public class Autosuggest implements Serializable {
 	 * @param tag
 	 */
 	public void addTag(String tag){
-		System.out.println("TAG ADDED: " + tag);
+		//System.out.println("TAG ADDED: " + tag);
 		this.trie.insert(tag);
 		this.alltags.add(tag);
 		
@@ -90,8 +90,8 @@ public class Autosuggest implements Serializable {
 		
 		String queryWords = query.trim();
 		
-		for (String s: tagsMap.keySet())
-			System.out.println("TAG:  " + s);
+		//for (String s: tagsMap.keySet())
+			//System.out.println("TAG:  " + s);
 		
 		String[] queryArray = query.split(" ");
 		

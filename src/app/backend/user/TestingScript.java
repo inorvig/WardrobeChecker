@@ -168,14 +168,77 @@ public class TestingScript {
 		    add("kim");
 		}});
 		
-//		ArrayList<Item> r = u.search("100  ");
-//		
-//		System.out.println(r.size());
-//		
-//		
-//		
+//		ArrayList<Item> r = u.search("j");
 //		for (int i = 0; i<r.size();i++){
 //			System.out.println( "<< "+ i + " >> ---" + r.get(i).getName() );
+//		}
+//		ArrayList<Item> r2 = u.search("ja");
+//		for (int i = 0; i<r2.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r2.get(i).getName() );
+//		}
+//		ArrayList<Item> r3 = u.search("jac");
+//		for (int i = 0; i<r3.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r3.get(i).getName());
+//		}
+//		ArrayList<Item> r4 = u.search("jack");
+//		for (int i = 0; i<r4.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r4.get(i).getName() );
+//		}
+//		ArrayList<Item> r5 = u.search("jacke");
+//		for (int i = 0; i<r5.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r5.get(i).getName() );
+//		}
+//		ArrayList<Item> r6 = u.search("jacket");
+//		for (int i = 0; i<r6.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r6.get(i).getName() );
+//		}
+//		ArrayList<Item> r7 = u.search("jacket ");
+//		for (int i = 0; i<r7.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r7.get(i).getName() );
+//		}
+//		ArrayList<Item> r8 = u.search("jacket m");
+//		for (int i = 0; i<r8.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r8.get(i).getName() );
+//		}
+//		ArrayList<Item> r9 = u.search("jacket my");
+//		for (int i = 0; i<r9.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r9.get(i).getName() );
+//		}
+//		ArrayList<Item> r10 = u.search("jacket my ");
+//		for (int i = 0; i<r10.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r10.get(i).getName() );
+//		}
+//		ArrayList<Item> r11 = u.search("jacket my m");
+//		for (int i = 0; i<r11.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r11.get(i).getName() );
+//		}
+//		ArrayList<Item> r12 = u.search("jacket my mo");
+//		for (int i = 0; i<r12.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r12.get(i).getName() );
+//		}
+//		ArrayList<Item> r13 = u.search("jacket my mom");
+//		for (int i = 0; i<r13.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r13.get(i).getName() );
+//		}
+//		ArrayList<Item> r14 = u.search("jacket my mom b");
+//		for (int i = 0; i<r14.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r14.get(i).getName() );
+//		}
+//		ArrayList<Item> r15 = u.search("jacket my mom bo");
+//		for (int i = 0; i<r15.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r15.get(i).getName() );
+//		}
+//		ArrayList<Item> r16 = u.search("jacket my mom bou");
+//		for (int i = 0; i<r16.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r16.get(i).getName() );
+//		}
+//		ArrayList<Item> r17 = u.search("jacket my mom boug");
+//		for (int i = 0; i<r17.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r17.get(i).getName() );
+//		}
+//		ArrayList<Item> r18 = u.search("jacket my mom bough");
+//		for (int i = 0; i<r18.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r18.get(i).getName() );
 //		}
 //		
 //		
