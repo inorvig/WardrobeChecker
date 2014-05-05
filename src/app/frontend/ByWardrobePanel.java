@@ -64,7 +64,6 @@ public class ByWardrobePanel extends JPanel {
 		col = 0;
 		addButton();
 		addWardrobes();
-		
 	}
 	
 	public void addButton(){

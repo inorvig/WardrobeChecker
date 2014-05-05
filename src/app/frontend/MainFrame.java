@@ -470,10 +470,16 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		// TODO add your handling code here:
 	}// GEN-LAST:event_addNewItemActionPerformed
 
-	/**
-	 * @param args
-	 *            the command line arguments
-	 */
+
+	public void toOutfitCreation(){
+		toggleGroup.clearSelection();
+		WardrobePanel.setVisible(false);
+		OutfitsPanel.setVisible(false);
+		closetPanel.setVisible(false);
+		newItemPanel.setVisible(false);
+		OutfitMakerPanel.setVisible(true);
+		pack();
+	}
 	
 	public void addItem(){
 		OutfitMakerPanel.setVisible(false);
