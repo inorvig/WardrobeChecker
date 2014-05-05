@@ -116,11 +116,17 @@ public class AppUser implements User, Serializable {
 		if (wardrobeToPut == null){
 			wardrobeToPut = wardrobeList.get(0);
 		}
+		
+		
 		ArrayList<String> allTags = tags;
 		tags.add(color);
-		Item toAdd = new AppItem(this, wardrobeToPut, name, imagePath);
+		tags.add(category);
+		String itemName = name.replace("[^A-Za-z0-9]", " ").toLowerCase().trim();
+		Item toAdd = new AppItem(this, wardrobeToPut, itemName, imagePath);
 		for (String i : allTags) {
-			toAdd.addTag(i);
+			String tag = i.replace("[^A-Za-z0-9]", "").toLowerCase().trim();
+			toAdd.addTag(itemName);
+			toAdd.addTag(tag);
 		}
 		addItem(toAdd);
 

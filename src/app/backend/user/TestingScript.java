@@ -63,6 +63,15 @@ public class TestingScript {
 		u.addItem(item3);
 		u.addItem(item4);
 		u.addItem(item5);
+		u.addItem(item6);
+		u.addItem(item7);
+		u.addItem(item8);
+		u.addItem(item9);
+		u.addItem(item10);
+		u.addItem(item11);
+
+		u.addItem("duplicate%%%%%", "Home Closet" , "shirts", "", "", new ArrayList<String>());
+		u.addItem("duplicate%%%%%", "Home Closet" , "shirts", "", "", new ArrayList<String>());
 		
 		ArrayList<Item> r = u.search("100  ");
 		
@@ -79,16 +88,27 @@ public class TestingScript {
 		ArrayList<Item> r2 = u.search("");
 		
 		System.out.println(r2.size());
-		
-		//saved.saveData();
+	
 		System.out.println("------------------2---------------");
 		for (int i = 0; i<r2.size();i++){
 			System.out.println( "<< "+ i + " >> ---" + r2.get(i).getName() );
 		}
 		
 		
+		ArrayList<Item> r3 = u.search("duplicate");
 		
-		
+		System.out.println(r3.size());
+
+		System.out.println("------------------3---------------");
+		for (int i = 0; i<r3.size();i++){
+			System.out.println( "<< "+ i + " >> ---" + r3.get(i).getName() );
+		}
+		System.out.println(item10.getTags().isEmpty());
+		for (String s: item10.getTags()){
+			System.out.println(item10.getTags().isEmpty());
+			System.out.println(s);
+		}
+		//saved.saveData();
 		
 		
 		
