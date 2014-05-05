@@ -1,5 +1,6 @@
 package app.backend.user;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
@@ -17,6 +18,7 @@ public class AppOutfit implements Outfit, Serializable {
 	String name;
 	HashSet<Item> items;
 	Wardrobe wardrobe;
+	BufferedImage preview;
 
 	public AppOutfit(String name, Wardrobe wardrobe,
 			Collection<Item> itemsInOutfit) {
@@ -33,6 +35,15 @@ public class AppOutfit implements Outfit, Serializable {
 	@Override
 	public String getName() {
 		return name;
+	}
+	
+	public void addPreview(BufferedImage image){
+		this.preview = image;
+		
+	}
+	
+	public BufferedImage getPreview(){
+		return this.preview;
 	}
 
 	// ADD TAG METHOD NEEDED??

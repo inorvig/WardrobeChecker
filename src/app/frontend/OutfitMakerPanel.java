@@ -3,6 +3,7 @@ package app.frontend;
 import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -36,11 +37,11 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton testButton;
 	private JButton saveButton;
 	public JLayeredPane layeredPane;
 	public JLabel lblNewLabel;
 	private JLabel savedLabel = null;
+	private JLabel hamper;
 	
 	public ArrayList<JLabel> draggable = new ArrayList<JLabel>();
 
@@ -61,10 +62,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		saveButton.addActionListener(this);
 		add(saveButton);
 		
-		testButton = new JButton("testButton");
-		testButton.setBounds(124, 10, 117, 25);
-		testButton.addActionListener(this);
-		add(testButton);
+		
 		
 		layeredPane = new JLayeredPane();
 		layeredPane.setBounds(15, 10, 241, 400);
@@ -85,6 +83,18 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		add(textField);
 		textField.setColumns(10);
 		
+		hamper = new JLabel("");
+		hamper.setBounds(173, 345, 70, 70);
+		ImageIcon Hampericon = new ImageIcon(("images/hamper.png"));
+		Image imghamper = Hampericon.getImage();
+		Image newimgHamper = imghamper.getScaledInstance(70,40, java.awt.Image.SCALE_SMOOTH);
+		hamper.setIcon(new ImageIcon(newimgHamper));
+		layeredPane.add(hamper);
+		
+	}
+	
+	public void removeUnder(){
+		
 	}
 	
 	
@@ -104,26 +114,6 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		System.out.println(src.getClass());
-		if(src == testButton){
-			
-			//panel.createPanel("shirt1", "/outfitImages/shit1.gif");
-			System.out.println("testButton pressed");
-			JLabel lblNewLabel_1 = new JLabel("");
-			ImageIcon icon2 = new ImageIcon(OutfitMakerPanel.class.getResource("/images/shit1.gif"));
-			Image img2 = icon2.getImage();
-			Image newimg2 = img2.getScaledInstance(120, 138, java.awt.Image.SCALE_SMOOTH);
-			lblNewLabel_1.setIcon(new ImageIcon(newimg2));
-			lblNewLabel_1.setBounds(59, 46, 120, 138);
-			layeredPane.remove(lblNewLabel);
-			layeredPane.add(lblNewLabel_1);
-			layeredPane.add(lblNewLabel);
-			lblNewLabel_1.addMouseListener(this);
-			lblNewLabel_1.addMouseMotionListener(this);
-			
-			draggable.add(lblNewLabel_1);
-			
-			
-		}
 		if(src == saveButton){
 			if(savedLabel != null){
 				layeredPane.remove(savedLabel);
@@ -205,6 +195,8 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		if(draggable.contains(e.getSource())){
 			drag = true;
 			toMove = (JLabel) e.getSource();
+			layeredPane.remove(toMove);
+			layeredPane.add(toMove, 1);
 		}
 		
 	}
@@ -217,7 +209,14 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		drag = false;
-		
+		Rectangle itemBounds = toMove.getBounds();
+		Rectangle hamperBounds = hamper.getBounds();
+		System.out.println();
+		if(itemBounds.intersects(hamperBounds)){
+			System.out.println("gettingHere");
+			layeredPane.remove(toMove);
+			repaint();
+		}
 	}
 
 

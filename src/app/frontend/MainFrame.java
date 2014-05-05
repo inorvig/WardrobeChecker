@@ -9,6 +9,8 @@ package app.frontend;
 import javax.swing.AbstractButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -46,7 +48,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private javax.swing.JToggleButton favoriteOutfits;
 	private javax.swing.JToggleButton helpButton;
 	private javax.swing.JButton jButton1;
-	private OutfitMakerPanel OutfitMakerPanel;
+	public OutfitMakerPanel OutfitMakerPanel;
 	private WardrobePanel WardrobePanel;
 	private OutfitsPanel OutfitsPanel;
 	private NewItemPanel newItemPanel;
@@ -55,7 +57,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private javax.swing.JPanel logoPanel;
 	private javax.swing.JToggleButton myWardrobes;
 	private javax.swing.JButton newWindow;
-	private javax.swing.JToggleButton searchWeb;
+	private javax.swing.JToggleButton MakeOutfit;
 	private WeatherPanel weatherAPI;
 	private org.jdesktop.beansbinding.BindingGroup bindingGroup;
 	private JTextField txtSearch;
@@ -105,7 +107,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		toggleGroup.add(myWardrobes);
 		toggleGroup.add(addNewItem);
 		toggleGroup.add(favoriteOutfits);
-		searchWeb = new javax.swing.JToggleButton();
+		MakeOutfit = new javax.swing.JToggleButton();
 		helpButton = new javax.swing.JToggleButton();
 		helpButton.setFont(new Font("Dialog", Font.BOLD, 12));
 		RightPanel = new javax.swing.JPanel();
@@ -163,14 +165,9 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		favoriteOutfits.setForeground(new java.awt.Color(255, 255, 255));
 		favoriteOutfits.setText("Favorite Outfits");
 
-		searchWeb.setBackground(new java.awt.Color(127, 110, 186));
-		searchWeb.setForeground(new java.awt.Color(255, 255, 255));
-		ImageIcon icon2 = new ImageIcon("images/search-web.gif");
-		Image img2 = icon2.getImage();
-		Image newimg2 = img2.getScaledInstance(150, 75,
-				java.awt.Image.SCALE_SMOOTH);
-		searchWeb.setIcon(new ImageIcon(newimg2));
-		searchWeb.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+		MakeOutfit.setBackground(new java.awt.Color(127, 110, 186));
+		MakeOutfit.setForeground(new java.awt.Color(255, 255, 255));
+		MakeOutfit.setText("Make Outfit");
 
 		helpButton.setBackground(new java.awt.Color(127, 110, 186));
 		helpButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,7 +195,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 							.addComponent(myWardrobes, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(addNewItem, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 							.addComponent(favoriteOutfits, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(searchWeb, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 164, Short.MAX_VALUE)))
+							.addComponent(MakeOutfit, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 164, Short.MAX_VALUE)))
 					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		LeftPanelLayout.setVerticalGroup(
@@ -210,7 +207,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(favoriteOutfits, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(searchWeb, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addComponent(MakeOutfit, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(LeftPanelLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(helpButton, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
@@ -251,7 +248,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch.setColumns(10);
 		
 		ItemDisplayTester test = new ItemDisplayTester();
-		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()), OutfitMakerPanel);
+		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()), this);
 
 		
 	//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
@@ -404,6 +401,63 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					System.out.println("addNewItem deselected");
 				}
 			}
+		});
+		
+
+		MakeOutfit.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (favoriteOutfits.isSelected()) {
+					OutfitMakerPanel.setVisible(true);
+					WardrobePanel.setVisible(false);
+					newItemPanel.setVisible(false);
+					closetPanel.setVisible(false);
+					OutfitsPanel.setVisible(false);
+					pack();
+					System.out.println("addNewItem selected");
+				} else {
+					OutfitsPanel.setVisible(false);
+					OutfitMakerPanel.setVisible(true);
+					pack();
+					System.out.println("addNewItem deselected");
+				}
+			}
+		});
+		
+		
+		
+		
+		newWindow.addActionListener(new ActionListener() {
+			
+			JPopupMenu currMenu = null;
+			
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				final JPopupMenu menu = new JPopupMenu();
+				ArrayList<JMenuItem> menuItems = new ArrayList<JMenuItem>();
+				
+				if(!WardrobePanel.isVisible()){
+					menuItems.add(new JMenuItem("My Wardrobes"));
+				}
+				if(!OutfitsPanel.isVisible()){
+					menuItems.add(new JMenuItem("Favorite Outfits"));
+				}
+			    JMenuItem makeOutfitItem = new JMenuItem("Make Outfit");
+			    JMenuItem addNewItemItem = new JMenuItem("Add New Item");
+			    menuItems.add(makeOutfitItem);
+			    menuItems.add(addNewItemItem);
+			    
+			    for(JMenuItem x: menuItems){
+			    	menu.add(x);
+			    }
+			    currMenu = menu;
+			    currMenu.show(newWindow, newWindow.getWidth()/2, newWindow.getHeight()/2);
+				
+				
+			}
+			
+		
 		});
 
 		bindingGroup.bind();
