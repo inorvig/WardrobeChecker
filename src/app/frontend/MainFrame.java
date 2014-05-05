@@ -250,16 +250,13 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch.setText("Search");
 		txtSearch.setColumns(10);
 		
-<<<<<<< HEAD
-//		ItemDisplayTester test = new ItemDisplayTester();
-//		for (Item tem : test.getItems()){
-//			ResultsPanel.createPanel(tem);
-//		}
-=======
+
 		ItemDisplayTester test = new ItemDisplayTester();
 		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()), OutfitMakerPanel);
+		
+		txtSearch.getDocument().addDocumentListener(new SearchBarListener(txtSearch, _user, ResultsPanel));
 
->>>>>>> 3d47d12a877c1478682ecd3a07d3330d089acc8c
+
 		
 	//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
 		

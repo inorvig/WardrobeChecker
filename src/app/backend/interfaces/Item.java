@@ -29,4 +29,6 @@ public interface Item extends Comparable {
 	public void incrementScore();
 
 	public void resetScore();
+	
+	public Category whichCategory();
 }

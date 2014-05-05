@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import app.backend.interfaces.Category;
 import app.backend.interfaces.Item;
 import app.backend.interfaces.Outfit;
 import app.backend.interfaces.Wardrobe;
@@ -22,14 +23,16 @@ public class AppItem implements Item, Serializable {
 	String imagePath;
 	AppUser owner;
 	Wardrobe wardrobe;
+	private Category category;
 
-	public AppItem(AppUser user, Wardrobe wardrobeToPut, String name, String imagePath) {
+	public AppItem(AppUser user, Wardrobe wardrobeToPut, Category category,  String name, String imagePath) {
 
 		this.owner = user; // owner object passed
 		this.wardrobe = wardrobeToPut; // parent wardrobe object passed
 		this.name = name; // unique identifier name
 		this.imagePath = imagePath; // image path
 		this.tags = new HashSet<String>(); // initialize set of tags
+		this.category = category;
 
 	}
 
@@ -156,6 +159,11 @@ public class AppItem implements Item, Serializable {
 	@Override
 	public int compareTo(Object that) {
 		return -1 * this.score.compareTo(((Item) that).getScore());
+	}
+	
+	
+	public Category whichCategory(){
+		return category;
 	}
 
 }

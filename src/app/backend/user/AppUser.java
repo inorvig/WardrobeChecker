@@ -126,6 +126,10 @@ public class AppUser implements User, Serializable {
 
 	}
 	
+	private Category searchCategory(){
+		
+	}
+	
 	/**
 	 * add an Item object
 	 * @param item

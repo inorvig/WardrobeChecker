@@ -24,17 +24,22 @@ public class SearchBarListener implements DocumentListener {
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		ArrayList<Item> results = user.search(searchBar.getText());
+		System.out.println("dfdfwer");
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		ArrayList<Item> results = user.search(searchBar.getText());
+		System.out.println("dfdfwer");
+
 
 	}
 
 	@Override
 	public void changedUpdate(DocumentEvent e) {
 		ArrayList<Item> results = user.search(searchBar.getText());
+		System.out.println("dfdfwer");
+
 
 	}
 
