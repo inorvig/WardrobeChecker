@@ -255,8 +255,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch.setColumns(10);
 		
 
-		ItemDisplayTester test = new ItemDisplayTester();
-		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()), this);
+
+		ResultsPanel = new SearchPanels(new ArrayList<Item>(), this);
 		
 		txtSearch.getDocument().addDocumentListener(new SearchBarListener(txtSearch, _user, this));
 
