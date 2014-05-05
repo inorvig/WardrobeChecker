@@ -251,7 +251,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch.setColumns(10);
 		
 		ItemDisplayTester test = new ItemDisplayTester();
-		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()));
+		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()), OutfitMakerPanel);
 
 		
 	//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");

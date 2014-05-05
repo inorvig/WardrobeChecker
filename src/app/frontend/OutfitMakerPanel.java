@@ -38,11 +38,11 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	private static final long serialVersionUID = 1L;
 	private JButton testButton;
 	private JButton saveButton;
-	private JLayeredPane layeredPane;
-	private JLabel lblNewLabel;
+	public JLayeredPane layeredPane;
+	public JLabel lblNewLabel;
 	private JLabel savedLabel = null;
 	
-	private ArrayList<JLabel> draggable = new ArrayList<JLabel>();
+	public ArrayList<JLabel> draggable = new ArrayList<JLabel>();
 
 	/**
 	 * Create the panel.
@@ -129,11 +129,11 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 				layeredPane.remove(savedLabel);
 			}
 			System.out.println("getting to save");
-			Image x = createImage(layeredPane).getScaledInstance(this.getHeight()/6, this.getWidth()/6, java.awt.Image.SCALE_SMOOTH);
+			Image x = createImage(layeredPane).getScaledInstance(this.getHeight()/6, this.getWidth()/4, java.awt.Image.SCALE_SMOOTH);
 			JLabel m = new JLabel("");
 			ImageIcon icon3 = new ImageIcon(x);
 			m.setIcon(icon3);
-			m.setBounds(5, 15, icon3.getIconWidth(), icon3.getIconHeight());
+			m.setBounds(180, 25, icon3.getIconWidth(), icon3.getIconHeight());
 			layeredPane.add(m);
 			savedLabel = m;
 			
