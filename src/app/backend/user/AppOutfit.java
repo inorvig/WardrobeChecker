@@ -69,4 +69,15 @@ public class AppOutfit implements Outfit, Serializable {
 	public Displayer getDisplayInfo() {
 		return displayInfo;
 	}
+
+	@Override
+	public void setName(String newName) {
+		this.name = newName;		
+	}
+
+	@Override
+	public void setItems(Collection<Item> item) {
+		this.items.removeAll(items);
+		items.addAll(item);
+	}
 }
