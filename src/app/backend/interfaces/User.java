@@ -31,6 +31,8 @@ public interface User {
 	public void removeItem(Item item);
 
 
+	public String suggestColor(String imagePath);
+	
 	public Collection<String> getCategoryList();
 	
 	public ArrayList<Item> search(String searchTerms);
