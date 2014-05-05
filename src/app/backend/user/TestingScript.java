@@ -12,8 +12,8 @@ public class TestingScript {
 	public static void main(String[] args) {
 		
 		
-		
-		AppUser u = new AppUser("TestOwner");
+		Saver saved = new Saver("TestOwner");
+		AppUser u = (AppUser) saved.getUser();
 		System.out.println(u.howManyWardrobes());
 		
 		
@@ -23,12 +23,16 @@ public class TestingScript {
 		AppItem item3 = new AppItem(u,u.searchWardrobe("Home Closet"), "item three", "");
 		AppItem item4 = new AppItem(u,u.searchWardrobe("Home Closet"), "item four", "");
 		AppItem item5 = new AppItem(u,u.searchWardrobe("Home Closet"), "item five", "");
-		AppItem item6 = new AppItem(u,u.searchWardrobe("Home Closet"), "item six", "");
-		AppItem item7 = new AppItem(u,u.searchWardrobe("Home Closet"), "item seven", "");
-		AppItem item8 = new AppItem(u,u.searchWardrobe("Home Closet"), "item eight", "");
-		AppItem item9 = new AppItem(u,u.searchWardrobe("Home Closet"), "item nine", "");
-		AppItem item10 = new AppItem(u,u.searchWardrobe("Home Closet"), "item ten", "");
-		AppItem item11 = new AppItem(u,u.searchWardrobe("Home Closet"), "item eleven", "");
+		
+		u.addWardrobe("Travel Bag One", WardrobeType.SUITCASE); 
+		
+		AppItem item6 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item six", "");
+		AppItem item7 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item seven", "");
+		AppItem item8 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item eight", "");
+		AppItem item9 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item nine", "");
+		AppItem item10 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item ten", "");
+		AppItem item11 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item ten", "");
+		
 		AppItem item12 = new AppItem(u,u.searchWardrobe("Home Closet"), "item twelve", "");
 		AppItem item13 = new AppItem(u,u.searchWardrobe("Home Closet"), "item thirteen", "");
 		AppItem item14 = new AppItem(u,u.searchWardrobe("Home Closet"), "item fourteen", "");
@@ -39,7 +43,16 @@ public class TestingScript {
 		item1.addTag("shirt green holidays awesome");
 		item2.addTag("shirt blue hilidays bad");
 		item3.addTag("pants green holidays awe");
-		item4.addTag("shit shirt want");
+		item4.addTag("shit shirt i don't want");
+		item5.addTag("size 100 pants that belong to your mom");
+		
+		item6.addTag("socks with slippers");
+		item7.addTag("suit for meetings");
+		item8.addTag("my mom does not need to know this exists");
+		item9.addTag("shirt green holidays awesome");
+		item10.addTag("");
+		item11.addTag("");
+		
 		
 		
 //		for (String s : item1.getTags())
@@ -49,8 +62,13 @@ public class TestingScript {
 		u.addItem(item2);
 		u.addItem(item3);
 		u.addItem(item4);
+		u.addItem(item5);
 		
-		ArrayList<Item> r = u.search("awebad ");
+		ArrayList<Item> r = u.search("100  ");
+		
+		System.out.println(r.size());
+		
+		
 		
 		for (int i = 0; i<r.size();i++){
 			System.out.println( "<< "+ i + " >> ---" + r.get(i).getName() );
@@ -58,9 +76,15 @@ public class TestingScript {
 		
 		
 		
+		ArrayList<Item> r2 = u.search("");
 		
+		System.out.println(r2.size());
 		
-		
+		//saved.saveData();
+		System.out.println("------------------2---------------");
+		for (int i = 0; i<r2.size();i++){
+			System.out.println( "<< "+ i + " >> ---" + r2.get(i).getName() );
+		}
 		
 		
 		

@@ -27,7 +27,7 @@ public class WeatherPanel extends JPanel {
 		lblNewLabel.setBounds(10, 5, 68, 49);
 		add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("77");
+		JLabel lblNewLabel_1 = new JLabel(weather.temperature);
 		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 23));
 		lblNewLabel_1.setForeground(new java.awt.Color(255, 255, 255));
 		lblNewLabel_1.setBounds(93, 0, 45, 37);
