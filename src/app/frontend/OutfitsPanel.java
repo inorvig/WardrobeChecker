@@ -41,26 +41,6 @@ public class OutfitsPanel extends JPanel {
 		this.parent = parent;
 		this.user = user;
 		
-		JLabel lblAllOutfits = new JLabel("All Outfits");
-		lblAllOutfits.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAllOutfits.setForeground(Color.WHITE);
-		lblAllOutfits.setBackground(Color.BLACK);
-		lblAllOutfits.setOpaque(true);
-		add(lblAllOutfits, BorderLayout.NORTH);
-		
-		panel = new JPanel();
-		panel.setBackground(Color.WHITE);
-		panel.setPreferredSize(new Dimension(467,450));
-		
-		
-		gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0};
-		gridBagLayout.rowWeights = new double[]{0.0};
-		gridBagLayout.columnWidths = new int[] {130, 130, 130};
-		gridBagLayout.rowHeights = new int[] {150};
-		
-		panel.setLayout(gridBagLayout);
-		
 		c = new GridBagConstraints();
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -86,7 +66,7 @@ public class OutfitsPanel extends JPanel {
 		btnNewOutfit.setIcon(new ImageIcon(newimg));
 		btnNewOutfit.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnNewOutfit.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnNewOutfit.setSize(new Dimension(150, 150));
+		btnNewOutfit.setSize(new Dimension(130, 150));
 		
 		c.gridy = row;
 		c.gridx = col;
@@ -97,6 +77,7 @@ public class OutfitsPanel extends JPanel {
 		}
 		System.out.format("row: %d, col: %d, count: %d\n",row,col,count);
 		panel.add(btnNewOutfit,c);
+		System.out.println("width: "+btnNewOutfit.getWidth());
 		count++;
 		col++;
 	}
@@ -133,14 +114,39 @@ public class OutfitsPanel extends JPanel {
 		}
 	}
 	
+	public void createPanel(){
+		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		panel.setSize(new Dimension(467,450));
+		
+		
+		gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0};
+		gridBagLayout.rowWeights = new double[]{0.0};
+		gridBagLayout.columnWidths = new int[] {130, 130, 130};
+		gridBagLayout.rowHeights = new int[] {150};
+		
+		panel.setLayout(gridBagLayout);
+	}
 	public void reset(){
 		System.out.println("resetting outfits");
 		removeAll();
 		count = 0;
 		row = 0;
 		col = 0;
+		
+		JLabel lblAllOutfits = new JLabel("All Outfits");
+		lblAllOutfits.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAllOutfits.setForeground(Color.WHITE);
+		lblAllOutfits.setBackground(Color.BLACK);
+		lblAllOutfits.setOpaque(true);
+		add(lblAllOutfits, BorderLayout.NORTH);
+		
+		createPanel();
 		addButton();
 		addOutfits();
+		
+		
 		add(panel, BorderLayout.CENTER);
 	}
 
