@@ -97,20 +97,25 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		LeftPanel.setBackground(Color.WHITE);
 		newWindow = new javax.swing.JButton();
 		newWindow.setIcon(new ImageIcon("images/plus.gif"));
+		
 		toggleGroup = new javax.swing.ButtonGroup();
 		myWardrobes = new javax.swing.JToggleButton();
 		addNewItem = new javax.swing.JToggleButton();
 		favoriteOutfits = new javax.swing.JToggleButton();
+		MakeOutfit = new javax.swing.JToggleButton();
 		toggleGroup.add(myWardrobes);
 		toggleGroup.add(addNewItem);
 		toggleGroup.add(favoriteOutfits);
-		MakeOutfit = new javax.swing.JToggleButton();
+		toggleGroup.add(MakeOutfit);
+		
 		helpButton = new javax.swing.JToggleButton();
 		helpButton.setFont(new Font("Dialog", Font.BOLD, 12));
+		
 		RightPanel = new javax.swing.JPanel();
 		RightPanel.setBackground(Color.WHITE);
 		weatherAPI = new WeatherPanel();
 		logoPanel = new javax.swing.JPanel();
+		
 		OutfitMakerPanel = new OutfitMakerPanel(this, _user);
 		newItemPanel = new NewItemPanel(this, _user);
 		WardrobePanel = new WardrobePanel(this,_user);
@@ -223,21 +228,20 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 56,
 				Short.MAX_VALUE));
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("images/logo.gif"));
+		JLabel logoLabel = new JLabel("");
+		logoLabel.setIcon(new ImageIcon("images/logo.gif"));
+		logoPanel.setBackground(java.awt.Color.BLACK);
 
 		javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(
 				logoPanel);
 		logoPanelLayout.setHorizontalGroup(logoPanelLayout.createParallelGroup(
 				Alignment.LEADING).addGroup(
 				logoPanelLayout.createSequentialGroup()
-						.addComponent(lblNewLabel)
-						.addContainerGap(54, Short.MAX_VALUE)));
+						.addComponent(logoLabel)));
 		logoPanelLayout.setVerticalGroup(logoPanelLayout.createParallelGroup(
 				Alignment.LEADING).addGroup(
 				logoPanelLayout.createSequentialGroup()
-						.addComponent(lblNewLabel)
-						.addContainerGap(97, Short.MAX_VALUE)));
+						.addComponent(logoLabel)));
 		logoPanel.setLayout(logoPanelLayout);
 
 		txtSearch = new JTextField();
@@ -303,13 +307,13 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				.addGroup(layout.createSequentialGroup()
 					.addComponent(LeftPanel, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(OutfitMakerPanel, GroupLayout.PREFERRED_SIZE, 274, GroupLayout.PREFERRED_SIZE)
+					.addComponent(OutfitMakerPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(newItemPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addComponent(newItemPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(OutfitsPanel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
+					.addComponent(OutfitsPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(closetPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -408,12 +412,13 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		MakeOutfit.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				if (favoriteOutfits.isSelected()) {
+				if (MakeOutfit.isSelected()) {
 					OutfitMakerPanel.setVisible(true);
 					WardrobePanel.setVisible(false);
 					newItemPanel.setVisible(false);
 					closetPanel.setVisible(false);
 					OutfitsPanel.setVisible(false);
+					
 					pack();
 					System.out.println("addNewItem selected");
 				} else {
