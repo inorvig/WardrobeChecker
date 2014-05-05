@@ -33,12 +33,10 @@ public class OutfitsPanel extends JPanel{
 	private GridBagConstraints c;
 	private int row,col,count = 0;
 	private JPanel panel;
-<<<<<<< HEAD
 
-=======
 	private AllOutfitsPanel outfits;
 	
->>>>>>> cb40eec2a3b47f07c5f9581f6c34361f58defe83
+
 	private static final long serialVersionUID = 2466177652642787961L;
 
 	public JLabel lblAllOutfits;
@@ -55,13 +53,12 @@ public class OutfitsPanel extends JPanel{
 		lblAllOutfits.setBackground(Color.BLACK);
 		lblAllOutfits.setOpaque(true);
 		add(lblAllOutfits, BorderLayout.NORTH);
-<<<<<<< HEAD
+
 
 		AllOutfitsPanel outfits = new AllOutfitsPanel(parent, user);
-=======
+
 		
 		outfits = new AllOutfitsPanel(parent, user);
->>>>>>> cb40eec2a3b47f07c5f9581f6c34361f58defe83
 		add(outfits, BorderLayout.CENTER);
 
 		parent.pack();

@@ -134,6 +134,8 @@ public class AppUser implements User, Serializable {
 			toAdd.addTag(itemName);
 			toAdd.addTag(tag);
 		}
+		wardrobeToPut.addItem(toAdd);
+
 		addItem(toAdd);
 
 	}
