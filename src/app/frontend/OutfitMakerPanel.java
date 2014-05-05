@@ -49,7 +49,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	 */
 	public OutfitMakerPanel(MainFrame parent, User user) {
 		setBackground(Color.WHITE);
-		ImageIcon icon = new ImageIcon(("/gpfs/main/home/inorvig/course/cs032/wardrobe/images/person.gif"));
+		ImageIcon icon = new ImageIcon(("images/person.gif"));
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(170, 372, java.awt.Image.SCALE_SMOOTH);
 		setLayout(null);
@@ -109,7 +109,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 			//panel.createPanel("shirt1", "/outfitImages/shit1.gif");
 			System.out.println("testButton pressed");
 			JLabel lblNewLabel_1 = new JLabel("");
-			ImageIcon icon2 = new ImageIcon(OutfitMakerPanel.class.getResource("/outfitImages/shit1.gif"));
+			ImageIcon icon2 = new ImageIcon(OutfitMakerPanel.class.getResource("/images/shit1.gif"));
 			Image img2 = icon2.getImage();
 			Image newimg2 = img2.getScaledInstance(120, 138, java.awt.Image.SCALE_SMOOTH);
 			lblNewLabel_1.setIcon(new ImageIcon(newimg2));
@@ -133,7 +133,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 			JLabel m = new JLabel("");
 			ImageIcon icon3 = new ImageIcon(x);
 			m.setIcon(icon3);
-			m.setBounds(4, 4, icon3.getIconWidth(), icon3.getIconHeight());
+			m.setBounds(5, 15, icon3.getIconWidth(), icon3.getIconHeight());
 			layeredPane.add(m);
 			savedLabel = m;
 			
