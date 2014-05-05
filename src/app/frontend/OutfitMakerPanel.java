@@ -165,7 +165,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 			layeredPane.add(m);
 			savedLabel = m;
 			
-			OutfitDisplayer toSend = new OutfitDisplayer(this, x);
+			OutfitDisplayer toSend = new OutfitDisplayer(this.itemStorage, x);
 			Collection<Item> itemstoSend = itemStorage.values();
 			if(outfitExisting != null){
 				outfitExisting.setName(textField.getText());
@@ -194,7 +194,54 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 //	}
 
 
+	public void makeDeletable(){
+		final JButton deleteButton = new JButton("Exit");
+		deleteButton.setBorder(new LineBorder(new Color(255, 255, 255)));
+		deleteButton.setBackground(Color.white);
+		deleteButton.setOpaque(true);
+		deleteButton.setForeground(Color.black);
+		deleteButton.setBounds(380, 0, 60, 16);
+		deleteButton.addActionListener(new ActionListener() {
 
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("this is happening");
+				setVisible(false);
+				remove(deleteButton);
+				clear();
+				p.twoOpen = false;
+				revalidate();
+				repaint();
+				p.pack();
+				
+			}
+
+		});
+		
+		add(deleteButton);
+		p.twoOpen = true;
+		revalidate();
+		repaint();
+
+
+	}
+	
+	public void clear(){
+		for(JLabel x: this.itemStorage.keySet()){
+			layeredPane.remove(x);
+			removeItem(x);
+			revalidate();
+			repaint();
+			
+		}
+	}
+	
+	public void fill(HashMap<JLabel, Item> toFill){
+		this.itemStorage = toFill;
+		for(JLabel x: toFill.keySet()){
+			layeredPane.add(x);
+		}
+	}
 
 	private boolean drag = false;
 	private int mouseX;

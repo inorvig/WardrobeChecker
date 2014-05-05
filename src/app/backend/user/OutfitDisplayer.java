@@ -4,7 +4,10 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import app.backend.interfaces.Displayer;
@@ -14,7 +17,7 @@ import app.backend.interfaces.Wardrobe;
 
 public class OutfitDisplayer implements Displayer, Serializable{
 	
-	JPanel outfitPanel;
+	HashMap<JLabel, Item> clothes;
 	Image preview;
 
 	/**
@@ -22,14 +25,15 @@ public class OutfitDisplayer implements Displayer, Serializable{
 	 */
 	private static final long serialVersionUID = -7521619792431856268L;
 
-	public OutfitDisplayer(JPanel oPanel, Image x){
-		this.outfitPanel = oPanel;
+	public OutfitDisplayer(HashMap<JLabel, Item> cloth, Image x){
+		this.clothes = cloth;
 		this.preview = x;
 	}
 	
+
 	@Override
-	public JPanel getOutfitPanel() {
-		return outfitPanel;
+	public HashMap<JLabel, Item> getOutfitPanel(){
+		return clothes;
 	}
 
 	@Override
