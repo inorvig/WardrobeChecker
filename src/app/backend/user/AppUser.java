@@ -52,14 +52,18 @@ public class AppUser implements User, Serializable {
 		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET)); //add default home closet
 		
 		this.allCategories = new HashSet<Category>(); //initialize category set
-		addCategory("Shirts");
-		addCategory("Dresses");
-		addCategory("Shoes");
-		addCategory("Skirts");
-		addCategory("Pants");
-		addCategory("Sweaters");
-		addCategory("Jeans");
-		addCategory("Jackets");
+		addCategory("t-shirts");
+		this.searchCategory("t-shirts").setImagePath("images/categories/t-shirts.gif");
+		addCategory("pants");
+		this.searchCategory("pants").setImagePath("images/categories/pants.gif");
+		addCategory("skirt");
+		this.searchCategory("skirt").setImagePath("images/categories/skirt.gif");
+		addCategory("Skirts");		
+		this.searchCategory("swim").setImagePath("images/categories/swim.gif");
+		addCategory("tanks");
+		this.searchCategory("t-shirts").setImagePath("images/categories/tanks.gif");
+		addCategory("workout");
+		this.searchCategory("t-shirts").setImagePath("images/categories/workout.gif");
 		
 		this.autosuggest = new Autosuggest(tagsMap); //set up autosuggest
 		autosuggest.setUp();
