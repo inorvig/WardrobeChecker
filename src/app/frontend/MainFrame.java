@@ -254,7 +254,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		ItemDisplayTester test = new ItemDisplayTester();
 		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()), OutfitMakerPanel);
 		
-		txtSearch.getDocument().addDocumentListener(new SearchBarListener(txtSearch, _user, ResultsPanel));
+		txtSearch.getDocument().addDocumentListener(new SearchBarListener(txtSearch, _user, this));
 
 
 		
@@ -553,5 +553,14 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public void windowOpened(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setResultsPanel(SearchPanels searchPanels) {
+		this.ResultsPanel = searchPanels;
+		
+	}
+
+	public OutfitMakerPanel getOutfitsPanel() {
+		return OutfitMakerPanel;
 	}
 }

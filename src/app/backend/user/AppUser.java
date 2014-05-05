@@ -269,7 +269,12 @@ public class AppUser implements User, Serializable {
 			String color, String imagePath, ArrayList<String> tags) {
 		item.moveItem(searchWardrobe(wardrobe));
 		item.setCategory(searchCategory(category));
-		
+		item.addTag(color);
+		item.setColor(color);
+		item.setImagePath(imagePath);
+		for (String i: tags){
+			item.addTag(i);
+		}
 	}
 
 }

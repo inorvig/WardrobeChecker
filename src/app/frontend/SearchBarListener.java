@@ -13,18 +13,21 @@ public class SearchBarListener implements DocumentListener {
 
 	JTextField searchBar;
 	User user;
-	SearchPanels results;
+	MainFrame frame;
 	
-	public SearchBarListener(JTextField searchBar, User user, SearchPanels results){
+	public SearchBarListener(JTextField searchBar, User user, MainFrame frame){
 		this.searchBar = searchBar;
 		this.user = user;
-		this.results = results;
+		this.frame = frame;
 		
 	}
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		ArrayList<Item> results = user.search(searchBar.getText());
 		System.out.println("dfdfwer");
+		frame.setResultsPanel(new SearchPanels(results, frame.getOutfitsPanel()));
+		frame.revalidate();
+		frame.repaint();
 	}
 
 	@Override
