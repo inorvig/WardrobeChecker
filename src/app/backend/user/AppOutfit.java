@@ -19,13 +19,15 @@ public class AppOutfit implements Outfit, Serializable {
 	HashSet<Item> items;
 	Wardrobe wardrobe;
 	BufferedImage preview;
+	Displayer displayInfo;
 
-	public AppOutfit(String name, Wardrobe wardrobe,
-			Collection<Item> itemsInOutfit) {
+	public AppOutfit(String name, Wardrobe wardrobe, 
+			Collection<Item> itemsInOutfit, Displayer displayInfo) {
 
 		this.name = name;
 		this.wardrobe = wardrobe;
 		this.items = new HashSet<Item>();
+		this.displayInfo = displayInfo;
 
 		for (Item item : itemsInOutfit) {
 			items.add(item);
@@ -62,13 +64,9 @@ public class AppOutfit implements Outfit, Serializable {
 		return wardrobe;
 	}
 
-	public Displayer getDisplayinfo() {
-		return null;
-	}
 
 	@Override
 	public Displayer getDisplayInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return displayInfo;
 	}
 }

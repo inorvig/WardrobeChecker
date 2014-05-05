@@ -54,6 +54,12 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
        
     }
 	
+	public void update(List<Item> newList){
+		while (!Clickable.isEmpty()){
+			Clickable.remove()
+		}
+	}
+	
 	
 	public SearchPanels(List<Item> list, MainFrame parent) {
 		Clickable = new HashMap<JPanel, Item>();

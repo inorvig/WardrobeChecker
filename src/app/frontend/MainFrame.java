@@ -75,7 +75,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public MainFrame() {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
-		_savedUser = new Saver("Bella");
+		_savedUser = new Saver("test");
 
 		_user = _savedUser.getUser();
 		System.out.println("mainframe user: "+_user);
@@ -247,8 +247,11 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch.setText("Search");
 		txtSearch.setColumns(10);
 		
+
 		ItemDisplayTester test = new ItemDisplayTester();
 		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()), this);
+		
+		txtSearch.getDocument().addDocumentListener(new SearchBarListener(txtSearch, _user, this));
 
 		
 	//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
@@ -479,6 +482,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		closetPanel.setVisible(false);
+		newItemPanel.clear();
 		newItemPanel.setVisible(true);
 		pack();
 	}
@@ -498,6 +502,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	
 	public void openWardrobe(String name){
 		closetPanel.setName(name);
+		closetPanel.reset();
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		newItemPanel.setVisible(false);
@@ -601,5 +606,14 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public void windowOpened(WindowEvent arg0) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setResultsPanel(SearchPanels searchPanels) {
+		this.ResultsPanel = searchPanels;
+		
+	}
+
+	public OutfitMakerPanel getOutfitsPanel() {
+		return OutfitMakerPanel;
 	}
 }

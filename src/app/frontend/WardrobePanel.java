@@ -18,15 +18,14 @@ public class WardrobePanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -1109275360431582813L;
-	private AllItemsPanel all;
-	private JScrollPane wardrobe;
+	private JScrollPane all, wardrobe;
 	/**
 	 * Create the panel.
 	 */
 	public WardrobePanel(MainFrame parent,User user) {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
-		all = new AllItemsPanel(parent, user);
+		all = new JScrollPane(new AllItemsPanel(parent, user));
 		wardrobe = new JScrollPane(new ByWardrobePanel(parent, user));
 		
 		JLabel lblMyWardrobes = new JLabel("My Wardrobes");
