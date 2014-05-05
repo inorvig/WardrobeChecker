@@ -126,10 +126,11 @@ public class AppUser implements User, Serializable {
 		ArrayList<String> allTags = tags;
 		tags.add(color);
 		tags.add(category);
-		String itemName = name.replace("[^A-Za-z0-9]", " ").toLowerCase().trim();
+		String itemName = name.replaceAll("[^A-Za-z0-9]", " ").toLowerCase().trim();
+		
 		Item toAdd = new AppItem(this, wardrobeToPut, searchCategory(category),  itemName, imagePath);
 		for (String i : allTags) {
-			String tag = i.replace("[^A-Za-z0-9]", "").toLowerCase().trim();
+			String tag = i.replaceAll("[^A-Za-z0-9]", "").toLowerCase().trim();
 			toAdd.addTag(itemName);
 			toAdd.addTag(tag);
 		}
@@ -176,18 +177,22 @@ public class AppUser implements User, Serializable {
 
 	@Override
 	public void saveOutfit(Outfit outfit) {
-
 		this.outfitList.add(outfit);
+		System.out.format("saved outfit: %s with %d items",outfit.getName(),outfit.itemsInOutfit().size());
+		for (Item i : outfit.itemsInOutfit()){
+			System.out.println("item: "+i.getName());
+		}
 	}
 
 
 
 	@Override
 	public ArrayList<Item> search(String searchTerms) {
-		
+		String query = searchTerms.replaceAll("[^A-Za-z0-9]", " ").toLowerCase().trim();
+				
 		for (Item item: allItems){
 			item.resetScore();
-			System.out.println(item.getName() + " should be reset to 0");
+			//System.out.println(item.getName() + " should be reset to 0");
 		}
 		
 		HashSet<Item> matchingItems = new HashSet<Item>();
@@ -195,7 +200,7 @@ public class AppUser implements User, Serializable {
 
 		
 
-		Set<String> matchingTags = autosuggest.lookup(searchTerms);
+		Set<String> matchingTags = autosuggest.lookup(query);
 		
 		
 		for (String tag: matchingTags){
@@ -211,7 +216,7 @@ public class AppUser implements User, Serializable {
 		
 		for (Item item: matchingItems){
 			toReturn.add(item);
-			System.out.println(item.getName() + " <- name, " + item.getScore() + " <- score" );
+			//System.out.println(item.getName() + " <- name, " + item.getScore() + " <- score" );
 		}
 		
 		Collections.sort(toReturn);
@@ -262,7 +267,7 @@ public class AppUser implements User, Serializable {
 	@Override
 	public Collection<String> getWardrobeList() {
 		Collection<String> result = new ArrayList<String>();
-		System.out.println("wardrobe list is "+ wardrobeList.size());
+		//System.out.println("wardrobe list is "+ wardrobeList.size());
 		for (Wardrobe i : wardrobeList){
 			result.add(i.getName());
 		}
@@ -270,8 +275,7 @@ public class AppUser implements User, Serializable {
 	}
 
 	@Override
-	public void UpdateItem(Item item, String wardrobe, String category,
-			String color, String imagePath, ArrayList<String> tags) {
+	public void UpdateItem(Item item, String wardrobe, String category, String color, String imagePath, ArrayList<String> tags) {
 		item.moveItem(searchWardrobe(wardrobe));
 		item.setCategory(searchCategory(category));
 		item.addTag(color);

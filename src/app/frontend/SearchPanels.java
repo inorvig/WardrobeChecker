@@ -36,6 +36,7 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 	private MainFrame p;
 
 	public JPanel createPanel(Item x) {
+
 		System.out.println(x.getName());
 		JPanel p = new JPanel(new BorderLayout());
 		p.setBackground(java.awt.Color.WHITE);
@@ -53,7 +54,8 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 		// repaint();
 		return p;
 
-	}
+
+    }
 
 	public void reset(ArrayList<Item> items){
 		removeAll();
@@ -94,13 +96,11 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 
 	public void refresh(List<Item> list){
 		this.removeAll();
-		System.out.println("GETTING HERE!");
 		int row = 0;
 		for(Item x: list){
 			c.gridy = row;
 			this.add(createPanel(x),c);
 			row++;
-			System.out.println("ITEM: "+x.getName());
 		}
 		revalidate();
 		repaint();
@@ -163,6 +163,7 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 			lblNewLabel_1.addMouseMotionListener(ourPanel);
 
 			ourPanel.draggable.add(lblNewLabel_1);
+
 		}
 		toDrag = false;
 	}
@@ -172,7 +173,6 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 		if(Clickable.containsKey(e.getSource())){
 
 			draggedItem = (JPanel) e.getSource();
-			System.out.println("gotone!");
 		}
 		
 

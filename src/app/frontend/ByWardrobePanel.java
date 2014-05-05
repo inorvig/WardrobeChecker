@@ -110,9 +110,6 @@ public class ByWardrobePanel extends JPanel {
 	}
 	
 	public void addWardrobes(){
-//		row = 0;
-//		col = 0;
-//		count = 0;
 		for (final Wardrobe w : user.getWardrobes()){
 			JButton btnWardrobe = new JButton(w.getName());
 			btnWardrobe.addActionListener(new ActionListener() {

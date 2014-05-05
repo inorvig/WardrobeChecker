@@ -32,6 +32,7 @@ import javax.swing.JTextArea;
 import javax.swing.JLayeredPane;
 
 import app.backend.interfaces.Item;
+import app.backend.interfaces.Outfit;
 import app.backend.interfaces.User;
 import app.backend.user.AppOutfit;
 import app.backend.user.OutfitDisplayer;
@@ -50,7 +51,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	private JLabel savedLabel = null;
 	//this is the hamper
 	private JLabel hamper;
-	private AppOutfit outfitExisting;
+	private Outfit outfitExisting;
 	private User u;
 	private MainFrame p;
 	
@@ -153,6 +154,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 				msgbox("You must enter an outfit name!");
 			}
 			else{
+
 			if(savedLabel != null){
 				layeredPane.remove(savedLabel);
 			}
@@ -171,12 +173,12 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 				outfitExisting.setName(textField.getText());
 				outfitExisting.setItems(itemstoSend);
 				outfitExisting.setDisplayInfo(toSend);
-				p.OutfitMakerPanel = new OutfitMakerPanel(p, u);
 			}
 			else{
 			AppOutfit toSave = new AppOutfit(textField.getText(), null, itemstoSend, toSend);
 			u.saveOutfit(toSave);
 			}
+
 			}
 			
 		}

@@ -27,6 +27,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import app.backend.interfaces.Item;
+import app.backend.interfaces.Outfit;
 import app.backend.interfaces.User;
 import app.backend.user.AppOutfit;
 import app.backend.user.Saver;
@@ -64,11 +65,15 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private JTextField txtSearch;
 	private Saver _savedUser;
 	private final User _user;
+
 	public boolean twoOpen = false;
 	public OutfitMakerPanel OutfitMakerPanel2;
 	public NewItemPanel newItemPanel2;
 
-	public AppOutfit selectedOutfit = null;
+	private MainFrame self;
+	
+	public Outfit selectedOutfit = null;
+
 
 	private static final long serialVersionUID = 1L;
 
@@ -78,9 +83,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public MainFrame() {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
-		_savedUser = new Saver("woohoo");
+		_savedUser = new Saver("TestOwner");
 
 		_user = _savedUser.getUser();
+		self = this;
 		System.out.println("mainframe user: "+_user);
 		initComponents();
 
@@ -380,12 +386,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 					WardrobePanel.setVisible(true);
 					pack();
-					System.out.println("wardrobes selected");
 				} else {
 					WardrobePanel.setVisible(false);
 					OutfitMakerPanel.setVisible(true);
 					pack();
-					System.out.println("wardrobes deselected");
 				}
 			}
 		});
@@ -401,13 +405,11 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 					newItemPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem selected");
 				} else {
 					newItemPanel.clear();
 					newItemPanel.setVisible(false);
 					OutfitMakerPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem deselected");
 				}
 			}
 		});
@@ -423,12 +425,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 					OutfitsPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem selected");
 				} else {
 					OutfitsPanel.setVisible(false);
 					OutfitMakerPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem deselected");
 				}
 			}
 		});
@@ -439,6 +439,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 			public void itemStateChanged(ItemEvent e) {
 				if (MakeOutfit.isSelected()) {
 					OutfitMakerPanel.clear();
+
+					selectedOutfit = null;
 					OutfitMakerPanel.setVisible(true);
 					WardrobePanel.setVisible(false);
 					newItemPanel.setVisible(false);
@@ -446,18 +448,13 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					OutfitsPanel.setVisible(false);
 
 					pack();
-					System.out.println("addNewItem selected");
 				} else {
 					OutfitsPanel.setVisible(false);
 					OutfitMakerPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem deselected");
 				}
 			}
 		});
-
-
-
 
 		newWindow.addActionListener(new ActionListener() {
 
@@ -546,6 +543,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	}// GEN-LAST:event_addNewItemActionPerformed
 
 
+	public void editOutfit(Outfit o){
+		selectedOutfit = o;
+		//toOutfitCreation();
+	}
 	public void toOutfitCreation(){
 		toggleGroup.clearSelection();
 		WardrobePanel.setVisible(false);
@@ -568,6 +569,12 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 	public void updateItems(){
 		closetPanel.reset();
+		WardrobePanel.reset();
+		pack();
+	}
+	
+	public void updateOutfits(){
+		OutfitsPanel.reset();
 		pack();
 	}
 	public void returnToHome(){
@@ -581,7 +588,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 	public void openWardrobe(String name){
 		toggleGroup.clearSelection();
-		closetPanel.setName(name);
+		closetPanel.setCloset(name);
 		closetPanel.reset();
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);

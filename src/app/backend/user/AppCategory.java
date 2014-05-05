@@ -21,7 +21,7 @@ public class AppCategory implements Category, Serializable {
 	public AppCategory(String name, Collection<Item> items) {
 		//System.out.println("just made the name"+ name);
 		this.name = name;
-		this.imagePath = "defaultpath";
+		this.imagePath = "images/question.gif";
 		this.items = items;
 	}
 
