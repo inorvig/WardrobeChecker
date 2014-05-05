@@ -61,5 +61,17 @@ public class OutfitsPanel extends JPanel {
 		panel.add(btnNewOutfit);
 
 	}
+	
+	public void addButton(){
+		
+	}
+	
+	public void addOutfits(){
+		
+	}
+	
+	public void reset(){
+		
+	}
 
 }

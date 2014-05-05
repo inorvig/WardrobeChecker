@@ -63,7 +63,9 @@ public class AllItemsPanel extends JPanel {
 	
 	public void reset(){
 		removeAll();
-
+		count = 0;
+		row = 0;
+		col = 0;
 		addButton();
 		addItems();
 	}
