@@ -35,7 +35,9 @@ public class SearchBarListener implements DocumentListener {
 		frame.setResultsPanel(new SearchPanels(results, frame));
 		frame.getResultsPanel().reset(results);*/
 		System.out.println(tempResults.size());
-		tempResults.remove(1);
+		if (tempResults.size() >=2){
+			tempResults.remove(1);
+		}
 		
 		
 		frame.getResultsPanel().refresh(tempResults);
