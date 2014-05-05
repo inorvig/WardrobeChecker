@@ -30,6 +30,11 @@ public class AppItem implements Item, Serializable {
 		this.name = name; // unique identifier name
 		this.imagePath = imagePath; // image path
 		this.tags = new HashSet<String>(); // initialize set of tags
+		
+		//addTag(name); <-- done in appuser addItem
+		
+		
+		//CATEGORY SHOULD BE A TAG TOO...?
 
 	}
 
@@ -51,6 +56,8 @@ public class AppItem implements Item, Serializable {
 
 	@Override
 	public void addTag(String newTag) {
+		if (newTag.trim() == "")
+			return;
 		
 		HashMap<String, HashSet<Item>> parentTagMap = this.owner.tagsMap;
 		
@@ -62,6 +69,8 @@ public class AppItem implements Item, Serializable {
 				String word = wordArray[i];
 				word = word.toLowerCase().trim();
 				this.tags.add(word);
+				
+				this.owner.autosuggest.addTag(word); // for the case when tags are being added on later
 				
 				if (parentTagMap.get(word) == null){
 					HashSet<Item> itemSet = new HashSet<Item>();
