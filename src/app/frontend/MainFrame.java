@@ -503,6 +503,11 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		WardrobePanel.reset();
 		pack();
 	}
+	
+	public void updateOutfits(){
+		OutfitsPanel.reset();
+		pack();
+	}
 	public void returnToHome(){
 		OutfitMakerPanel.setVisible(true);
 		WardrobePanel.setVisible(false);

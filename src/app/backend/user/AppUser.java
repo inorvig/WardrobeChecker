@@ -178,6 +178,10 @@ public class AppUser implements User, Serializable {
 	@Override
 	public void saveOutfit(Outfit outfit) {
 		this.outfitList.add(outfit);
+		System.out.format("saved outfit: %s with %d items",outfit.getName(),outfit.itemsInOutfit().size());
+		for (Item i : outfit.itemsInOutfit()){
+			System.out.println("item: "+i.getName());
+		}
 	}
 
 
