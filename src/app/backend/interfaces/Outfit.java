@@ -27,7 +27,7 @@ public interface Outfit {
 	// Any info the GUI needs to reconstruct the picture
 	public Displayer getDisplayInfo();
 	
-	public BufferedImage getPreview(); 
+	public void setDisplayInfo(Displayer d);
 	
 	
 }

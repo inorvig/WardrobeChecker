@@ -82,7 +82,7 @@ public class AllOutfitsPanel extends JPanel {
 	public void addOutfits(){
 		for (Outfit o : user.getOutfits()){
 			JLabel item = new JLabel(o.getName());
-			ImageIcon icon = new ImageIcon(o.getPreview());
+			ImageIcon icon = new ImageIcon(o.getDisplayInfo().getPreview());
 			Image img = icon.getImage();
 			Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
 			item.setIcon(new ImageIcon(newimg));

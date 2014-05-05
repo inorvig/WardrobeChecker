@@ -80,4 +80,10 @@ public class AppOutfit implements Outfit, Serializable {
 		this.items.removeAll(items);
 		items.addAll(item);
 	}
+
+	@Override
+	public void setDisplayInfo(Displayer d) {
+		this.displayInfo = d;
+		
+	}
 }

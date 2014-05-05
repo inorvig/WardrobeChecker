@@ -28,6 +28,7 @@ import javax.swing.event.DocumentListener;
 
 import app.backend.interfaces.Item;
 import app.backend.interfaces.User;
+import app.backend.user.AppOutfit;
 import app.backend.user.Saver;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -63,6 +64,8 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private JTextField txtSearch;
 	private Saver _savedUser;
 	private final User _user;
+	
+	public AppOutfit selectedOutfit = null;
 
 	private static final long serialVersionUID = 1L;
 
