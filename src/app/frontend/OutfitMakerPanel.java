@@ -50,6 +50,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	 */
 	public OutfitMakerPanel(MainFrame parent, User user) {
 		setBackground(Color.WHITE);
+		setSize(467,460);
 		ImageIcon icon = new ImageIcon(("images/person.gif"));
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(170, 372, java.awt.Image.SCALE_SMOOTH);
@@ -65,7 +66,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		
 		
 		layeredPane = new JLayeredPane();
-		layeredPane.setBounds(15, 10, 241, 400);
+		layeredPane.setBounds(148, 12, 241, 400);
 		layeredPane.setBackground(Color.WHITE);
 		layeredPane.setOpaque(true);
 		add(layeredPane);
@@ -79,7 +80,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		lblNewLabel.setIcon(new ImageIcon(newimg));
 		
 		textField = new JTextField();
-		textField.setBounds(40, 417, 114, 19);
+		textField.setBounds(176, 415, 114, 19);
 		add(textField);
 		textField.setColumns(10);
 		
