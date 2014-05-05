@@ -41,5 +41,7 @@ public interface User {
 	public Collection<Item> allItems();
 
 	public Collection<String> getWardrobeList();
+	
+	public void UpdateItem(Item item, String wardrobe, String category, String color, String imagePath, ArrayList<String> tags);
 
 }

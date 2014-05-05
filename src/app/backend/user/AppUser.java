@@ -264,4 +264,12 @@ public class AppUser implements User, Serializable {
 		return result;
 	}
 
+	@Override
+	public void UpdateItem(Item item, String wardrobe, String category,
+			String color, String imagePath, ArrayList<String> tags) {
+		item.moveItem(searchWardrobe(wardrobe));
+		item.setCategory(searchCategory(category));
+		
+	}
+
 }

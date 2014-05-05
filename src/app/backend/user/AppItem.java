@@ -23,6 +23,7 @@ public class AppItem implements Item, Serializable {
 	String imagePath;
 	AppUser owner;
 	Wardrobe wardrobe;
+	private String color;
 	private Category category;
 
 	public AppItem(AppUser user, Wardrobe wardrobeToPut, Category category,  String name, String imagePath) {
@@ -33,6 +34,7 @@ public class AppItem implements Item, Serializable {
 		this.imagePath = imagePath; // image path
 		this.tags = new HashSet<String>(); // initialize set of tags
 		this.category = category;
+		this.color = "";
 
 
 	}
@@ -49,8 +51,8 @@ public class AppItem implements Item, Serializable {
 
 	// CV STUFF ----
 	@Override
-	public Color whichColor() {
-		return null;
+	public String whichColor() {
+		return color;
 	}
 
 	@Override
@@ -169,6 +171,22 @@ public class AppItem implements Item, Serializable {
 	
 	public Category whichCategory(){
 		return category;
+	}
+
+	@Override
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	@Override
+	public void setColor(String color) {
+		this.color = color;
+		
+	}
+
+	@Override
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;		
 	}
 
 }
