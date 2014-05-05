@@ -54,23 +54,17 @@ public class ByWardrobePanel extends JPanel {
 		c.weightx = 1;
 		c.weighty = 1;
 		
-		addWardrobes(c);
-		addButton(c);
-	
-		parent.pack();
+		reset();
 	}
 
 	protected void reset() {
-		parent.validate();
 		removeAll();
-		addWardrobes(c);
-		addButton(c);
-		revalidate();
-		repaint();
-		System.out.println("test");
+		addButton();
+		addWardrobes();
+		
 	}
 	
-	public void addButton(GridBagConstraints c){
+	public void addButton(){
 		ImageIcon icon = new ImageIcon("images/add.gif");
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(120, 120,
@@ -93,7 +87,6 @@ public class ByWardrobePanel extends JPanel {
 					}
 					
 					revalidate();
-					repaint();
 					reset();
 				}
 			}
@@ -110,12 +103,14 @@ public class ByWardrobePanel extends JPanel {
 			c.gridy = row;
 		}
 		add(btnAddWardrobe, c);
+		count++;
+		col++;
 	}
 	
-	public void addWardrobes(GridBagConstraints c){
-		row = 0;
-		col = 0;
-		count = 0;
+	public void addWardrobes(){
+//		row = 0;
+//		col = 0;
+//		count = 0;
 		for (final Wardrobe w : user.getWardrobes()){
 			JButton btnWardrobe = new JButton(w.getName());
 			btnWardrobe.addActionListener(new ActionListener() {
@@ -139,7 +134,7 @@ public class ByWardrobePanel extends JPanel {
 			btnWardrobe.setPreferredSize(new Dimension(130, 150));
 			
 			c.gridy = row;
-			c.gridx=col;
+			c.gridx = col;
 
 			if (count%3==0 && count>0){
 				row++;
