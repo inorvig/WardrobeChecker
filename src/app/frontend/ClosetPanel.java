@@ -33,12 +33,7 @@ public class ClosetPanel extends JPanel {
 		a = new JScrollPane(all);
 		c = new JScrollPane(category);
 
-		JLabel lblMyWardrobes = new JLabel("Home Closet");
-		lblMyWardrobes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMyWardrobes.setForeground(Color.WHITE);
-		lblMyWardrobes.setBackground(Color.BLACK);
-		lblMyWardrobes.setOpaque(true);
-		add(lblMyWardrobes, BorderLayout.PAGE_START);
+		
 
 		JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		tabbedPane.setBackground(Color.BLACK);
@@ -56,6 +51,14 @@ public class ClosetPanel extends JPanel {
 	
 	public void setCloset(String name){
 		this.name = name;
+		
+		JLabel lblMyWardrobes = new JLabel(name);
+		lblMyWardrobes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMyWardrobes.setForeground(Color.WHITE);
+		lblMyWardrobes.setBackground(Color.BLACK);
+		lblMyWardrobes.setOpaque(true);
+		add(lblMyWardrobes, BorderLayout.PAGE_START);
+		
 		all.setCloset(name);
 		category.setCloset(name);
 	}

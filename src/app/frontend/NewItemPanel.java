@@ -326,7 +326,7 @@ public class NewItemPanel extends JPanel implements ActionListener{
 				for (String tag : tags){
 					System.out.println(tag);
 				}
-				System.out.println("user: "+user);
+				System.out.println("adding "+name+" to "+wardrobe);
 				user.addItem(name, wardrobe, category, color, imagePath,tags);
 				parent.updateItems();
 				parent.returnToHome();
