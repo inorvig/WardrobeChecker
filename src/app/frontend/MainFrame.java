@@ -248,10 +248,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		txtSearch.setText("Search");
 		txtSearch.setColumns(10);
 		
-		ItemDisplayTester test = new ItemDisplayTester();
-		for (Item tem : test.getItems()){
-			ResultsPanel.createPanel(tem);
-		}
+//		ItemDisplayTester test = new ItemDisplayTester();
+//		for (Item tem : test.getItems()){
+//			ResultsPanel.createPanel(tem);
+//		}
 		
 	//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
 		
@@ -424,6 +424,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		closetPanel.setVisible(false);
+		newItemPanel.clear();
 		newItemPanel.setVisible(true);
 		pack();
 	}
