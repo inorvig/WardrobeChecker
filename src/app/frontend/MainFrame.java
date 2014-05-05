@@ -519,7 +519,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	
 	public void openWardrobe(String name){
 		toggleGroup.clearSelection();
-		closetPanel.setName(name);
+		closetPanel.setCloset(name);
 		closetPanel.reset();
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);

@@ -27,13 +27,15 @@ public class ByCategoryPanel extends JPanel {
 	private static final long serialVersionUID = -3463027705622908506L;
 	private String closet;
 	private User user;
+	private MainFrame parent;
 	/**
 	 * Create the panel.
 	 */
-	public ByCategoryPanel(User user) {
+	public ByCategoryPanel(MainFrame parent, User user) {
 		setBackground(Color.WHITE);
 		closet = null;
 		this.user = user;
+		this.parent = parent;
 		
 		setLayout(new GridLayout(0, 3, 0, 0));
 
@@ -100,6 +102,7 @@ public class ByCategoryPanel extends JPanel {
 //		btnDresses.setHorizontalTextPosition(SwingConstants.CENTER);
 //		btnDresses.setPreferredSize(new Dimension(150, 150));
 //		add(btnDresses);
+		
 
 		addButton();
 
@@ -127,8 +130,12 @@ public class ByCategoryPanel extends JPanel {
 		
 		addButton();
 	}
+	
 	public void reset(){
 		this.removeAll();
+
+		addButton();
+		
 		for (final Category c : user.getCategories()){
 			JButton cat = new JButton(c.getName());
 			cat.addActionListener(new ActionListener() {
@@ -143,31 +150,40 @@ public class ByCategoryPanel extends JPanel {
 			cat.setIcon(new ImageIcon(newimg));
 			cat.setVerticalTextPosition(SwingConstants.BOTTOM);
 			cat.setHorizontalTextPosition(SwingConstants.CENTER);
-			cat.setPreferredSize(new Dimension(150, 150));
+			cat.setPreferredSize(new Dimension(130, 150));
 			add(cat);
 		}
 		
-		addButton();
 		this.repaint();
 	}
 	
 	private void addButton(){
-		JButton btnAddItem = new JButton("Add Category");
-		btnAddItem.addActionListener(new ActionListener() {
+		JButton btnAddCategory = new JButton("Add Category");
+		btnAddCategory.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				System.out.println("add category pressed");
+				CategoryDialog cd = new CategoryDialog(parent);
+				cd.setLocationRelativeTo(parent);
+				String name = cd.getName();
+				String style = cd.getStyle();
+				if (name!=null){
+					user.addCategory(name);
+					
+					revalidate();
+					reset();
+				}
 			}
 		});
 		ImageIcon icon = new ImageIcon("images/add.gif");
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(120, 120,
 				java.awt.Image.SCALE_SMOOTH);
-		btnAddItem.setIcon(new ImageIcon(newimg));
-		btnAddItem.setVerticalTextPosition(SwingConstants.BOTTOM);
-		btnAddItem.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnAddItem.setPreferredSize(new Dimension(150, 150));
-		add(btnAddItem);
+		btnAddCategory.setIcon(new ImageIcon(newimg));
+		btnAddCategory.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnAddCategory.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnAddCategory.setPreferredSize(new Dimension(150, 150));
+		add(btnAddCategory);
 	}
 
 }

@@ -29,7 +29,7 @@ public class ClosetPanel extends JPanel {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
 		all = new AllItemsPanel(parent, user);
-		category = new ByCategoryPanel(user);
+		category = new ByCategoryPanel(parent,user);
 		a = new JScrollPane(all);
 		c = new JScrollPane(category);
 
