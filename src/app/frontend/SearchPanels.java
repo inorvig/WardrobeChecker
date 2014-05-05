@@ -52,6 +52,12 @@ public class SearchPanels extends JPanel implements MouseListener {
        
     }
 	
+	public void update(List<Item> newList){
+		while (!Clickable.isEmpty()){
+			Clickable.remove()
+		}
+	}
+	
 	
 	public SearchPanels(List<Item> list, OutfitMakerPanel outfitsPanel) {
 		Clickable = new HashMap<JPanel, Item>();

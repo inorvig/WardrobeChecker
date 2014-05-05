@@ -10,7 +10,7 @@ public interface Item extends Comparable {
 
 	public HashSet<String> getTags();
 
-	public Color whichColor();
+	public String whichColor();
 
 	public void addTag(String newTag);
 
@@ -29,4 +29,12 @@ public interface Item extends Comparable {
 	public void incrementScore();
 
 	public void resetScore();
+	
+	public Category whichCategory();
+	
+	public void setCategory(Category category);
+
+	public void setColor(String color);
+
+	public void setImagePath(String imagePath);
 }

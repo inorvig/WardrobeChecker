@@ -2,7 +2,9 @@ package app.backend.user;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
+import app.backend.interfaces.Category;
 import app.backend.interfaces.Item;
 import app.backend.interfaces.User;
 import app.backend.user.AppWardrobe.WardrobeType;
@@ -17,28 +19,34 @@ public class TestingScript {
 		System.out.println(u.howManyWardrobes());
 		
 		
+		AppCategory shirts = new AppCategory("shirts", new HashSet<Item>());
+		AppCategory pants = new AppCategory("pants", new HashSet<Item>());
+		AppCategory dresses = new AppCategory("dresses", new HashSet<Item>());
+		AppCategory socks = new AppCategory("dresses", new HashSet<Item>());
+		AppCategory other = new AppCategory("dresses", new HashSet<Item>());
 		
-		AppItem item1 = new AppItem(u,u.searchWardrobe("Home Closet"), "item one", "");
-		AppItem item2 = new AppItem(u,u.searchWardrobe("Home Closet"), "item two", "");
-		AppItem item3 = new AppItem(u,u.searchWardrobe("Home Closet"), "item three", "");
-		AppItem item4 = new AppItem(u,u.searchWardrobe("Home Closet"), "item four", "");
-		AppItem item5 = new AppItem(u,u.searchWardrobe("Home Closet"), "item five", "");
+		
+		AppItem item1 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item one", "");
+		AppItem item2 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item two", "");
+		AppItem item3 = new AppItem(u,u.searchWardrobe("Home Closet"), pants,  "item three", "");
+		AppItem item4 = new AppItem(u,u.searchWardrobe("Home Closet"), shirts, "item four", "");
+		AppItem item5 = new AppItem(u,u.searchWardrobe("Home Closet"), pants, "item five", "");
 		
 		u.addWardrobe("Travel Bag One", WardrobeType.SUITCASE); 
 		
-		AppItem item6 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item six", "");
-		AppItem item7 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item seven", "");
-		AppItem item8 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item eight", "");
-		AppItem item9 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item nine", "");
-		AppItem item10 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item ten", "");
-		AppItem item11 = new AppItem(u,u.searchWardrobe("Travel Bag One"), "item ten", "");
+		AppItem item6 = new AppItem(u,u.searchWardrobe("Travel Bag One"), socks, "item six", "");
+		AppItem item7 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item seven", "");
+		AppItem item8 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item eight", "");
+		AppItem item9 = new AppItem(u,u.searchWardrobe("Travel Bag One"), other,"item nine", "");
+		AppItem item10 = new AppItem(u,u.searchWardrobe("Travel Bag One"), other, "item ten", "");
+		AppItem item11 = new AppItem(u,u.searchWardrobe("Travel Bag One"), other, "item ten", "");
 		
-		AppItem item12 = new AppItem(u,u.searchWardrobe("Home Closet"), "item twelve", "");
-		AppItem item13 = new AppItem(u,u.searchWardrobe("Home Closet"), "item thirteen", "");
-		AppItem item14 = new AppItem(u,u.searchWardrobe("Home Closet"), "item fourteen", "");
-		AppItem item15 = new AppItem(u,u.searchWardrobe("Home Closet"), "item fifteen", "");
-		AppItem item16 = new AppItem(u,u.searchWardrobe("Home Closet"), "item sixteen", "");
-		AppItem item17 = new AppItem(u,u.searchWardrobe("Home Closet"), "item seventeen", "");
+//		AppItem item12 = new AppItem(u,u.searchWardrobe("Home Closet"), "item twelve", "");
+//		AppItem item13 = new AppItem(u,u.searchWardrobe("Home Closet"), "item thirteen", "");
+//		AppItem item14 = new AppItem(u,u.searchWardrobe("Home Closet"), "item fourteen", "");
+//		AppItem item15 = new AppItem(u,u.searchWardrobe("Home Closet"), "item fifteen", "");
+//		AppItem item16 = new AppItem(u,u.searchWardrobe("Home Closet"), "item sixteen", "");
+//		AppItem item17 = new AppItem(u,u.searchWardrobe("Home Closet"), "item seventeen", "");
 		
 		item1.addTag("shirt green holidays awesome");
 		item2.addTag("shirt blue hilidays bad");
@@ -63,6 +71,15 @@ public class TestingScript {
 		u.addItem(item3);
 		u.addItem(item4);
 		u.addItem(item5);
+		u.addItem(item6);
+		u.addItem(item7);
+		u.addItem(item8);
+		u.addItem(item9);
+		u.addItem(item10);
+		u.addItem(item11);
+
+		u.addItem("duplicate%%%%%", "Home Closet" , "shirts", "", "", new ArrayList<String>());
+		u.addItem("duplicate%%%%%", "Home Closet" , "shirts", "", "", new ArrayList<String>());
 		
 		ArrayList<Item> r = u.search("100  ");
 		
@@ -79,16 +96,27 @@ public class TestingScript {
 		ArrayList<Item> r2 = u.search("");
 		
 		System.out.println(r2.size());
-		
-		//saved.saveData();
+	
 		System.out.println("------------------2---------------");
 		for (int i = 0; i<r2.size();i++){
 			System.out.println( "<< "+ i + " >> ---" + r2.get(i).getName() );
 		}
 		
 		
+		ArrayList<Item> r3 = u.search("duplicate");
 		
-		
+		System.out.println(r3.size());
+
+		System.out.println("------------------3---------------");
+		for (int i = 0; i<r3.size();i++){
+			System.out.println( "<< "+ i + " >> ---" + r3.get(i).getName() );
+		}
+		System.out.println(item10.getTags().isEmpty());
+		for (String s: item10.getTags()){
+			System.out.println(item10.getTags().isEmpty());
+			System.out.println(s);
+		}
+		//saved.saveData();
 		
 		
 		
