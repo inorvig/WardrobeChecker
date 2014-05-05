@@ -30,15 +30,9 @@ public class SearchBarListener implements DocumentListener {
 	@Override
 	public void insertUpdate(DocumentEvent e) {
 		ArrayList<Item> results = user.search(searchBar.getText());
-		System.out.println("dfdfwer");
-		/*
-		frame.setResultsPanel(new SearchPanels(results, frame));
-		frame.getResultsPanel().reset(results);*/
-		System.out.println(tempResults.size());
-		tempResults.remove(1);
+
 		
-		
-		frame.getResultsPanel().refresh(tempResults);
+		frame.getResultsPanel().refresh(results);
 		frame.revalidate();
 		frame.repaint();
 	}
@@ -46,7 +40,6 @@ public class SearchBarListener implements DocumentListener {
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		ArrayList<Item> results = user.search(searchBar.getText());
-		System.out.println("dfdfwer");
 		//frame.setResultsPanel(new SearchPanels(results, frame));
 		//frame.getResultsPanel().reset(results);
 		frame.getResultsPanel().refresh(results);
@@ -56,7 +49,6 @@ public class SearchBarListener implements DocumentListener {
 	@Override
 	public void changedUpdate(DocumentEvent e) {
 		ArrayList<Item> results = user.search(searchBar.getText());
-		System.out.println("dfdfwer");
 		//frame.setResultsPanel(new SearchPanels(results, frame));
 		//frame.getResultsPanel().reset(results);
 		frame.getResultsPanel().refresh(results);

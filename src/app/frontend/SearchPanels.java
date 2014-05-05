@@ -32,6 +32,7 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 	 */	
 	public HashMap<JPanel, Item> Clickable;
 	public OutfitMakerPanel ourPanel; 
+	private GridBagConstraints c;
 
 	public JPanel createPanel(Item x) {
 		System.out.println(x.getName());
@@ -70,7 +71,7 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 		gridBagLayout.columnWidths = new int[] {120};
 		setLayout(gridBagLayout);
 		
-		GridBagConstraints c = new GridBagConstraints();
+		c = new GridBagConstraints();
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTHWEST;
@@ -92,8 +93,11 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 	public void refresh(List<Item> list){
 		this.removeAll();
 		System.out.println("GETTING HERE!");
+		int row = 0;
 		for(Item x: list){
-			this.add(createPanel(x));
+			c.gridy = row;
+			this.add(createPanel(x),c);
+			row++;
 			System.out.println("ITEM: "+x.getName());
 		}
 		revalidate();
