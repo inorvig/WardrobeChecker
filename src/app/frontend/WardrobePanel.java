@@ -28,11 +28,13 @@ public class WardrobePanel extends JPanel implements ActionListener {
 	private ByWardrobePanel wardrobe;
 	private JScrollPane a,w;
 	private JLabel lblMyWardrobes;
+	private MainFrame p;
 	/**
 	 * Create the panel.
 	 */
 	public WardrobePanel(MainFrame parent,User user) {
 		setBackground(Color.WHITE);
+		p = parent;
 		setLayout(new BorderLayout(0, 0));
 		all = new AllItemsPanel(parent, user);
 		a = new JScrollPane(all);
@@ -62,17 +64,34 @@ public class WardrobePanel extends JPanel implements ActionListener {
 	}
 	
 	public void makeDeletable(){
-		JButton deleteButton = new JButton("Exit");
-		deleteButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		final JButton deleteButton = new JButton("Exit");
+		deleteButton.setBorder(new LineBorder(new Color(255, 255, 255)));
 		deleteButton.setBackground(Color.white);
 		deleteButton.setOpaque(true);
-		deleteButton.setForeground(Color.white);
-		deleteButton.setBackground(UIManager.getColor("TabbedPane.selectHighlight"));
+		deleteButton.setForeground(Color.black);
 		deleteButton.setBounds(380, 0, 60, 16);
-		deleteButton.addActionListener(this);
-		this.lblMyWardrobes.add(deleteButton);
+		deleteButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("this is happening");
+				setVisible(false);
+				lblMyWardrobes.remove(deleteButton);
+				revalidate();
+				repaint();
+				p.pack();
+				p.twoOpen = false;
+				
+			}
+
+		});
+		
+		lblMyWardrobes.add(deleteButton);
+		p.twoOpen = true;
 		revalidate();
 		repaint();
+
+
 	}
 	public void reset(){
 		all.reset();
