@@ -2,6 +2,7 @@ package app.frontend;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -16,6 +17,8 @@ public class ClosetPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 3190971077461927196L;
 	private String name;
+	private JScrollPane a;
+	private JScrollPane c;
 	private AllItemsPanel all;
 	private ByCategoryPanel category;
 	/**
@@ -27,6 +30,8 @@ public class ClosetPanel extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 		all = new AllItemsPanel(parent, user);
 		category = new ByCategoryPanel(user);
+		a = new JScrollPane(all);
+		c = new JScrollPane(category);
 
 		JLabel lblMyWardrobes = new JLabel("Home Closet");
 		lblMyWardrobes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -38,10 +43,10 @@ public class ClosetPanel extends JPanel {
 		JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		tabbedPane.setBackground(Color.BLACK);
 		tabbedPane.setForeground(Color.WHITE);
-		tabbedPane.addTab("All Items", all);
+		tabbedPane.addTab("All Items", a);
 		tabbedPane.setForegroundAt(0, Color.WHITE);
 		tabbedPane.setBackgroundAt(0, Color.BLACK);
-		tabbedPane.addTab("By Category", category);
+		tabbedPane.addTab("By Category", c);
 		tabbedPane.setForegroundAt(1, Color.WHITE);
 		tabbedPane.setBackgroundAt(1, Color.BLACK);
 

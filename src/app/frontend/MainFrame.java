@@ -73,7 +73,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public MainFrame() {
 		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.WHITE);
-		_savedUser = new Saver("Bella");
+		_savedUser = new Saver("test");
 
 		_user = _savedUser.getUser();
 		System.out.println("mainframe user: "+_user);
@@ -449,6 +449,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	
 	public void openWardrobe(String name){
 		closetPanel.setName(name);
+		closetPanel.reset();
 		WardrobePanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		newItemPanel.setVisible(false);

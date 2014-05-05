@@ -58,6 +58,7 @@ public class AllItemsPanel extends JPanel {
 	public void setCloset(String name){
 		closet = name;
 		reset();
+		repaint();
 	}
 	
 	public void reset(){
