@@ -52,14 +52,14 @@ public class AppUser implements User, Serializable {
 		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET)); //add default home closet
 		
 		this.allCategories = new HashSet<Category>(); //initialize category set
-		addCategory("shirts");
-		addCategory("dresses");
-		addCategory("shoes");
-		addCategory("skirts");
-		addCategory("pants");
-		addCategory("sweaters");
-		addCategory("jeans");
-		addCategory("jackets");
+		addCategory("Shirts");
+		addCategory("Dresses");
+		addCategory("Shoes");
+		addCategory("Skirts");
+		addCategory("Pants");
+		addCategory("Sweaters");
+		addCategory("Jeans");
+		addCategory("Jackets");
 		
 		this.autosuggest = new Autosuggest(tagsMap); //set up autosuggest
 		autosuggest.setUp();
