@@ -70,9 +70,10 @@ public class ByCategoryPanel extends JPanel {
 	public void displayCategory(String name){
 		System.out.println("category: "+name);
 		this.removeAll();
+		addButton();
 		row = 0;
-		col = 0;
-		count = 0;
+		col = 1;
+		count =1;
 		for (Item i : user.searchWardrobe(closet).getItems()){
 			JLabel item = new JLabel(i.getName());
 			ImageIcon icon = new ImageIcon(i.getImagePath());
@@ -101,7 +102,7 @@ public class ByCategoryPanel extends JPanel {
 			col++;
 		}
 		
-		addButton();
+		
 		revalidate();
 		repaint();
 	}

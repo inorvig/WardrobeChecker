@@ -222,7 +222,7 @@ public class AppUser implements User, Serializable {
 		this.outfitList.add(outfit);
 		System.out.format("saved outfit: %s with %d items",outfit.getName(),outfit.itemsInOutfit().size());
 		for (Item i : outfit.itemsInOutfit()){
-			//System.out.println("item: "+i.getName());
+			System.out.println("item: "+i.getName());
 		}
 	}
 
