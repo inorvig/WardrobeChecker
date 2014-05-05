@@ -53,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private javax.swing.JButton jButton1;
 	public OutfitMakerPanel OutfitMakerPanel;
 	private WardrobePanel WardrobePanel;
-	private OutfitsPanel OutfitsPanel;
+	public OutfitsPanel OutfitsPanel;
 	private NewItemPanel newItemPanel;
 	private ClosetPanel closetPanel;
 	private javax.swing.JTextField jTextField1;
@@ -66,9 +66,15 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private JTextField txtSearch;
 	private Saver _savedUser;
 	private final User _user;
+
+	public boolean twoOpen = false;
+	public OutfitMakerPanel OutfitMakerPanel2;
+	public NewItemPanel newItemPanel2;
+
 	private MainFrame self;
 	
 	public Outfit selectedOutfit = null;
+
 
 	private static final long serialVersionUID = 1L;
 
@@ -84,7 +90,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		self = this;
 		System.out.println("mainframe user: "+_user);
 		initComponents();
-		
+
 
 		addWindowListener(this);
 	}
@@ -104,7 +110,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		LeftPanel.setBackground(Color.WHITE);
 		newWindow = new javax.swing.JButton();
 		newWindow.setIcon(new ImageIcon("images/plus.gif"));
-		
+
 		toggleGroup = new javax.swing.ButtonGroup();
 		myWardrobes = new javax.swing.JToggleButton();
 		addNewItem = new javax.swing.JToggleButton();
@@ -114,20 +120,22 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		toggleGroup.add(addNewItem);
 		toggleGroup.add(favoriteOutfits);
 		toggleGroup.add(MakeOutfit);
-		
+
 		helpButton = new javax.swing.JToggleButton();
 		helpButton.setFont(new Font("Dialog", Font.BOLD, 12));
-		
+
 		RightPanel = new javax.swing.JPanel();
 		RightPanel.setBackground(Color.WHITE);
 		weatherAPI = new WeatherPanel();
 		logoPanel = new javax.swing.JPanel();
-		
+
 		OutfitMakerPanel = new OutfitMakerPanel(this, _user);
 		newItemPanel = new NewItemPanel(this, _user);
 		WardrobePanel = new WardrobePanel(this,_user);
 		OutfitsPanel = new OutfitsPanel(this, _user);
 		closetPanel = new ClosetPanel(this, _user);
+		OutfitMakerPanel2 = new OutfitMakerPanel(this, _user);
+		newItemPanel2 = new NewItemPanel(this, _user);
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,7 +167,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				.createAutoBinding(
 						org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE,
 						addNewItem, org.jdesktop.beansbinding.ELProperty
-								.create("${opaque}"), addNewItem,
+						.create("${opaque}"), addNewItem,
 						org.jdesktop.beansbinding.BeanProperty.create("opaque"));
 		bindingGroup.addBinding(binding);
 
@@ -192,37 +200,37 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		javax.swing.GroupLayout LeftPanelLayout = new javax.swing.GroupLayout(
 				LeftPanel);
 		LeftPanelLayout.setHorizontalGroup(
-			LeftPanelLayout.createParallelGroup(Alignment.LEADING)
+				LeftPanelLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(LeftPanelLayout.createSequentialGroup()
-					.addGroup(LeftPanelLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(LeftPanelLayout.createSequentialGroup()
-							.addGap(6)
-							.addComponent(helpButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(newWindow, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-						.addGroup(LeftPanelLayout.createParallelGroup(Alignment.TRAILING, false)
-							.addComponent(myWardrobes, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(addNewItem, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(favoriteOutfits, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(MakeOutfit, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 164, Short.MAX_VALUE)))
-					.addContainerGap(16, Short.MAX_VALUE))
-		);
+						.addGroup(LeftPanelLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(LeftPanelLayout.createSequentialGroup()
+										.addGap(6)
+										.addComponent(helpButton, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(newWindow, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
+										.addGroup(LeftPanelLayout.createParallelGroup(Alignment.TRAILING, false)
+												.addComponent(myWardrobes, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(addNewItem, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(favoriteOutfits, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+												.addComponent(MakeOutfit, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 164, Short.MAX_VALUE)))
+												.addContainerGap(16, Short.MAX_VALUE))
+				);
 		LeftPanelLayout.setVerticalGroup(
-			LeftPanelLayout.createParallelGroup(Alignment.LEADING)
+				LeftPanelLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(LeftPanelLayout.createSequentialGroup()
-					.addComponent(myWardrobes, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(addNewItem, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(favoriteOutfits, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(MakeOutfit, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(LeftPanelLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(helpButton, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
-						.addComponent(newWindow, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
-					.addContainerGap())
-		);
+						.addComponent(myWardrobes, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(addNewItem, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(favoriteOutfits, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(MakeOutfit, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(LeftPanelLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(helpButton, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+								.addComponent(newWindow, GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+								.addContainerGap())
+				);
 		LeftPanel.setLayout(LeftPanelLayout);
 
 		javax.swing.GroupLayout weatherAPILayout = new javax.swing.GroupLayout(
@@ -233,7 +241,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				.addGap(0, 0, Short.MAX_VALUE));
 		weatherAPILayout.setVerticalGroup(weatherAPILayout.createParallelGroup(
 				javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 56,
-				Short.MAX_VALUE));
+						Short.MAX_VALUE));
 
 		JLabel logoLabel = new JLabel("");
 		logoLabel.setIcon(new ImageIcon("images/logo.gif"));
@@ -243,115 +251,130 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				logoPanel);
 		logoPanelLayout.setHorizontalGroup(logoPanelLayout.createParallelGroup(
 				Alignment.LEADING).addGroup(
-				logoPanelLayout.createSequentialGroup()
+						logoPanelLayout.createSequentialGroup()
 						.addComponent(logoLabel)));
 		logoPanelLayout.setVerticalGroup(logoPanelLayout.createParallelGroup(
 				Alignment.LEADING).addGroup(
-				logoPanelLayout.createSequentialGroup()
+						logoPanelLayout.createSequentialGroup()
 						.addComponent(logoLabel)));
 		logoPanel.setLayout(logoPanelLayout);
 
 		txtSearch = new JTextField();
 		txtSearch.setText("Search");
 		txtSearch.setColumns(10);
-		
 
-		ItemDisplayTester test = new ItemDisplayTester();
-		ResultsPanel = new SearchPanels(new ArrayList(test.getItems()), this);
-		
+
+
+
+		ResultsPanel = new SearchPanels(new ArrayList<Item>(), this);
+
 		txtSearch.getDocument().addDocumentListener(new SearchBarListener(txtSearch, _user, this));
 
-		
-	//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
-		
+
+		//	ResultsPanel.createPanel("Yellow shirt", "images/luggage.gif");
+
 		javax.swing.GroupLayout RightPanelLayout = new javax.swing.GroupLayout(
 				RightPanel);
 		RightPanelLayout.setHorizontalGroup(RightPanelLayout
 				.createParallelGroup(Alignment.LEADING)
 				.addComponent(weatherAPI, GroupLayout.DEFAULT_SIZE, 188,
 						Short.MAX_VALUE)
-				.addComponent(ResultsPanel, GroupLayout.DEFAULT_SIZE, 188,
-						Short.MAX_VALUE)
-				.addGroup(
-						RightPanelLayout
-								.createSequentialGroup()
-								.addComponent(logoPanel,
-										GroupLayout.PREFERRED_SIZE, 176,
-										GroupLayout.PREFERRED_SIZE)
-								.addContainerGap(GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE))
-				.addGroup(
-						RightPanelLayout
-								.createSequentialGroup()
-								.addComponent(txtSearch,
-										GroupLayout.DEFAULT_SIZE, 176,
-										Short.MAX_VALUE).addContainerGap()));
+						.addComponent(ResultsPanel, GroupLayout.DEFAULT_SIZE, 188,
+								Short.MAX_VALUE)
+								.addGroup(
+										RightPanelLayout
+										.createSequentialGroup()
+										.addComponent(logoPanel,
+												GroupLayout.PREFERRED_SIZE, 176,
+												GroupLayout.PREFERRED_SIZE)
+												.addContainerGap(GroupLayout.DEFAULT_SIZE,
+														Short.MAX_VALUE))
+														.addGroup(
+																RightPanelLayout
+																.createSequentialGroup()
+																.addComponent(txtSearch,
+																		GroupLayout.DEFAULT_SIZE, 176,
+																		Short.MAX_VALUE).addContainerGap()));
 		RightPanelLayout.setVerticalGroup(RightPanelLayout.createParallelGroup(
 				Alignment.LEADING).addGroup(
-				RightPanelLayout
+						RightPanelLayout
 						.createSequentialGroup()
 						.addComponent(weatherAPI, GroupLayout.PREFERRED_SIZE,
 								GroupLayout.DEFAULT_SIZE,
 								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(txtSearch, GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(18)
-						.addComponent(ResultsPanel, GroupLayout.PREFERRED_SIZE,
-								116, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED,
-								GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(logoPanel, GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)));
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(txtSearch, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+										.addGap(18)
+										.addComponent(ResultsPanel, GroupLayout.PREFERRED_SIZE,
+												116, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED,
+														GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(logoPanel, GroupLayout.PREFERRED_SIZE,
+																GroupLayout.DEFAULT_SIZE,
+																GroupLayout.PREFERRED_SIZE)));
 		RightPanel.setLayout(RightPanelLayout);
 
 		final javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		layout.setHorizontalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
+				layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
-					.addComponent(LeftPanel, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(OutfitMakerPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(newItemPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(OutfitsPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(closetPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
-					
-		);
+						.addComponent(LeftPanel, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(OutfitMakerPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(OutfitMakerPanel2, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(newItemPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(newItemPanel2, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(OutfitsPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(closetPanel, GroupLayout.PREFERRED_SIZE, 467, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+
+
+
+				);
 		layout.setVerticalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
+				layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
-					.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 460, Short.MAX_VALUE))
-				.addComponent(LeftPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-				.addGroup(layout.createSequentialGroup()
-					.addComponent(newItemPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(layout.createSequentialGroup()
-					.addComponent(OutfitMakerPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(layout.createSequentialGroup()
-					.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(layout.createSequentialGroup()
-					.addComponent(OutfitsPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(layout.createSequentialGroup()
-					.addComponent(closetPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-					.addContainerGap())
-		);
+						.addComponent(RightPanel, GroupLayout.PREFERRED_SIZE, 460, Short.MAX_VALUE))
+						.addComponent(LeftPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(newItemPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+								.addContainerGap())
+								.addGroup(layout.createSequentialGroup()
+										.addComponent(newItemPanel2, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+										.addContainerGap())
+										.addGroup(layout.createSequentialGroup()
+												.addComponent(OutfitMakerPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+												.addContainerGap())
+												.addGroup(layout.createSequentialGroup()
+														.addComponent(OutfitMakerPanel2, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+														.addContainerGap())
+														.addGroup(layout.createSequentialGroup()
+																.addComponent(WardrobePanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+																.addContainerGap())
+																.addGroup(layout.createSequentialGroup()
+																		.addComponent(OutfitsPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+																		.addContainerGap())
+																		.addGroup(layout.createSequentialGroup()
+																				.addComponent(closetPanel, GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+																				.addContainerGap())
+				);
 		WardrobePanel.setVisible(false);
 		newItemPanel.setVisible(false);
 		OutfitsPanel.setVisible(false);
 		closetPanel.setVisible(false);
+		OutfitMakerPanel2.setVisible(false);
+		newItemPanel2.setVisible(false);
 		getContentPane().setLayout(layout);
 
 		myWardrobes.addItemListener(new ItemListener() {
@@ -362,7 +385,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					newItemPanel.setVisible(false);
 					closetPanel.setVisible(false);
 					OutfitsPanel.setVisible(false);
-					WardrobePanel.makeDeletable();
+
 					WardrobePanel.setVisible(true);
 					pack();
 				} else {
@@ -381,6 +404,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					WardrobePanel.setVisible(false);
 					OutfitsPanel.setVisible(false);
 					closetPanel.setVisible(false);
+
 					newItemPanel.setVisible(true);
 					pack();
 				} else {
@@ -400,6 +424,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					WardrobePanel.setVisible(false);
 					newItemPanel.setVisible(false);
 					closetPanel.setVisible(false);
+
 					OutfitsPanel.setVisible(true);
 					pack();
 				} else {
@@ -409,19 +434,21 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				}
 			}
 		});
-		
+
 
 		MakeOutfit.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (MakeOutfit.isSelected()) {
+					OutfitMakerPanel.clear();
+
 					selectedOutfit = null;
 					OutfitMakerPanel.setVisible(true);
 					WardrobePanel.setVisible(false);
 					newItemPanel.setVisible(false);
 					closetPanel.setVisible(false);
 					OutfitsPanel.setVisible(false);
-					
+
 					pack();
 				} else {
 					OutfitsPanel.setVisible(false);
@@ -430,39 +457,82 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 				}
 			}
 		});
-		
-		
+
 		newWindow.addActionListener(new ActionListener() {
-			
+
 			JPopupMenu currMenu = null;
-			
+
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				final JPopupMenu menu = new JPopupMenu();
-				ArrayList<JMenuItem> menuItems = new ArrayList<JMenuItem>();
-				
-				if(!WardrobePanel.isVisible()){
-					menuItems.add(new JMenuItem("My Wardrobes"));
+				if(twoOpen == false){
+					final JPopupMenu menu = new JPopupMenu();
+					ArrayList<JMenuItem> menuItems = new ArrayList<JMenuItem>();
+
+					if(!WardrobePanel.isVisible()){
+						JMenuItem wardrobes = new JMenuItem("My Wardrobes");
+						wardrobes.addActionListener(new ActionListener() {
+
+							public void actionPerformed(ActionEvent e)
+							{
+								WardrobePanel.makeDeletable();
+								WardrobePanel.setVisible(true);
+
+							}
+
+						});
+						menuItems.add(wardrobes);
+					}
+					if(!OutfitsPanel.isVisible()){
+						JMenuItem faveOutfit = new JMenuItem("Favorite Outfits");
+						faveOutfit.addActionListener(new ActionListener() {
+
+							public void actionPerformed(ActionEvent e)
+							{
+								
+								OutfitsPanel.setVisible(true);
+								OutfitsPanel.makeDeletable();
+
+							}
+
+						});
+						menuItems.add(faveOutfit);
+					}
+					JMenuItem makeOutfitItem = new JMenuItem("Make Outfit");
+					makeOutfitItem.addActionListener(new ActionListener() {
+
+						public void actionPerformed(ActionEvent e)
+						{
+							OutfitMakerPanel2.makeDeletable();
+							OutfitMakerPanel2.setVisible(true);
+
+						}
+
+					});
+					JMenuItem addNewItemItem = new JMenuItem("Add New Item");
+					addNewItemItem.addActionListener(new ActionListener() {
+
+						public void actionPerformed(ActionEvent e)
+						{
+							newItemPanel2.makeDeletable();
+							newItemPanel2.setVisible(true);
+
+						}
+
+					});
+					menuItems.add(makeOutfitItem);
+					menuItems.add(addNewItemItem);
+
+					for(JMenuItem x: menuItems){
+						menu.add(x);
+					}
+					currMenu = menu;
+					currMenu.show(newWindow, newWindow.getWidth()/2, newWindow.getHeight()/2);
+
 				}
-				if(!OutfitsPanel.isVisible()){
-					menuItems.add(new JMenuItem("Favorite Outfits"));
-				}
-			    JMenuItem makeOutfitItem = new JMenuItem("Make Outfit");
-			    JMenuItem addNewItemItem = new JMenuItem("Add New Item");
-			    menuItems.add(makeOutfitItem);
-			    menuItems.add(addNewItemItem);
-			    
-			    for(JMenuItem x: menuItems){
-			    	menu.add(x);
-			    }
-			    currMenu = menu;
-			    currMenu.show(newWindow, newWindow.getWidth()/2, newWindow.getHeight()/2);
-				
-				
 			}
-			
-		
+
+
 		});
 
 		bindingGroup.bind();
@@ -488,7 +558,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		OutfitMakerPanel.setVisible(true);
 		pack();
 	}
-	
+
 	public void addItem(){
 		toggleGroup.clearSelection();
 		OutfitMakerPanel.setVisible(false);
@@ -500,7 +570,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		System.out.println("new item");
 		pack();
 	}
-	
+
 	public void updateItems(){
 		closetPanel.reset();
 		WardrobePanel.reset();
@@ -519,7 +589,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		closetPanel.setVisible(false);
 		pack();
 	}
-	
+
 	public void openWardrobe(String name){
 		toggleGroup.clearSelection();
 		closetPanel.setCloset(name);
@@ -531,7 +601,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		closetPanel.setVisible(true);
 		pack();
 	}
-	
+
 	public static void main(String args[]) {
 
 		System.out.println("We found the main");
@@ -631,10 +701,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 	public void setResultsPanel(SearchPanels searchPanels) {
 		this.ResultsPanel = searchPanels;
-		
-		
+
+
 	}
-	
+
 	public SearchPanels getResultsPanel(){
 		return ResultsPanel;
 	}
