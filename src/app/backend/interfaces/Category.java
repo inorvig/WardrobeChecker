@@ -7,6 +7,8 @@ public interface Category {
 	public String getName();
 
 	public String getImagePath();
+	
+	public void setImagePath(String imagePath);
 
 	public Collection<Item> getItems();
 	
