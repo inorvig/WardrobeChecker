@@ -269,17 +269,7 @@ public class TestingScript {
 		
 		
 		saved.saveData();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 //		Saver saved = new Saver("Sohum");
 //		AppUser user = (AppUser) saved.getUser();
 //		

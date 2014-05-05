@@ -13,11 +13,9 @@ import app.backend.interfaces.Wardrobe;
 
 public class AppItem implements Item, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -852602098811815755L;
-	Integer score = 0;
+	
+	Integer score;
 	String name;
 	HashSet<String> tags;
 	String imagePath;
@@ -27,7 +25,8 @@ public class AppItem implements Item, Serializable {
 	private Category category;
 
 	public AppItem(AppUser user, Wardrobe wardrobeToPut, Category category,  String name, String imagePath) {
-
+		
+		this.score = 0; //score initialize to 0
 		this.owner = user; // owner object passed
 		this.wardrobe = wardrobeToPut; // parent wardrobe object passed
 		this.name = name; // unique identifier name
