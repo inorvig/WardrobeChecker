@@ -1,5 +1,6 @@
 package app.backend.interfaces;
 
+import java.awt.image.BufferedImage;
 import java.util.Collection;
 
 public interface Outfit {
@@ -19,4 +20,6 @@ public interface Outfit {
 
 	// Any info the GUI needs to reconstruct the picture
 	public Displayer getDisplayInfo();
+	
+	public BufferedImage getPreview(); 
 }

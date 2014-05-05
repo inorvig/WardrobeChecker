@@ -1,7 +1,6 @@
 package app.frontend;
 
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
@@ -9,6 +8,7 @@ import java.awt.Image;
 import javax.swing.SwingConstants;
 
 
+@SuppressWarnings("serial")
 public class WeatherPanel extends JPanel {
 	WeatherAPI weather = new WeatherAPI();
 	/**

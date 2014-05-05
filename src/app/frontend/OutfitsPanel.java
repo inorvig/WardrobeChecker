@@ -20,8 +20,8 @@ import java.awt.FlowLayout;
 public class OutfitsPanel extends JPanel {
 
 	/**
-	 * 
-	 */
+	 *
+	 **/
 	private static final long serialVersionUID = 2466177652642787961L;
 
 	/**
