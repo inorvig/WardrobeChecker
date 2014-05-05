@@ -32,7 +32,12 @@ public class SearchBarListener implements DocumentListener {
 		ArrayList<Item> results = user.search(searchBar.getText());
 
 		
+		if (results.size() > 6){
+			frame.getResultsPanel().refresh(results.subList(0, 5));
+		}
+		else{
 		frame.getResultsPanel().refresh(results);
+		}
 		frame.revalidate();
 		frame.repaint();
 	}
@@ -42,7 +47,12 @@ public class SearchBarListener implements DocumentListener {
 		ArrayList<Item> results = user.search(searchBar.getText());
 		//frame.setResultsPanel(new SearchPanels(results, frame));
 		//frame.getResultsPanel().reset(results);
+		if (results.size() > 6){
+			frame.getResultsPanel().refresh(results.subList(0, 5));
+		}
+		else{
 		frame.getResultsPanel().refresh(results);
+		}
 		frame.revalidate();
 		frame.repaint();	}
 
@@ -51,7 +61,12 @@ public class SearchBarListener implements DocumentListener {
 		ArrayList<Item> results = user.search(searchBar.getText());
 		//frame.setResultsPanel(new SearchPanels(results, frame));
 		//frame.getResultsPanel().reset(results);
+		if (results.size() > 6){
+			frame.getResultsPanel().refresh(results.subList(0, 5));
+		}
+		else{
 		frame.getResultsPanel().refresh(results);
+		}
 		frame.revalidate();
 		frame.repaint();	}
 

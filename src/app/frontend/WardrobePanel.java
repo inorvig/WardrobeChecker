@@ -24,7 +24,9 @@ public class WardrobePanel extends JPanel implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = -1109275360431582813L;
-	private JScrollPane all, wardrobe;
+	private AllItemsPanel all;
+	private ByWardrobePanel wardrobe;
+	private JScrollPane a,w;
 	private JLabel lblMyWardrobes;
 	/**
 	 * Create the panel.
@@ -32,8 +34,10 @@ public class WardrobePanel extends JPanel implements ActionListener {
 	public WardrobePanel(MainFrame parent,User user) {
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
-		all = new JScrollPane(new AllItemsPanel(parent, user));
-		wardrobe = new JScrollPane(new ByWardrobePanel(parent, user));
+		all = new AllItemsPanel(parent, user);
+		a = new JScrollPane(all);
+		wardrobe = new ByWardrobePanel(parent, user);
+		w = new JScrollPane(wardrobe);
 		
 		lblMyWardrobes = new JLabel("My Wardrobes");
 		lblMyWardrobes.setHorizontalAlignment(SwingConstants.CENTER);
@@ -70,10 +74,11 @@ public class WardrobePanel extends JPanel implements ActionListener {
 		revalidate();
 		repaint();
 	}
-//	public void reset(){
-//		all.reset();
-//		wardrobe.reset();
-//	}
+	public void reset(){
+		all.reset();
+		wardrobe.reset();
+		this.repaint();
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

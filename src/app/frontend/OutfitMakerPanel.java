@@ -32,6 +32,7 @@ import javax.swing.JTextArea;
 import javax.swing.JLayeredPane;
 
 import app.backend.interfaces.Item;
+import app.backend.interfaces.Outfit;
 import app.backend.interfaces.User;
 import app.backend.user.AppOutfit;
 import app.backend.user.OutfitDisplayer;
@@ -50,7 +51,7 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	private JLabel savedLabel = null;
 	//this is the hamper
 	private JLabel hamper;
-	private AppOutfit outfitExisting;
+	private Outfit outfitExisting;
 	private User u;
 	private MainFrame p;
 	

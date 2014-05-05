@@ -61,12 +61,19 @@ public class TestingScript {
 //		item9.addTag("shirt green holidays awesome");
 //		item10.addTag("kim's party dress");
 //		item11.addTag("bridal dress from kim");
+
 		
-		
+//		AppItem item12 = new AppItem(u,u.searchWardrobe("Home Closet"), "item twelve", "");
+//		AppItem item13 = new AppItem(u,u.searchWardrobe("Home Closet"), "item thirteen", "");
+//		AppItem item14 = new AppItem(u,u.searchWardrobe("Home Closet"), "item fourteen", "");
+//		AppItem item15 = new AppItem(u,u.searchWardrobe("Home Closet"), "item fifteen", "");
+//		AppItem item16 = new AppItem(u,u.searchWardrobe("Home Closet"), "item sixteen", "");
+//		AppItem item17 = new AppItem(u,u.searchWardrobe("Home Closet"), "item seventeen", "");
 		
 //		for (String s : item1.getTags())
 //			System.out.println(s);
 		
+
 //		u.addItem(item1);
 //		u.addItem(item2);
 //		u.addItem(item3);
@@ -115,8 +122,7 @@ public class TestingScript {
 		    add("trousers");
 		    add("yomamas");
 		}});
-		
-		
+
 		u.addItem("duPlIcate%%%%%", "Home Closet" , "dresses", "", "/images/clothes/duplicate.jpg", new ArrayList<String>());
 		u.addItem("duPlIcate%%%%%", "Home Closet" , "dresses", "", "/images/clothes/duplicate.jpg", new ArrayList<String>());
 		
