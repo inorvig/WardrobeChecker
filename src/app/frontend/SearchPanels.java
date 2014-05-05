@@ -35,12 +35,10 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 	private GridBagConstraints c;
 
 	public JPanel createPanel(Item x) {
-		System.out.println(x.getName());
         JPanel p = new JPanel(new BorderLayout());
         p.setBackground(java.awt.Color.WHITE);
         p.add(new JLabel(x.getName()+ "   ", JLabel.CENTER), BorderLayout.CENTER);
         ImageIcon icon2 = new ImageIcon(x.getImagePath());
-        System.out.println(x.getImagePath());
 		Image img2 = icon2.getImage();
 		Image newimg2 = img2.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
 		icon2 = new ImageIcon(newimg2);
@@ -91,13 +89,11 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 	
 	public void refresh(List<Item> list){
 		this.removeAll();
-		System.out.println("GETTING HERE!");
 		int row = 0;
 		for(Item x: list){
 			c.gridy = row;
 			this.add(createPanel(x),c);
 			row++;
-			System.out.println("ITEM: "+x.getName());
 		}
 		revalidate();
 		repaint();
@@ -127,13 +123,11 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 		if(toDrag){
 			System.out.println("released!");
 		Item m = Clickable.get(draggedItem); 
-		System.out.println(m.getName());
 		JLabel lblNewLabel_1 = new JLabel("");
 		ImageIcon icon2 = new ImageIcon(m.getImagePath());
 		Image img2 = icon2.getImage();
 		Image newimg2 = img2.getScaledInstance(120, 138, java.awt.Image.SCALE_SMOOTH);
 		lblNewLabel_1.setIcon(new ImageIcon(newimg2));
-		System.out.println(e.getX() + " : " + e.getY());
 		lblNewLabel_1.setBounds(60, 60, 120, 138);
 		ourPanel.layeredPane.remove(ourPanel.lblNewLabel);
 		ourPanel.layeredPane.add(lblNewLabel_1, 1);
@@ -151,7 +145,6 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 		if(Clickable.containsKey(e.getSource())){
 			
 			draggedItem = (JPanel) e.getSource();
-			System.out.println("gotone!");
 		}
 		
 		
