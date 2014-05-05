@@ -71,7 +71,10 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(170, 372, java.awt.Image.SCALE_SMOOTH);
 		setLayout(null);
-		this.outfitExisting = p.selectedOutfit;
+		this.outfitExisting = null;
+		if(parent.selectedOutfit != null){
+			this.outfitExisting = parent.selectedOutfit;
+		}
 		this.u = user;
 		this.p = parent;
 		

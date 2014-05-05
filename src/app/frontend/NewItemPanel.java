@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.UIManager;
 
 import app.backend.interfaces.Item;
 import app.backend.interfaces.User;
@@ -24,9 +25,11 @@ import java.util.Collections;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.border.LineBorder;
+
 import java.awt.Font;
 
-public class NewItemPanel extends JPanel {
+public class NewItemPanel extends JPanel implements ActionListener{
 	/**
 	 * 
 	 */
@@ -37,6 +40,7 @@ public class NewItemPanel extends JPanel {
 	private User user;
 	public boolean itemExists = false;
 	public Item myItem = null;
+	public JLabel lblNewLabel;
 	
 	public String[] resetArray(String[] input, String m){
 		for(int x=0; x<input.length; x++){
@@ -66,7 +70,7 @@ public class NewItemPanel extends JPanel {
 		itemExists = true;
 		myItem = item;
 		
-		JLabel lblNewLabel = new JLabel(item.getName());
+		lblNewLabel = new JLabel(item.getName());
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBackground(Color.BLACK);
 		lblNewLabel.setForeground(Color.WHITE);
@@ -219,7 +223,7 @@ public class NewItemPanel extends JPanel {
 
 		imagePath = "images/question.gif";
 		
-		JLabel lblNewLabel = new JLabel("New Item");
+		lblNewLabel = new JLabel("New Item");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBackground(Color.BLACK);
 		lblNewLabel.setForeground(Color.WHITE);
@@ -354,6 +358,20 @@ public class NewItemPanel extends JPanel {
 		panel.add(btnCreateItem, "2, 20");
 	}
 	
+	public void makeDeletable(){
+		JButton deleteButton = new JButton("Exit");
+		deleteButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		deleteButton.setBackground(Color.white);
+		deleteButton.setOpaque(true);
+		deleteButton.setForeground(Color.white);
+		deleteButton.setBackground(UIManager.getColor("TabbedPane.selectHighlight"));
+		deleteButton.setBounds(380, 0, 60, 16);
+		deleteButton.addActionListener(this);
+		this.lblNewLabel.add(deleteButton);
+		revalidate();
+		repaint();
+	}
+	
 	public void setImagePath(String path){
 		this.imagePath = path;
 	}
@@ -374,6 +392,12 @@ public class NewItemPanel extends JPanel {
 			toAdd+=(tag+", ");
 		}
 		txtTags.setText(toAdd);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

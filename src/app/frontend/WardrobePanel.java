@@ -1,24 +1,31 @@
 package app.frontend;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 import app.backend.interfaces.User;
 
-public class WardrobePanel extends JPanel {
+public class WardrobePanel extends JPanel implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1109275360431582813L;
 	private JScrollPane all, wardrobe;
+	private JLabel lblMyWardrobes;
 	/**
 	 * Create the panel.
 	 */
@@ -28,7 +35,7 @@ public class WardrobePanel extends JPanel {
 		all = new JScrollPane(new AllItemsPanel(parent, user));
 		wardrobe = new JScrollPane(new ByWardrobePanel(parent, user));
 		
-		JLabel lblMyWardrobes = new JLabel("My Wardrobes");
+		lblMyWardrobes = new JLabel("My Wardrobes");
 		lblMyWardrobes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMyWardrobes.setForeground(Color.WHITE);
 		lblMyWardrobes.setBackground(Color.BLACK);
@@ -50,9 +57,28 @@ public class WardrobePanel extends JPanel {
 		parent.pack();
 	}
 	
+	public void makeDeletable(){
+		JButton deleteButton = new JButton("Exit");
+		deleteButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		deleteButton.setBackground(Color.white);
+		deleteButton.setOpaque(true);
+		deleteButton.setForeground(Color.white);
+		deleteButton.setBackground(UIManager.getColor("TabbedPane.selectHighlight"));
+		deleteButton.setBounds(380, 0, 60, 16);
+		deleteButton.addActionListener(this);
+		this.lblMyWardrobes.add(deleteButton);
+		revalidate();
+		repaint();
+	}
 //	public void reset(){
 //		all.reset();
 //		wardrobe.reset();
 //	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

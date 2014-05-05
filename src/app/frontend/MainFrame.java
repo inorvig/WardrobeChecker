@@ -358,6 +358,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					newItemPanel.setVisible(false);
 					closetPanel.setVisible(false);
 					OutfitsPanel.setVisible(false);
+					WardrobePanel.makeDeletable();
 					WardrobePanel.setVisible(true);
 					pack();
 					System.out.println("wardrobes selected");
