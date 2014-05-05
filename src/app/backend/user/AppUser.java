@@ -122,7 +122,7 @@ public class AppUser implements User, Serializable {
 		tags.add(color);
 		tags.add(category);
 		String itemName = name.replace("[^A-Za-z0-9]", " ").toLowerCase().trim();
-		Item toAdd = new AppItem(this, wardrobeToPut, itemName, imagePath);
+		Item toAdd = new AppItem(this, wardrobeToPut, searchCategory(category),  itemName, imagePath);
 		for (String i : allTags) {
 			String tag = i.replace("[^A-Za-z0-9]", "").toLowerCase().trim();
 			toAdd.addTag(itemName);
@@ -132,8 +132,13 @@ public class AppUser implements User, Serializable {
 
 	}
 	
-	private Category searchCategory(){
-		
+	private Category searchCategory(String toSearch){
+		for (Category i: allCategories){
+			if (i.getName().equals(toSearch))
+				return i;
+		}
+		addCategory(toSearch);
+		return searchCategory(toSearch);
 	}
 	
 	/**
