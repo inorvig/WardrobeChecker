@@ -27,20 +27,20 @@ public class TestingScript {
 //		AppCategory jackets = new AppCategory("jackets", new HashSet<Item>());
 //		
 //		
-//		AppItem item1 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item one", "/images/clothes/greenshirt.jpg");
-//		AppItem item2 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item two", "/images/clothes/yellowshity.jpg");
-//		AppItem item3 = new AppItem(u,u.searchWardrobe("Home Closet"), pants,  "item three", "/images/clothes/greenpants.jpg");
-//		AppItem item4 = new AppItem(u,u.searchWardrobe("Home Closet"), shirts, "item four", "/images/clothes/shitshirt.jpg");
-//		AppItem item5 = new AppItem(u,u.searchWardrobe("Home Closet"), pants, "item five", "/images/clothes/100pants.jpg");
+//		AppItem item1 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item one", "images/clothes/greenshirt.jpg");
+//		AppItem item2 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item two", "images/clothes/yellowshity.jpg");
+//		AppItem item3 = new AppItem(u,u.searchWardrobe("Home Closet"), pants,  "item three", "images/clothes/greenpants.jpg");
+//		AppItem item4 = new AppItem(u,u.searchWardrobe("Home Closet"), shirts, "item four", "images/clothes/shitshirt.jpg");
+//		AppItem item5 = new AppItem(u,u.searchWardrobe("Home Closet"), pants, "item five", "images/clothes/100pants.jpg");
 //		
 //		u.addWardrobe("Travel Bag One", WardrobeType.SUITCASE); 
 //		
-//		AppItem item6 = new AppItem(u,u.searchWardrobe("Travel Bag One"), socks, "item six", "/images/clothes/socks.jpg");
-//		AppItem item7 = new AppItem(u,u.searchWardrobe("Travel Bag One"), jackets, "item seven", "/images/clothes/suit.jpg");
-//		AppItem item8 = new AppItem(u,u.searchWardrobe("Travel Bag One"), jackets, "item eight", "/images/clothes/jacket.jpg");
-//		AppItem item9 = new AppItem(u,u.searchWardrobe("Travel Bag One"), shirts,"item nine", "/images/clothes/greenshirt2.jpg");
-//		AppItem item10 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item ten", "/images/clothes/kimparty.jpg");
-//		AppItem item11 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item ten", "/images/clothes/kimbridal.jpg");
+//		AppItem item6 = new AppItem(u,u.searchWardrobe("Travel Bag One"), socks, "item six", "images/clothes/socks.jpg");
+//		AppItem item7 = new AppItem(u,u.searchWardrobe("Travel Bag One"), jackets, "item seven", "images/clothes/suit.jpg");
+//		AppItem item8 = new AppItem(u,u.searchWardrobe("Travel Bag One"), jackets, "item eight", "images/clothes/jacket.jpg");
+//		AppItem item9 = new AppItem(u,u.searchWardrobe("Travel Bag One"), shirts,"item nine", "images/clothes/greenshirt2.jpg");
+//		AppItem item10 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item ten", "images/clothes/kimparty.jpg");
+//		AppItem item11 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item ten", "images/clothes/kimbridal.jpg");
 //		
 ////		AppItem item12 = new AppItem(u,u.searchWardrobe("Home Closet"), "item twelve", "");
 ////		AppItem item13 = new AppItem(u,u.searchWardrobe("Home Closet"), "item thirteen", "");
@@ -87,28 +87,28 @@ public class TestingScript {
 //		u.addItem(item11);
 		
 		
-		u.addItem("item one","Home Closet","shirts", "", "/images/clothes/greenshirt.jpg",new ArrayList<String>() {{
+		u.addItem("item one","Home Closet","shirts", "", "images/clothes/greenshirt.jpg",new ArrayList<String>() {{
 		    add("shirt");
 		    add("green");
 		    add("holidays");
 		    add("awesome");
 		}});
 		
-		u.addItem("item two","Home Closet","shirts", "", "/images/clothes/yellowshirt.jpg",new ArrayList<String>() {{
+		u.addItem("item two","Home Closet","shirts", "", "images/clothes/yellowshirt.jpg",new ArrayList<String>() {{
 		    add("shirt");
 		    add("yellow");
 		    add("hilidays");
 		    add("bad");
 		}});
 		
-		u.addItem("item three","Home Closet","pants", "", "/images/clothes/greenpants.jpg",new ArrayList<String>() {{
+		u.addItem("item three","Home Closet","pants", "", "images/clothes/greenpants.jpg",new ArrayList<String>() {{
 		    add("pants");
 		    add("green");
 		    add("holidays");
 		    add("awesome");
 		}});
 		
-		u.addItem("item four","Home Closet","shirts", "", "/images/clothes/shitshirt.jpg",new ArrayList<String>() {{
+		u.addItem("item four","Home Closet","shirts", "", "images/clothes/shitshirt.jpg",new ArrayList<String>() {{
 		    add("shit");
 		    add("shirt");
 		    add("i");
@@ -116,66 +116,129 @@ public class TestingScript {
 		    add("WANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		}});
 		
-		u.addItem("item five","Home Closet","pants", "", "/images/clothes/100pants.jpg",new ArrayList<String>() {{
+		u.addItem("item five","Home Closet","pants", "", "images/clothes/100pants.jpg",new ArrayList<String>() {{
 		    add("size");
 		    add("100");
 		    add("trousers");
 		    add("yomamas");
 		}});
 
-		u.addItem("duPlIcate%%%%%", "Home Closet" , "dresses", "", "/images/clothes/duplicate.jpg", new ArrayList<String>());
-		u.addItem("duPlIcate%%%%%", "Home Closet" , "dresses", "", "/images/clothes/duplicate.jpg", new ArrayList<String>());
+		u.addItem("duPlIcate%%%%%", "Home Closet" , "dresses", "", "images/clothes/duplicate.jpg", new ArrayList<String>());
+		u.addItem("duPlIcate%%%%%", "Home Closet" , "dresses", "", "images/clothes/duplicate.jpg", new ArrayList<String>());
 		
 		
 		
-		u.addItem("item six","Travel Bag One","socks", "", "/images/clothes/socks.jpg",new ArrayList<String>() {{
+		u.addItem("item six","Travel Bag One","socks", "", "images/clothes/socks.jpg",new ArrayList<String>() {{
 		    add("socks");
 		    add("w/");
 		    add("slippers");
 		    add("sexy");
 		}});
 		
-		u.addItem("item seven","Travel Bag One","jackets", "", "/images/clothes/suit.jpg",new ArrayList<String>() {{
+		u.addItem("item seven","Travel Bag One","jackets", "", "images/clothes/suit.jpg",new ArrayList<String>() {{
 		    add("suit");
 		    add("professional");
 		    add("business");
 		}});
 		
-		u.addItem("item eight","Travel Bag One","jackets", "", "/images/clothes/jacket.jpg",new ArrayList<String>() {{
+		u.addItem("item eight","Travel Bag One","jackets", "", "images/clothes/jacket.jpg",new ArrayList<String>() {{
 		    add("jacket");
 		    add("mom");
 		    add("gifted");
 		}});
 		
 		//same tage as item one
-		u.addItem("item nine","Travel Bag One","shirts", "", "/images/clothes/greenshirt2.jpg",new ArrayList<String>() {{
+		u.addItem("item nine","Travel Bag One","shirts", "", "images/clothes/greenshirt2.jpg",new ArrayList<String>() {{
 		    add("shirt");
 		    add("green");
 		    add("holidays");
 		    add("awesome");
 		}});
 		
-		u.addItem("item ten","Travel Bag One","dresses", "", "/images/clothes/kimparty.jpg",new ArrayList<String>() {{
+		u.addItem("item ten","Travel Bag One","dresses", "", "images/clothes/kimparty.jpg",new ArrayList<String>() {{
 		    add("kim's");
 		    add("party");
 		    add("dress");
 		}});
 		
-		u.addItem("item eleven","Travel Bag One","dresses", "", "/images/clothes/kimbridal.jpg",new ArrayList<String>() {{
+		u.addItem("item eleven","Travel Bag One","dresses", "", "images/clothes/kimbridal.jpg",new ArrayList<String>() {{
 		    add("bridal");
 		    add("dress");
 		    add("from");
 		    add("kim");
 		}});
 		
-//		ArrayList<Item> r = u.search("100  ");
-//		
-//		System.out.println(r.size());
-//		
-//		
-//		
+//		ArrayList<Item> r = u.search("j");
 //		for (int i = 0; i<r.size();i++){
 //			System.out.println( "<< "+ i + " >> ---" + r.get(i).getName() );
+//		}
+//		ArrayList<Item> r2 = u.search("ja");
+//		for (int i = 0; i<r2.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r2.get(i).getName() );
+//		}
+//		ArrayList<Item> r3 = u.search("jac");
+//		for (int i = 0; i<r3.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r3.get(i).getName());
+//		}
+//		ArrayList<Item> r4 = u.search("jack");
+//		for (int i = 0; i<r4.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r4.get(i).getName() );
+//		}
+//		ArrayList<Item> r5 = u.search("jacke");
+//		for (int i = 0; i<r5.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r5.get(i).getName() );
+//		}
+//		ArrayList<Item> r6 = u.search("jacket");
+//		for (int i = 0; i<r6.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r6.get(i).getName() );
+//		}
+//		ArrayList<Item> r7 = u.search("jacket ");
+//		for (int i = 0; i<r7.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r7.get(i).getName() );
+//		}
+//		ArrayList<Item> r8 = u.search("jacket m");
+//		for (int i = 0; i<r8.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r8.get(i).getName() );
+//		}
+//		ArrayList<Item> r9 = u.search("jacket my");
+//		for (int i = 0; i<r9.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r9.get(i).getName() );
+//		}
+//		ArrayList<Item> r10 = u.search("jacket my ");
+//		for (int i = 0; i<r10.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r10.get(i).getName() );
+//		}
+//		ArrayList<Item> r11 = u.search("jacket my m");
+//		for (int i = 0; i<r11.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r11.get(i).getName() );
+//		}
+//		ArrayList<Item> r12 = u.search("jacket my mo");
+//		for (int i = 0; i<r12.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r12.get(i).getName() );
+//		}
+//		ArrayList<Item> r13 = u.search("jacket my mom");
+//		for (int i = 0; i<r13.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r13.get(i).getName() );
+//		}
+//		ArrayList<Item> r14 = u.search("jacket my mom b");
+//		for (int i = 0; i<r14.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r14.get(i).getName() );
+//		}
+//		ArrayList<Item> r15 = u.search("jacket my mom bo");
+//		for (int i = 0; i<r15.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r15.get(i).getName() );
+//		}
+//		ArrayList<Item> r16 = u.search("jacket my mom bou");
+//		for (int i = 0; i<r16.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r16.get(i).getName() );
+//		}
+//		ArrayList<Item> r17 = u.search("jacket my mom boug");
+//		for (int i = 0; i<r17.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r17.get(i).getName() );
+//		}
+//		ArrayList<Item> r18 = u.search("jacket my mom bough");
+//		for (int i = 0; i<r18.size();i++){
+//			System.out.println( "<< "+ i + " >> ---" + r18.get(i).getName() );
 //		}
 //		
 //		
