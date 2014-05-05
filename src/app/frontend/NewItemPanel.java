@@ -404,7 +404,6 @@ public class NewItemPanel extends JPanel implements ActionListener{
 			toAdd+=(tag+", ");
 		}
 		txtTags.setText(toAdd);
-		System.out.println(user.suggestColor(string)+ " is the color");
 		
 		txtColor.setText(user.suggestColor(string));
 	}

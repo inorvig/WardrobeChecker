@@ -27,13 +27,11 @@ public class ColorDetector implements ColorDetecting {
 	    ScriptEngine engine = factory.getEngineByName("JavaScript");
 
 	    engine.put("n_match", hex);
-	    System.out.println("evaluating the thing: "+ engine.eval("n_match"));
 	    result = (String) engine.eval(new FileReader("src/app/backend/cv/ntc.js"));	
 		}
 		catch (Exception e){
 			System.out.println("oops");
 		}
-		System.out.println(result);
 	    return result;
 	}
 	@Override
@@ -85,11 +83,6 @@ public class ColorDetector implements ColorDetecting {
 		return result;
 	}
 	
-	public static void main(String[] args){
-		ColorDetector d = new ColorDetector();
 
-		//d.getObjectColor("blue.jpg");
-		//d.getObjectColor("green.jpg");
-	}
 
 }
