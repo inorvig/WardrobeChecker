@@ -286,4 +286,11 @@ public class AppUser implements User, Serializable {
 		}
 	}
 
+	@Override
+	public String suggestColor(String imagePath) {
+		String result = tagsuggester.suggestColor(imagePath);
+		System.out.println(result + " is what the suer has");
+		return result;
+	}
+
 }

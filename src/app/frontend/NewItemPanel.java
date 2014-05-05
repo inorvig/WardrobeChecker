@@ -61,7 +61,6 @@ public class NewItemPanel extends JPanel implements ActionListener{
 		}
 
 	public NewItemPanel(final MainFrame parent, final User user, final Item item) {
-		System.out.println(user+ " is the user");
 		this.user = user;
 		setLayout(new BorderLayout(0, 0));
 
@@ -171,12 +170,7 @@ public class NewItemPanel extends JPanel implements ActionListener{
 				color = txtColor.getText();
 				String tagString = txtTags.getText().replaceAll("\\s",",");
 				tags = new ArrayList<String>(Arrays.asList(tagString.split(",+")));
-				System.out.format("Sending item: %s, %s, %s, %s, %s\n",name,wardrobe,category,color,imagePath);
-				System.out.println("tags: ");
-				for (String tag : tags){
-					System.out.println(tag);
-				}
-				System.out.println("user: "+user);
+
 				user.addItem(name, wardrobe, category, color, imagePath,tags);
 				user.removeItem(myItem);
 				parent.updateItems();
@@ -321,12 +315,7 @@ public class NewItemPanel extends JPanel implements ActionListener{
 				color = txtColor.getText();
 				String tagString = txtTags.getText().replaceAll("\\s",",");
 				tags = new ArrayList<String>(Arrays.asList(tagString.split(",+")));
-				System.out.format("Sending item: %s, %s, %s, %s, %s\n",name,wardrobe,category,color,imagePath);
-				System.out.println("tags: ");
-				for (String tag : tags){
-					System.out.println(tag);
-				}
-				System.out.println("user: "+user);
+
 				user.addItem(name, wardrobe, category, color, imagePath,tags);
 				parent.updateItems();
 				parent.returnToHome();
@@ -385,13 +374,15 @@ public class NewItemPanel extends JPanel implements ActionListener{
 	}
 
 	public void addTags(String string) {
-		System.out.println("generating tags for"+ string);
 		Collection<String> tags = user.suggestTags(string);
 		String toAdd = "";
 		for (String tag: tags){
 			toAdd+=(tag+", ");
 		}
 		txtTags.setText(toAdd);
+		System.out.println(user.suggestColor(string)+ " is the color");
+		
+		txtColor.setText(user.suggestColor(string));
 	}
 
 	@Override
