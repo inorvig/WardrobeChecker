@@ -22,24 +22,24 @@ public class TestingScript {
 		AppCategory shirts = new AppCategory("shirts", new HashSet<Item>());
 		AppCategory pants = new AppCategory("pants", new HashSet<Item>());
 		AppCategory dresses = new AppCategory("dresses", new HashSet<Item>());
-		AppCategory socks = new AppCategory("dresses", new HashSet<Item>());
-		AppCategory other = new AppCategory("dresses", new HashSet<Item>());
+		AppCategory socks = new AppCategory("socks", new HashSet<Item>());
+		AppCategory jackets = new AppCategory("jackets", new HashSet<Item>());
 		
 		
-		AppItem item1 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item one", "");
-		AppItem item2 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item two", "");
-		AppItem item3 = new AppItem(u,u.searchWardrobe("Home Closet"), pants,  "item three", "");
-		AppItem item4 = new AppItem(u,u.searchWardrobe("Home Closet"), shirts, "item four", "");
-		AppItem item5 = new AppItem(u,u.searchWardrobe("Home Closet"), pants, "item five", "");
+		AppItem item1 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item one", "images/clothes/greenshirt.jpg");
+		AppItem item2 = new AppItem(u,u.searchWardrobe("Home Closet"),shirts, "item two", "images/clothes/yellowshity.jpg");
+		AppItem item3 = new AppItem(u,u.searchWardrobe("Home Closet"), pants,  "item three", "images/clothes/greenpants.jpg");
+		AppItem item4 = new AppItem(u,u.searchWardrobe("Home Closet"), shirts, "item four", "images/clothes/shitshirt.jpg");
+		AppItem item5 = new AppItem(u,u.searchWardrobe("Home Closet"), pants, "item five", "images/clothes/100pants.jpg");
 		
 		u.addWardrobe("Travel Bag One", WardrobeType.SUITCASE); 
 		
-		AppItem item6 = new AppItem(u,u.searchWardrobe("Travel Bag One"), socks, "item six", "");
-		AppItem item7 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item seven", "");
-		AppItem item8 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item eight", "");
-		AppItem item9 = new AppItem(u,u.searchWardrobe("Travel Bag One"), other,"item nine", "");
-		AppItem item10 = new AppItem(u,u.searchWardrobe("Travel Bag One"), other, "item ten", "");
-		AppItem item11 = new AppItem(u,u.searchWardrobe("Travel Bag One"), other, "item ten", "");
+		AppItem item6 = new AppItem(u,u.searchWardrobe("Travel Bag One"), socks, "item six", "images/clothes/socks.jpg");
+		AppItem item7 = new AppItem(u,u.searchWardrobe("Travel Bag One"), jackets, "item seven", "images/clothes/suit.jpg");
+		AppItem item8 = new AppItem(u,u.searchWardrobe("Travel Bag One"), jackets, "item eight", "images/clothes/jacket.jpg");
+		AppItem item9 = new AppItem(u,u.searchWardrobe("Travel Bag One"), shirts,"item nine", "images/clothes/greenshirt2.jpg");
+		AppItem item10 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item ten", "images/clothes/kimparty.jpg");
+		AppItem item11 = new AppItem(u,u.searchWardrobe("Travel Bag One"), dresses, "item ten", "images/clothes/kimbridal.jpg");
 		
 //		AppItem item12 = new AppItem(u,u.searchWardrobe("Home Closet"), "item twelve", "");
 //		AppItem item13 = new AppItem(u,u.searchWardrobe("Home Closet"), "item thirteen", "");
@@ -49,17 +49,17 @@ public class TestingScript {
 //		AppItem item17 = new AppItem(u,u.searchWardrobe("Home Closet"), "item seventeen", "");
 		
 		item1.addTag("shirt green holidays awesome");
-		item2.addTag("shirt blue hilidays bad");
+		item2.addTag("shirt yellow hilidays bad");
 		item3.addTag("pants green holidays awe");
-		item4.addTag("shit shirt i don't want");
-		item5.addTag("size 100 pants that belong to your mom");
+		item4.addTag("shit shirt i don't want!!!!!!!!!!");
+		item5.addTag("size 100 pants");
 		
 		item6.addTag("socks with slippers");
 		item7.addTag("suit for meetings");
-		item8.addTag("my mom does not need to know this exists");
+		item8.addTag("jacket mom gave me");
 		item9.addTag("shirt green holidays awesome");
-		item10.addTag("");
-		item11.addTag("");
+		item10.addTag("kim's party dress");
+		item11.addTag("bridal dress from kim");
 		
 		
 		
@@ -78,8 +78,8 @@ public class TestingScript {
 		u.addItem(item10);
 		u.addItem(item11);
 
-		u.addItem("duplicate%%%%%", "Home Closet" , "shirts", "", "", new ArrayList<String>());
-		u.addItem("duplicate%%%%%", "Home Closet" , "shirts", "", "", new ArrayList<String>());
+		u.addItem("duPlIcate%%%%%", "Home Closet" , "dresses", "", "images/clothes/duplicate.jpg", new ArrayList<String>());
+		u.addItem("duPlIcate%%%%%", "Home Closet" , "dresses", "", "images/clothes/duplicate.jpg", new ArrayList<String>());
 		
 		ArrayList<Item> r = u.search("100  ");
 		
@@ -116,7 +116,9 @@ public class TestingScript {
 			System.out.println(item10.getTags().isEmpty());
 			System.out.println(s);
 		}
-		//saved.saveData();
+		
+		
+		saved.saveData();
 		
 		
 		

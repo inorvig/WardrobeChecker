@@ -126,10 +126,11 @@ public class AppUser implements User, Serializable {
 		ArrayList<String> allTags = tags;
 		tags.add(color);
 		tags.add(category);
-		String itemName = name.replace("[^A-Za-z0-9]", " ").toLowerCase().trim();
+		String itemName = name.replaceAll("[^A-Za-z0-9]", " ").toLowerCase().trim();
+		
 		Item toAdd = new AppItem(this, wardrobeToPut, searchCategory(category),  itemName, imagePath);
 		for (String i : allTags) {
-			String tag = i.replace("[^A-Za-z0-9]", "").toLowerCase().trim();
+			String tag = i.replaceAll("[^A-Za-z0-9]", "").toLowerCase().trim();
 			toAdd.addTag(itemName);
 			toAdd.addTag(tag);
 		}
@@ -269,8 +270,7 @@ public class AppUser implements User, Serializable {
 	}
 
 	@Override
-	public void UpdateItem(Item item, String wardrobe, String category,
-			String color, String imagePath, ArrayList<String> tags) {
+	public void UpdateItem(Item item, String wardrobe, String category, String color, String imagePath, ArrayList<String> tags) {
 		item.moveItem(searchWardrobe(wardrobe));
 		item.setCategory(searchCategory(category));
 		item.addTag(color);
