@@ -80,8 +80,15 @@ public class AllOutfitsPanel extends JPanel {
 	}
 	
 	public void addOutfits(){
-		for (Outfit o : user.getOutfits()){
-			JLabel item = new JLabel(o.getName());
+		for (final Outfit o : user.getOutfits()){
+			System.out.println("outfit encountered");
+			JButton item = new JButton(o.getName());
+			item.addActionListener(new ActionListener(){
+				
+				public void actionPerformed(ActionEvent e){
+					parent.editOutfit(o);
+				}
+			});
 			ImageIcon icon = new ImageIcon(o.getDisplayInfo().getPreview());
 			Image img = icon.getImage();
 			Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);

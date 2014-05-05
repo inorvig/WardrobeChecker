@@ -176,7 +176,6 @@ public class AppUser implements User, Serializable {
 
 	@Override
 	public void saveOutfit(Outfit outfit) {
-
 		this.outfitList.add(outfit);
 	}
 

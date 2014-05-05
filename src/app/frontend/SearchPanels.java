@@ -45,7 +45,6 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 		Image newimg2 = img2.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
 		icon2 = new ImageIcon(newimg2);
         p.add(new JLabel(icon2, JLabel.LEFT), BorderLayout.WEST);
-        p.setBorder(BorderFactory.createLineBorder(Color.blue));
         p.addMouseListener(this);
         p.addMouseMotionListener(this);
         Clickable.put(p, x);

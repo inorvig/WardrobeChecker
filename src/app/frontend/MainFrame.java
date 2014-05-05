@@ -27,6 +27,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import app.backend.interfaces.Item;
+import app.backend.interfaces.Outfit;
 import app.backend.interfaces.User;
 import app.backend.user.AppOutfit;
 import app.backend.user.Saver;
@@ -64,8 +65,9 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private JTextField txtSearch;
 	private Saver _savedUser;
 	private final User _user;
+	private MainFrame self;
 	
-	public AppOutfit selectedOutfit = null;
+	public Outfit selectedOutfit = null;
 
 	private static final long serialVersionUID = 1L;
 
@@ -78,6 +80,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		_savedUser = new Saver("woohoo");
 
 		_user = _savedUser.getUser();
+		self = this;
 		System.out.println("mainframe user: "+_user);
 		initComponents();
 		
@@ -361,12 +364,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					WardrobePanel.makeDeletable();
 					WardrobePanel.setVisible(true);
 					pack();
-					System.out.println("wardrobes selected");
 				} else {
 					WardrobePanel.setVisible(false);
 					OutfitMakerPanel.setVisible(true);
 					pack();
-					System.out.println("wardrobes deselected");
 				}
 			}
 		});
@@ -381,13 +382,11 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					closetPanel.setVisible(false);
 					newItemPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem selected");
 				} else {
 					newItemPanel.clear();
 					newItemPanel.setVisible(false);
 					OutfitMakerPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem deselected");
 				}
 			}
 		});
@@ -402,12 +401,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					closetPanel.setVisible(false);
 					OutfitsPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem selected");
 				} else {
 					OutfitsPanel.setVisible(false);
 					OutfitMakerPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem deselected");
 				}
 			}
 		});
@@ -417,6 +414,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (MakeOutfit.isSelected()) {
+					selectedOutfit = null;
 					OutfitMakerPanel.setVisible(true);
 					WardrobePanel.setVisible(false);
 					newItemPanel.setVisible(false);
@@ -424,17 +422,13 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 					OutfitsPanel.setVisible(false);
 					
 					pack();
-					System.out.println("addNewItem selected");
 				} else {
 					OutfitsPanel.setVisible(false);
 					OutfitMakerPanel.setVisible(true);
 					pack();
-					System.out.println("addNewItem deselected");
 				}
 			}
 		});
-		
-		
 		
 		
 		newWindow.addActionListener(new ActionListener() {
@@ -480,6 +474,10 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	}// GEN-LAST:event_addNewItemActionPerformed
 
 
+	public void editOutfit(Outfit o){
+		selectedOutfit = o;
+		//toOutfitCreation();
+	}
 	public void toOutfitCreation(){
 		toggleGroup.clearSelection();
 		WardrobePanel.setVisible(false);
@@ -502,6 +500,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	
 	public void updateItems(){
 		closetPanel.reset();
+		WardrobePanel.reset();
 		pack();
 	}
 	public void returnToHome(){
