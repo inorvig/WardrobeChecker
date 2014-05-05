@@ -19,9 +19,7 @@ import app.backend.user.AppWardrobe.WardrobeType;
 
 public class AppUser implements User, Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 5405996534890993199L;
 	String username; //user's name
 	ArrayList<Wardrobe> wardrobeList; //list of all wardrobes  
@@ -51,7 +49,7 @@ public class AppUser implements User, Serializable {
 		this.wardrobeList = new ArrayList<Wardrobe>(); //initialize empty list
 		wardrobeList.add(new AppWardrobe("Home Closet", WardrobeType.CLOSET)); //add default home closet
 		
-		this.allCategories = new HashSet<Category>(); //initialize category set
+		this.allCategories = new HashSet<Category>(); //initialize category set with default categories and images
 		addCategory("t-shirts");
 		this.searchCategory("t-shirts").setImagePath("images/categories/t-shirts.gif");
 		addCategory("pants");
@@ -66,33 +64,49 @@ public class AppUser implements User, Serializable {
 		this.searchCategory("workout").setImagePath("images/categories/workout.gif");
 		addCategory("dresses");
 		this.searchCategory("dresses").setImagePath("images/categories/dresses.gif");
+		
 		this.autosuggest = new Autosuggest(tagsMap); //set up autosuggest
 		autosuggest.setUp();
 		
-		this.tagsuggester = new StubTagger();
+		this.tagsuggester = new StubTagger();//stub tagger for cv
 		
 	}
-
+	
+	/**
+	 * list of wardrobes that user owns
+	 */
 	@Override
 	public Collection<Wardrobe> getWardrobes() {
 		return this.wardrobeList;
 	}
-
+	
+	/**
+	 * count of wardrbobes owned by user
+	 */
 	@Override
 	public int howManyWardrobes() {
 		return this.wardrobeList.size();
 	}
-
+	
+	/**
+	 * list of outfits owned by user
+	 */
 	@Override
 	public Collection<Outfit> getOutfits() {
 		return this.outfitList;
 	}
-
+	
+	/**
+	 * count of outfits owned by user
+	 */
 	@Override
 	public int howManyOutfits() {
 		return this.outfitList.size();
 	}
 	
+	/**
+	 * given a string that is wardrobe name, search and return that wardrobe
+	 */
 	@Override
 	public Wardrobe searchWardrobe(String name){
 		Wardrobe result = null;
@@ -103,7 +117,10 @@ public class AppUser implements User, Serializable {
 		}
 		return result;
 	}
-
+	
+	/**
+	 * return list of category names 
+	 */
 	public Collection<String> getCategoryList(){
 		Collection<String> result = new ArrayList<String>();
 		for (Category i : allCategories){
@@ -116,28 +133,68 @@ public class AppUser implements User, Serializable {
 	 * wrapper around addItem that contructs Item and then passes
 	 */
 	@Override
-	public void addItem(String name, String wardrobe, String category, String color, String imagePath, ArrayList<String> tags) {
-		Wardrobe wardrobeToPut = searchWardrobe(wardrobe);
-		if (wardrobeToPut == null){
-			wardrobeToPut = wardrobeList.get(0);
-		}
+	public void addItem(String name, String wardrobe, String cat, String color, String imagePath, ArrayList<String> tags) {
 		
+		//contruct the item object first
+		
+		Wardrobe wardrobeToPut = searchWardrobe(wardrobe); //search for the wardrobe name
+		if (wardrobeToPut == null){
+			wardrobeToPut = wardrobeList.get(0); //if name does not match add to the default closet
+		}
 		
 		ArrayList<String> allTags = tags;
-		tags.add(color);
-		tags.add(category);
-		String itemName = name.replaceAll("[^A-Za-z0-9]", " ").toLowerCase().trim();
+		tags.add(color); //add color as a tag for searching
 		
-		Item toAdd = new AppItem(this, wardrobeToPut, searchCategory(category),  itemName, imagePath);
-		for (String i : allTags) {
-			String tag = i.replaceAll("[^A-Za-z0-9]", "").toLowerCase().trim();
-			toAdd.addTag(itemName);
-			toAdd.addTag(tag);
-		}
-		addItem(toAdd);
+		String category = cat.replaceAll("[^A-Za-z0-9]", "").toLowerCase().trim();
+		tags.add(category); //add category as a tag for searching
 
+		String itemName = name.replaceAll("[^A-Za-z0-9]", " ").toLowerCase().trim(); //remove illegitimate charach
+		if (itemName == "") //do not permit empty string names
+			itemName = "defaultName";
+		tags.add(itemName); //add name as a tag for searching
+		
+		//create new item
+		Item toAdd = new AppItem(this, wardrobeToPut, searchCategory(category),  itemName, imagePath);
+		
+		for (String i : allTags) {		//for each tag
+			String tag = i.replaceAll("[^A-Za-z0-9]", "").toLowerCase().trim(); //	
+			toAdd.addTag(tag); //add it to tag list of the item
+		}
+		
+		addItem(toAdd);//pass the item to the method below
 	}
 	
+	
+	/**
+	 * add an Item object from method above
+	 * @param item
+	 */
+	public void addItem(Item item) {
+
+		allItems.add(item); //add to list of all items
+		
+		//add items tags
+		HashSet<String> tagsToAdd = item.getTags();
+		
+		for (String tag: tagsToAdd){ //for each tag
+			autosuggest.addTag(tag); //insert into unigram map and trie
+			
+			if (tagsMap.containsKey(tag)){ //insert into parent tagmap
+				tagsMap.get(tag).add(item);
+			}
+			else{
+				HashSet<Item> itemSet = new HashSet<Item>();
+				itemSet.add(item);
+				tagsMap.put(tag, itemSet);
+			}	
+		}
+	}
+	
+	/**
+	 * 
+	 * @param toSearch
+	 * @return
+	 */
 	private Category searchCategory(String toSearch){
 		for (Category i: allCategories){
 			if (i.getName().equals(toSearch))
@@ -148,79 +205,46 @@ public class AppUser implements User, Serializable {
 	}
 	
 	/**
-	 * add an Item object
-	 * @param item
+	 * save an outfit
+	 * 
+	 * not implemented yet?
 	 */
-	public void addItem(Item item) {
-
-		allItems.add(item);
-		
-		//add items tags
-		HashSet<String> tagsToAdd = item.getTags();
-		
-		for (String tag: tagsToAdd){
-			autosuggest.addTag(tag);
-			
-			if (tagsMap.containsKey(tag)){
-				tagsMap.get(tag).add(item);
-				
-			}
-			else{
-				HashSet<Item> itemSet = new HashSet<Item>();
-				itemSet.add(item);
-				tagsMap.put(tag, itemSet);
-			}	
-		}
-		
-
-	}
-
 	@Override
 	public void saveOutfit(Outfit outfit) {
 		this.outfitList.add(outfit);
 		System.out.format("saved outfit: %s with %d items",outfit.getName(),outfit.itemsInOutfit().size());
 		for (Item i : outfit.itemsInOutfit()){
-			System.out.println("item: "+i.getName());
+			//System.out.println("item: "+i.getName());
 		}
 	}
 
-
-
+	/**
+	 * SEARCH: get a list of items having given a string of words
+	 */
 	@Override
 	public ArrayList<Item> search(String searchTerms) {
-		String query = searchTerms.replaceAll("[^A-Za-z0-9]", " ").toLowerCase().trim();
-				
+		
+		String query = searchTerms.replaceAll("[^A-Za-z0-9]", " ").toLowerCase().trim(); //prune inpur	
 		for (Item item: allItems){
-			item.resetScore();
-			//System.out.println(item.getName() + " should be reset to 0");
+			item.resetScore(); //reset score for all items
 		}
+		HashSet<Item> matchingItems = new HashSet<Item>();//initialize set of all items that match search terms
+		ArrayList<Item> toReturn = new ArrayList<Item>();//initialize list to be returned
+		Set<String> matchingTags = autosuggest.lookup(query); //get list of all tags that match the search terms from autosuggest
 		
-		HashSet<Item> matchingItems = new HashSet<Item>();
-		ArrayList<Item> toReturn = new ArrayList<Item>();
-
-		
-
-		Set<String> matchingTags = autosuggest.lookup(query);
-		
-		
-		for (String tag: matchingTags){
-			
-			HashSet<Item> items = tagsMap.get(tag);
-			
+		for (String tag: matchingTags){ //for all tags that match the query	
+			HashSet<Item> items = tagsMap.get(tag); //get the list of all items that contain the tag
 			for (Item item: items){
-				item.incrementScore();
-				matchingItems.add(item);
+				item.incrementScore();//increment score for every item that matches a given tag
+				matchingItems.add(item);//add it to the set of all matching items
 			}
-			
 		}
 		
-		for (Item item: matchingItems){
-			toReturn.add(item);
-			//System.out.println(item.getName() + " <- name, " + item.getScore() + " <- score" );
+		for (Item item: matchingItems){//for all items that match the tags that were searched on
+			toReturn.add(item);//add the item to the list to be returned
 		}
 		
-		Collections.sort(toReturn);
-		
+		Collections.sort(toReturn);//sort the list based on search score
 		return (ArrayList<Item>) toReturn;
 	}
 
