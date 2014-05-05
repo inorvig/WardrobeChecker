@@ -54,10 +54,13 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
        
     }
 	
-	public void update(List<Item> newList){
-		while (!Clickable.isEmpty()){
-			Clickable.remove()
+	public void reset(ArrayList<Item> items){
+		removeAll();
+		for (Item i: items){
+			createPanel(i);
 		}
+		revalidate();
+		repaint();
 	}
 	
 	

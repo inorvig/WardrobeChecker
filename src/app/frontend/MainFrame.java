@@ -616,6 +616,11 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	public void setResultsPanel(SearchPanels searchPanels) {
 		this.ResultsPanel = searchPanels;
 		
+		
+	}
+	
+	public SearchPanels getResultsPanel(){
+		return ResultsPanel;
 	}
 
 	public OutfitMakerPanel getOutfitsPanel() {
