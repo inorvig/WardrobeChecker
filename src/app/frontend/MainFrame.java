@@ -62,9 +62,6 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 	private Saver _savedUser;
 	private final User _user;
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
