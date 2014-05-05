@@ -154,30 +154,31 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 				msgbox("You must enter an outfit name!");
 			}
 			else{
-				if(savedLabel != null){
-					layeredPane.remove(savedLabel);
-				}
-				System.out.println("getting to save");
-				Image x = createImage(layeredPane).getScaledInstance(this.getHeight()/6, this.getWidth()/4, java.awt.Image.SCALE_SMOOTH);
-				JLabel m = new JLabel("");
-				ImageIcon icon3 = new ImageIcon(x);
-				m.setIcon(icon3);
-				m.setBounds(180, 25, icon3.getIconWidth(), icon3.getIconHeight());
-				layeredPane.add(m);
-				savedLabel = m;
-				
-				OutfitDisplayer toSend = new OutfitDisplayer(this, x);
-				Collection<Item> itemstoSend = itemStorage.values();
-				if(outfitExisting != null){
-					outfitExisting.setName(textField.getText());
-					outfitExisting.setItems(itemstoSend);
-					outfitExisting.setDisplayInfo(toSend);
-					p.OutfitMakerPanel = new OutfitMakerPanel(p, u);
-				}
-				else{
-					AppOutfit toSave = new AppOutfit(textField.getText(), null, itemstoSend, toSend);
-					u.saveOutfit(toSave);
-				}
+
+			if(savedLabel != null){
+				layeredPane.remove(savedLabel);
+			}
+			System.out.println("getting to save");
+			Image x = createImage(layeredPane).getScaledInstance(this.getHeight()/6, this.getWidth()/4, java.awt.Image.SCALE_SMOOTH);
+			JLabel m = new JLabel("");
+			ImageIcon icon3 = new ImageIcon(x);
+			m.setIcon(icon3);
+			m.setBounds(180, 25, icon3.getIconWidth(), icon3.getIconHeight());
+			layeredPane.add(m);
+			savedLabel = m;
+			
+			OutfitDisplayer toSend = new OutfitDisplayer(this.itemStorage, x);
+			Collection<Item> itemstoSend = itemStorage.values();
+			if(outfitExisting != null){
+				outfitExisting.setName(textField.getText());
+				outfitExisting.setItems(itemstoSend);
+				outfitExisting.setDisplayInfo(toSend);
+			}
+			else{
+			AppOutfit toSave = new AppOutfit(textField.getText(), null, itemstoSend, toSend);
+			u.saveOutfit(toSave);
+			}
+
 			}
 			
 		}
@@ -195,7 +196,54 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 //	}
 
 
+	public void makeDeletable(){
+		final JButton deleteButton = new JButton("Exit");
+		deleteButton.setBorder(new LineBorder(new Color(255, 255, 255)));
+		deleteButton.setBackground(Color.white);
+		deleteButton.setOpaque(true);
+		deleteButton.setForeground(Color.black);
+		deleteButton.setBounds(380, 0, 60, 16);
+		deleteButton.addActionListener(new ActionListener() {
 
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("this is happening");
+				setVisible(false);
+				remove(deleteButton);
+				clear();
+				p.twoOpen = false;
+				revalidate();
+				repaint();
+				p.pack();
+				
+			}
+
+		});
+		
+		add(deleteButton);
+		p.twoOpen = true;
+		revalidate();
+		repaint();
+
+
+	}
+	
+	public void clear(){
+		for(JLabel x: this.itemStorage.keySet()){
+			layeredPane.remove(x);
+			removeItem(x);
+			revalidate();
+			repaint();
+			
+		}
+	}
+	
+	public void fill(HashMap<JLabel, Item> toFill){
+		this.itemStorage = toFill;
+		for(JLabel x: toFill.keySet()){
+			layeredPane.add(x);
+		}
+	}
 
 	private boolean drag = false;
 	private int mouseX;

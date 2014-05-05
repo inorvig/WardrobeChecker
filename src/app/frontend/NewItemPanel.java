@@ -41,6 +41,7 @@ public class NewItemPanel extends JPanel implements ActionListener{
 	public boolean itemExists = false;
 	public Item myItem = null;
 	public JLabel lblNewLabel;
+	public MainFrame p;
 	
 	public String[] resetArray(String[] input, String m){
 		for(int x=0; x<input.length; x++){
@@ -61,7 +62,6 @@ public class NewItemPanel extends JPanel implements ActionListener{
 		}
 
 	public NewItemPanel(final MainFrame parent, final User user, final Item item) {
-		System.out.println(user+ " is the user");
 		this.user = user;
 		setLayout(new BorderLayout(0, 0));
 
@@ -69,6 +69,7 @@ public class NewItemPanel extends JPanel implements ActionListener{
 		
 		itemExists = true;
 		myItem = item;
+		p = parent;
 		
 		lblNewLabel = new JLabel(item.getName());
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -171,12 +172,7 @@ public class NewItemPanel extends JPanel implements ActionListener{
 				color = txtColor.getText();
 				String tagString = txtTags.getText().replaceAll("\\s",",");
 				tags = new ArrayList<String>(Arrays.asList(tagString.split(",+")));
-				System.out.format("Sending item: %s, %s, %s, %s, %s\n",name,wardrobe,category,color,imagePath);
-				System.out.println("tags: ");
-				for (String tag : tags){
-					System.out.println(tag);
-				}
-				System.out.println("user: "+user);
+
 				user.addItem(name, wardrobe, category, color, imagePath,tags);
 				user.removeItem(myItem);
 				parent.updateItems();
@@ -219,6 +215,7 @@ public class NewItemPanel extends JPanel implements ActionListener{
 	public NewItemPanel(final MainFrame parent, final User user) {
 		System.out.println(user+ " is the user");
 		this.user = user;
+		this.p = parent;
 		setLayout(new BorderLayout(0, 0));
 
 		imagePath = "images/question.gif";
@@ -321,15 +318,14 @@ public class NewItemPanel extends JPanel implements ActionListener{
 				color = txtColor.getText();
 				String tagString = txtTags.getText().replaceAll("\\s",",");
 				tags = new ArrayList<String>(Arrays.asList(tagString.split(",+")));
-				System.out.format("Sending item: %s, %s, %s, %s, %s\n",name,wardrobe,category,color,imagePath);
-				System.out.println("tags: ");
-				for (String tag : tags){
-					System.out.println(tag);
-				}
-				System.out.println("user: "+user);
+
 				user.addItem(name, wardrobe, category, color, imagePath,tags);
 				parent.updateItems();
-				parent.returnToHome();
+				if(!parent.twoOpen){
+				parent.returnToHome();}
+				else{
+					setVisible(false);
+				}
 			}
 		});
 		
@@ -359,17 +355,34 @@ public class NewItemPanel extends JPanel implements ActionListener{
 	}
 	
 	public void makeDeletable(){
-		JButton deleteButton = new JButton("Exit");
-		deleteButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		final JButton deleteButton = new JButton("Exit");
+		deleteButton.setBorder(new LineBorder(new Color(255, 255, 255)));
 		deleteButton.setBackground(Color.white);
 		deleteButton.setOpaque(true);
-		deleteButton.setForeground(Color.white);
-		deleteButton.setBackground(UIManager.getColor("TabbedPane.selectHighlight"));
+		deleteButton.setForeground(Color.black);
 		deleteButton.setBounds(380, 0, 60, 16);
-		deleteButton.addActionListener(this);
-		this.lblNewLabel.add(deleteButton);
+		deleteButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("this is happening");
+				setVisible(false);
+				lblNewLabel.remove(deleteButton);
+				revalidate();
+				repaint();
+				p.pack();
+				p.twoOpen = false;
+				
+			}
+
+		});
+		
+		lblNewLabel.add(deleteButton);
+		p.twoOpen = true;
 		revalidate();
 		repaint();
+
+
 	}
 	
 	public void setImagePath(String path){
@@ -385,13 +398,15 @@ public class NewItemPanel extends JPanel implements ActionListener{
 	}
 
 	public void addTags(String string) {
-		System.out.println("generating tags for"+ string);
 		Collection<String> tags = user.suggestTags(string);
 		String toAdd = "";
 		for (String tag: tags){
 			toAdd+=(tag+", ");
 		}
 		txtTags.setText(toAdd);
+		System.out.println(user.suggestColor(string)+ " is the color");
+		
+		txtColor.setText(user.suggestColor(string));
 	}
 
 	@Override
