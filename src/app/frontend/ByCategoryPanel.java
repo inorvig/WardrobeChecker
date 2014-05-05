@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -28,6 +30,9 @@ public class ByCategoryPanel extends JPanel {
 	private String closet;
 	private User user;
 	private MainFrame parent;
+	private GridBagLayout gridBagLayout;
+	private GridBagConstraints c;
+	private int count, row, col;
 	/**
 	 * Create the panel.
 	 */
@@ -37,74 +42,22 @@ public class ByCategoryPanel extends JPanel {
 		this.user = user;
 		this.parent = parent;
 		
-		setLayout(new GridLayout(0, 3, 0, 0));
-
-//		JButton btnTShirts = new JButton("T-Shirts");
-//		btnTShirts.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//			}
-//		});
-//		ImageIcon icon2 = new ImageIcon(
-//				"../wardrobe/images/categories/t-shirts.gif");
-//		Image img2 = icon2.getImage();
-//		Image newimg2 = img2.getScaledInstance(120, 120,
-//				java.awt.Image.SCALE_SMOOTH);
-//		btnTShirts.setIcon(new ImageIcon(newimg2));
-//		btnTShirts.setVerticalTextPosition(SwingConstants.BOTTOM);
-//		btnTShirts.setHorizontalTextPosition(SwingConstants.CENTER);
-//		btnTShirts.setPreferredSize(new Dimension(150, 150));
-//		add(btnTShirts);
-//
-//		JButton btnPants = new JButton("Pants");
-//		btnTShirts.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//			}
-//		});
-//		ImageIcon icon3 = new ImageIcon(
-//				"../wardrobe/images/categories/pants.gif");
-//		Image img3 = icon3.getImage();
-//		Image newimg3 = img3.getScaledInstance(120, 120,
-//				java.awt.Image.SCALE_SMOOTH);
-//		btnTShirts.setIcon(new ImageIcon(newimg3));
-//		btnTShirts.setVerticalTextPosition(SwingConstants.BOTTOM);
-//		btnTShirts.setHorizontalTextPosition(SwingConstants.CENTER);
-//		btnTShirts.setPreferredSize(new Dimension(150, 150));
-//		add(btnPants);
-//
-//		JButton btnSkirts = new JButton("Skirts");
-//		btnSkirts.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//			}
-//		});
-//		ImageIcon icon4 = new ImageIcon(
-//				"../wardrobe/images/categories/skirt.gif");
-//		Image img4 = icon4.getImage();
-//		Image newimg4 = img4.getScaledInstance(120, 120,
-//				java.awt.Image.SCALE_SMOOTH);
-//		btnSkirts.setIcon(new ImageIcon(newimg4));
-//		btnSkirts.setVerticalTextPosition(SwingConstants.BOTTOM);
-//		btnSkirts.setHorizontalTextPosition(SwingConstants.CENTER);
-//		btnSkirts.setPreferredSize(new Dimension(150, 150));
-//		add(btnSkirts);
-//
-//		JButton btnDresses = new JButton("Dresses");
-//		btnDresses.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//			}
-//		});
-//		ImageIcon icon5 = new ImageIcon(
-//				"../wardrobe/images/categories/t-shirts.gif");
-//		Image img5 = icon5.getImage();
-//		Image newimg5 = img5.getScaledInstance(120, 120,
-//				java.awt.Image.SCALE_SMOOTH);
-//		btnDresses.setIcon(new ImageIcon(newimg5));
-//		btnDresses.setVerticalTextPosition(SwingConstants.BOTTOM);
-//		btnDresses.setHorizontalTextPosition(SwingConstants.CENTER);
-//		btnDresses.setPreferredSize(new Dimension(150, 150));
-//		add(btnDresses);
+		gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0};
+		gridBagLayout.rowWeights = new double[]{0.0};
+		gridBagLayout.columnWidths = new int[] {130, 130, 130};
+		gridBagLayout.rowHeights = new int[] {150};
 		
-
-		addButton();
+		setLayout(gridBagLayout);
+		
+		c = new GridBagConstraints();
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.NORTHWEST;
+		c.weightx = 1;
+		c.weighty = 1;
+		
+		reset();
 
 	}
 	
@@ -115,7 +68,11 @@ public class ByCategoryPanel extends JPanel {
 	
 	//TODO: items of certain category in certain wardrobe
 	public void displayCategory(String name){
+		System.out.println("category: "+name);
 		this.removeAll();
+		row = 0;
+		col = 0;
+		count = 0;
 		for (Item i : user.searchWardrobe(closet).getItems()){
 			JLabel item = new JLabel(i.getName());
 			ImageIcon icon = new ImageIcon(i.getImagePath());
@@ -124,37 +81,39 @@ public class ByCategoryPanel extends JPanel {
 			item.setIcon(new ImageIcon(newimg));
 			item.setVerticalTextPosition(SwingConstants.BOTTOM);
 			item.setHorizontalTextPosition(SwingConstants.CENTER);
-			item.setPreferredSize(new Dimension(150, 150));
-			add(item);
+			item.setPreferredSize(new Dimension(130, 150));
+			
+			c.gridy = row;
+			c.gridx = col;
+
+			if (count%3==0 && count>0){
+				row++;
+				gridBagLayout.rowHeights = new int[row+1];
+				for (int r=0; r<=row;r++){
+					gridBagLayout.rowHeights[r]=150;
+				}
+				col = 0;
+				c.gridx = col;
+				c.gridy = row;
+			}
+			add(item,c);
+			count++;
+			col++;
 		}
 		
 		addButton();
+		revalidate();
+		repaint();
 	}
 	
+
 	public void reset(){
 		this.removeAll();
-
+		count = 0;
+		row = 0;
+		col = 0;
 		addButton();
-		
-		for (final Category c : user.getCategories()){
-			JButton cat = new JButton(c.getName());
-			cat.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					displayCategory(c.getName());
-				}
-			});
-			ImageIcon icon = new ImageIcon(c.getImagePath());
-			Image img = icon.getImage();
-			Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
-			cat.setIcon(new ImageIcon(newimg));
-			cat.setVerticalTextPosition(SwingConstants.BOTTOM);
-			cat.setHorizontalTextPosition(SwingConstants.CENTER);
-			cat.setPreferredSize(new Dimension(130, 150));
-			add(cat);
-		}
-		
-		this.repaint();
+		addCategories();
 	}
 	
 	private void addButton(){
@@ -182,8 +141,53 @@ public class ByCategoryPanel extends JPanel {
 		btnAddCategory.setIcon(new ImageIcon(newimg));
 		btnAddCategory.setVerticalTextPosition(SwingConstants.BOTTOM);
 		btnAddCategory.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnAddCategory.setPreferredSize(new Dimension(150, 150));
-		add(btnAddCategory);
+		btnAddCategory.setPreferredSize(new Dimension(130, 150));
+		
+		c.gridy = row;
+		c.gridx = col;
+		if (count%3==0 && count>0){
+			row++;
+			c.gridx = 0;
+			c.gridy = row;
+		}
+		add(btnAddCategory, c);
+		count++;
+		col++;
 	}
+	
+	public void addCategories(){
+		for (final Category cg : user.getCategories()){
+			JButton cat = new JButton(cg.getName());
+			cat.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					displayCategory(cg.getName());
+				}
+			});
+			ImageIcon icon = new ImageIcon(cg.getImagePath());
+			Image img = icon.getImage();
+			Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+			cat.setIcon(new ImageIcon(newimg));
+			cat.setVerticalTextPosition(SwingConstants.BOTTOM);
+			cat.setHorizontalTextPosition(SwingConstants.CENTER);
+			cat.setPreferredSize(new Dimension(130, 150));
+			
+			c.gridy = row;
+			c.gridx = col;
 
+			if (count%3==0 && count>0){
+				row++;
+				gridBagLayout.rowHeights = new int[row+1];
+				for (int r=0; r<=row;r++){
+					gridBagLayout.rowHeights[r]=150;
+				}
+				col = 0;
+				c.gridx = col;
+				c.gridy = row;
+			}
+			add(cat,c);
+			count++;
+			col++;
+		}
+	}
 }
