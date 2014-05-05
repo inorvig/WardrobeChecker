@@ -58,13 +58,14 @@ public class AppUser implements User, Serializable {
 		this.searchCategory("pants").setImagePath("images/categories/pants.gif");
 		addCategory("skirt");
 		this.searchCategory("skirt").setImagePath("images/categories/skirt.gif");
-		addCategory("Skirts");		
+		addCategory("swim");		
 		this.searchCategory("swim").setImagePath("images/categories/swim.gif");
 		addCategory("tanks");
-		this.searchCategory("t-shirts").setImagePath("images/categories/tanks.gif");
+		this.searchCategory("tanks").setImagePath("images/categories/tanks.gif");
 		addCategory("workout");
-		this.searchCategory("t-shirts").setImagePath("images/categories/workout.gif");
-		
+		this.searchCategory("workout").setImagePath("images/categories/workout.gif");
+		addCategory("dresses");
+		this.searchCategory("dresses").setImagePath("images/categories/dresses.gif");
 		this.autosuggest = new Autosuggest(tagsMap); //set up autosuggest
 		autosuggest.setUp();
 		
