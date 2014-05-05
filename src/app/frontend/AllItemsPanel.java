@@ -63,13 +63,15 @@ public class AllItemsPanel extends JPanel {
 	
 	public void reset(){
 		removeAll();
-
+		count = 0;
+		row = 0;
+		col = 0;
 		addButton();
 		addItems();
 	}
 	
 	private void addItems(){
-		System.out.println("searching for wardrobe "+closet+" in user "+user);
+		//System.out.println("searching for wardrobe "+closet+" in user "+user);
 		Collection<Item> items;
 		if (closet.equals("all")){
 			items = user.allItems();
@@ -100,7 +102,7 @@ public class AllItemsPanel extends JPanel {
 				c.gridy = row;
 				
 			}
-			System.out.format("row: %d, col: %d, count: %d\n",row,col,count);
+			//System.out.format("row: %d, col: %d, count: %d\n",row,col,count);
 			add(item,c);
 			count++;
 			col++;

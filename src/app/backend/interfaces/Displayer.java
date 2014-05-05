@@ -1,6 +1,15 @@
 package app.backend.interfaces;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+
+import javax.swing.JPanel;
+
 public interface Displayer {
 
-	// TODO make this something that GUI can store display info in
+	//gets panel outfit was made in
+	public JPanel getOutfitPanel();
+	
+	//gets a preview image of the outfit
+	public Image getPreview(); 
 }

@@ -1,5 +1,6 @@
 package app.backend.user;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
@@ -17,13 +18,16 @@ public class AppOutfit implements Outfit, Serializable {
 	String name;
 	HashSet<Item> items;
 	Wardrobe wardrobe;
+	BufferedImage preview;
+	Displayer displayInfo;
 
-	public AppOutfit(String name, Wardrobe wardrobe,
-			Collection<Item> itemsInOutfit) {
+	public AppOutfit(String name, Wardrobe wardrobe, 
+			Collection<Item> itemsInOutfit, Displayer displayInfo) {
 
 		this.name = name;
 		this.wardrobe = wardrobe;
 		this.items = new HashSet<Item>();
+		this.displayInfo = displayInfo;
 
 		for (Item item : itemsInOutfit) {
 			items.add(item);
@@ -33,6 +37,15 @@ public class AppOutfit implements Outfit, Serializable {
 	@Override
 	public String getName() {
 		return name;
+	}
+	
+	public void addPreview(BufferedImage image){
+		this.preview = image;
+		
+	}
+	
+	public BufferedImage getPreview(){
+		return this.preview;
 	}
 
 	// ADD TAG METHOD NEEDED??
@@ -51,13 +64,26 @@ public class AppOutfit implements Outfit, Serializable {
 		return wardrobe;
 	}
 
-	public Displayer getDisplayinfo() {
-		return null;
-	}
 
 	@Override
 	public Displayer getDisplayInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return displayInfo;
+	}
+
+	@Override
+	public void setName(String newName) {
+		this.name = newName;		
+	}
+
+	@Override
+	public void setItems(Collection<Item> item) {
+		this.items.removeAll(items);
+		items.addAll(item);
+	}
+
+	@Override
+	public void setDisplayInfo(Displayer d) {
+		this.displayInfo = d;
+		
 	}
 }

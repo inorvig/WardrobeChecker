@@ -59,9 +59,11 @@ public class ByWardrobePanel extends JPanel {
 
 	protected void reset() {
 		removeAll();
+		count = 0;
+		row = 0;
+		col = 0;
 		addButton();
 		addWardrobes();
-		
 	}
 	
 	public void addButton(){

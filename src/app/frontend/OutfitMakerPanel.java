@@ -3,6 +3,7 @@ package app.frontend;
 import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -13,6 +14,7 @@ import java.awt.image.BufferedImage;
 
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -22,12 +24,18 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 import javax.swing.JTextArea;
 
 import javax.swing.JLayeredPane;
 
+import app.backend.interfaces.Item;
 import app.backend.interfaces.User;
+import app.backend.user.AppOutfit;
+import app.backend.user.OutfitDisplayer;
+
 import javax.swing.JTextField;
 
 
@@ -36,11 +44,20 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton testButton;
 	private JButton saveButton;
 	public JLayeredPane layeredPane;
 	public JLabel lblNewLabel;
 	private JLabel savedLabel = null;
+	//this is the hamper
+	private JLabel hamper;
+	private AppOutfit outfitExisting;
+	private User u;
+	private MainFrame p;
+	
+	//hashmap of JLabel to item
+	private HashMap<JLabel, Item> itemStorage = new HashMap<JLabel, Item>();
+	
+	
 	
 	public ArrayList<JLabel> draggable = new ArrayList<JLabel>();
 
@@ -49,10 +66,17 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	 */
 	public OutfitMakerPanel(MainFrame parent, User user) {
 		setBackground(Color.WHITE);
+		setSize(467,460);
 		ImageIcon icon = new ImageIcon(("images/person.gif"));
 		Image img = icon.getImage();
 		Image newimg = img.getScaledInstance(170, 372, java.awt.Image.SCALE_SMOOTH);
 		setLayout(null);
+		this.outfitExisting = null;
+		if(parent.selectedOutfit != null){
+			this.outfitExisting = parent.selectedOutfit;
+		}
+		this.u = user;
+		this.p = parent;
 		
 		saveButton = new JButton("save");
 		saveButton.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -61,13 +85,10 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		saveButton.addActionListener(this);
 		add(saveButton);
 		
-		testButton = new JButton("testButton");
-		testButton.setBounds(124, 10, 117, 25);
-		testButton.addActionListener(this);
-		add(testButton);
+		
 		
 		layeredPane = new JLayeredPane();
-		layeredPane.setBounds(15, 10, 241, 400);
+		layeredPane.setBounds(148, 12, 241, 400);
 		layeredPane.setBackground(Color.WHITE);
 		layeredPane.setOpaque(true);
 		add(layeredPane);
@@ -81,12 +102,32 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		lblNewLabel.setIcon(new ImageIcon(newimg));
 		
 		textField = new JTextField();
-		textField.setBounds(40, 417, 114, 19);
+		textField.setBounds(176, 415, 114, 25);
 		add(textField);
 		textField.setColumns(10);
 		
+		//make the hamper and add it to the layered pane/
+		hamper = new JLabel("");
+		hamper.setBounds(173, 345, 70, 70);
+		ImageIcon Hampericon = new ImageIcon(("images/hamper.png"));
+		Image imghamper = Hampericon.getImage();
+		Image newimgHamper = imghamper.getScaledInstance(70,40, java.awt.Image.SCALE_SMOOTH);
+		hamper.setIcon(new ImageIcon(newimgHamper));
+		layeredPane.add(hamper);
+		//done making the hamper
 	}
 	
+	public void removeUnder(){
+		
+	}
+	
+	public void addItem(JLabel x, Item m){
+		this.itemStorage.put(x, m);
+	}
+	
+	public void removeItem(JLabel x){
+		this.itemStorage.remove(x);
+	}
 	
 	
 	public BufferedImage createImage(JLayeredPane panel) {
@@ -99,32 +140,19 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	    return bi;
 	}
 	
+	private void msgbox(String s){
+		   JOptionPane.showMessageDialog(null, s);
+		}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		System.out.println(src.getClass());
-		if(src == testButton){
-			
-			//panel.createPanel("shirt1", "/outfitImages/shit1.gif");
-			System.out.println("testButton pressed");
-			JLabel lblNewLabel_1 = new JLabel("");
-			ImageIcon icon2 = new ImageIcon(OutfitMakerPanel.class.getResource("/images/shit1.gif"));
-			Image img2 = icon2.getImage();
-			Image newimg2 = img2.getScaledInstance(120, 138, java.awt.Image.SCALE_SMOOTH);
-			lblNewLabel_1.setIcon(new ImageIcon(newimg2));
-			lblNewLabel_1.setBounds(59, 46, 120, 138);
-			layeredPane.remove(lblNewLabel);
-			layeredPane.add(lblNewLabel_1);
-			layeredPane.add(lblNewLabel);
-			lblNewLabel_1.addMouseListener(this);
-			lblNewLabel_1.addMouseMotionListener(this);
-			
-			draggable.add(lblNewLabel_1);
-			
-			
-		}
 		if(src == saveButton){
+			if(textField.getText().equals("")){
+				msgbox("You must enter an outfit name!");
+			}
+			else{
 			if(savedLabel != null){
 				layeredPane.remove(savedLabel);
 			}
@@ -137,6 +165,19 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 			layeredPane.add(m);
 			savedLabel = m;
 			
+			OutfitDisplayer toSend = new OutfitDisplayer(this, x);
+			Collection<Item> itemstoSend = itemStorage.values();
+			if(outfitExisting != null){
+				outfitExisting.setName(textField.getText());
+				outfitExisting.setItems(itemstoSend);
+				outfitExisting.setDisplayInfo(toSend);
+				p.OutfitMakerPanel = new OutfitMakerPanel(p, u);
+			}
+			else{
+			AppOutfit toSave = new AppOutfit(textField.getText(), null, itemstoSend, toSend);
+			u.saveOutfit(toSave);
+			}
+			}
 			
 		}
 		
@@ -205,6 +246,8 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 		if(draggable.contains(e.getSource())){
 			drag = true;
 			toMove = (JLabel) e.getSource();
+			layeredPane.remove(toMove);
+			layeredPane.add(toMove, 1);
 		}
 		
 	}
@@ -217,7 +260,18 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		drag = false;
-		
+		/*
+		 * checks if the bounds of the moved item intersect with the hamper, if they do, then we trash the item
+		 */
+		Rectangle itemBounds = toMove.getBounds();
+		Rectangle hamperBounds = hamper.getBounds();
+		System.out.println();
+		if(itemBounds.intersects(hamperBounds)){
+			System.out.println("gettingHere");
+			layeredPane.remove(toMove);
+			removeItem(toMove);
+			repaint();
+		}
 	}
 
 

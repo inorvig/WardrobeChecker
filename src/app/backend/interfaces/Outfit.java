@@ -1,11 +1,18 @@
 package app.backend.interfaces;
 
+import java.awt.image.BufferedImage;
 import java.util.Collection;
 
 public interface Outfit {
 
 	// The outfit's name
 	public String getName();
+	
+	//reset
+	public void setName(String newName);
+	
+	//Set new item collection
+	public void setItems(Collection<Item> item);
 
 	// Any extra tags the outfit has gotten (casual, business, etc.)
 	public Collection<String> getOutfitTags();
@@ -19,4 +26,8 @@ public interface Outfit {
 
 	// Any info the GUI needs to reconstruct the picture
 	public Displayer getDisplayInfo();
+	
+	public void setDisplayInfo(Displayer d);
+	
+	
 }

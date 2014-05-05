@@ -41,6 +41,11 @@ public class AddPhotoPanel extends JPanel implements ActionListener {
 		
 		photoPanel = new JPanel();
 		photoPanel.setPreferredSize(new Dimension(120,120));
+		if(parent.itemExists){
+			ImageIcon icon = new ImageIcon(parent.myItem.getImagePath());
+			Image img = icon.getImage();
+			Image newimg = img.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+		}
 		setPreferredSize(new Dimension(120,140));
 		add(photoPanel, BorderLayout.CENTER);
 		add(btnAddPhoto, BorderLayout.SOUTH);
