@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
@@ -30,14 +32,11 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 	 */	
 	public HashMap<JPanel, Item> Clickable;
 	public OutfitMakerPanel ourPanel; 
-	
-	
-	
-	
 
 	public JPanel createPanel(Item x) {
 		System.out.println(x.getName());
         JPanel p = new JPanel(new BorderLayout());
+        p.setBackground(java.awt.Color.WHITE);
         p.add(new JLabel(x.getName()+ "   ", JLabel.CENTER), BorderLayout.CENTER);
         ImageIcon icon2 = new ImageIcon(x.getImagePath());
         System.out.println(x.getImagePath());
@@ -65,13 +64,26 @@ public class SearchPanels extends JPanel implements MouseListener, MouseMotionLi
 	
 	
 	public SearchPanels(List<Item> list, MainFrame parent) {
+		setBackground(java.awt.Color.WHITE);
 		Clickable = new HashMap<JPanel, Item>();
-		setLayout(new GridLayout(0, 1));
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[] {120};
+		setLayout(gridBagLayout);
+		
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.NORTHWEST;
+		c.weightx = 1;
+		c.weighty = 1;
+		int row = 0;
+		
 		for(Item x: list){
-			this.add(createPanel(x));
+			c.gridy = row;
+			this.add(createPanel(x),c);
+			row++;
 		}
 		ourPanel = parent.OutfitMakerPanel;
-		this.setBackground(new java.awt.Color(127, 110, 186));
 		revalidate();
 		repaint();
 
