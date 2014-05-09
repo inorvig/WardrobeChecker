@@ -145,8 +145,8 @@ public class ByCategoryPanel extends JPanel {
 		btnAddCategory.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnAddCategory.setPreferredSize(new Dimension(130, 150));
 		
-		c.gridy = row;
-		c.gridx = col;
+		c.gridy = 0;
+		c.gridx = 0;
 		if (count%3==0 && count>0){
 			row++;
 			c.gridx = 0;
