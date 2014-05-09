@@ -21,7 +21,7 @@ public class AppWardrobe implements Wardrobe, Serializable {
 	}
 
 	public AppWardrobe(String name, WardrobeType type) {
-		System.out.println("just made a wardrobe with name"+ name);
+		//System.out.println("just made a wardrobe with name"+ name);
 		this.name = name;
 		this.items = new HashSet<Item>();
 		this.type = type;

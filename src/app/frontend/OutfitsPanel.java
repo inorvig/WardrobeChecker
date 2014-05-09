@@ -29,7 +29,7 @@ public class OutfitsPanel extends JPanel{
 
 	private User user;
 	private MainFrame parent;
-	private GridBagLayout gridBagLayout;
+	private transient GridBagLayout gridBagLayout;
 	private GridBagConstraints c;
 	private int row,col,count = 0;
 	private JPanel panel;
@@ -54,17 +54,14 @@ public class OutfitsPanel extends JPanel{
 		lblAllOutfits.setOpaque(true);
 		add(lblAllOutfits, BorderLayout.NORTH);
 
-
-		AllOutfitsPanel outfits = new AllOutfitsPanel(parent, user);
-
-		
 		outfits = new AllOutfitsPanel(parent, user);
 		add(outfits, BorderLayout.CENTER);
-
+		System.out.println("initial outfits: "+outfits);
 		parent.pack();
 	}
 	
 	public void reset(){
+		System.out.println("outfits: "+outfits);
 		outfits.reset();
 		repaint();
 	}

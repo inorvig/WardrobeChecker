@@ -155,29 +155,30 @@ public class OutfitMakerPanel extends JPanel implements ActionListener, MouseLis
 			}
 			else{
 
-			if(savedLabel != null){
-				layeredPane.remove(savedLabel);
-			}
-			System.out.println("getting to save");
-			Image x = createImage(layeredPane).getScaledInstance(this.getHeight()/6, this.getWidth()/4, java.awt.Image.SCALE_SMOOTH);
-			JLabel m = new JLabel("");
-			ImageIcon icon3 = new ImageIcon(x);
-			m.setIcon(icon3);
-			m.setBounds(180, 25, icon3.getIconWidth(), icon3.getIconHeight());
-			layeredPane.add(m);
-			savedLabel = m;
-			
-			OutfitDisplayer toSend = new OutfitDisplayer(this.itemStorage, x);
-			Collection<Item> itemstoSend = itemStorage.values();
-			if(outfitExisting != null){
-				outfitExisting.setName(textField.getText());
-				outfitExisting.setItems(itemstoSend);
-				outfitExisting.setDisplayInfo(toSend);
-			}
-			else{
-			AppOutfit toSave = new AppOutfit(textField.getText(), null, itemstoSend, toSend);
-			u.saveOutfit(toSave);
-			}
+				if(savedLabel != null){
+					layeredPane.remove(savedLabel);
+				}
+				System.out.println("getting to save");
+				Image x = createImage(layeredPane).getScaledInstance(this.getHeight()/6, this.getWidth()/4, java.awt.Image.SCALE_SMOOTH);
+				JLabel m = new JLabel("");
+				ImageIcon icon3 = new ImageIcon(x);
+				m.setIcon(icon3);
+				m.setBounds(180, 25, icon3.getIconWidth(), icon3.getIconHeight());
+				layeredPane.add(m);
+				savedLabel = m;
+				
+				OutfitDisplayer toSend = new OutfitDisplayer(this.itemStorage, x);
+				Collection<Item> itemstoSend = itemStorage.values();
+				if(outfitExisting != null){
+					outfitExisting.setName(textField.getText());
+					outfitExisting.setItems(itemstoSend);
+					outfitExisting.setDisplayInfo(toSend);
+				}
+				else{
+					AppOutfit toSave = new AppOutfit(textField.getText(), null, itemstoSend, toSend);
+					u.saveOutfit(toSave);
+					p.updateOutfits();
+				}
 
 			}
 			

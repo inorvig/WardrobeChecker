@@ -88,7 +88,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 		_user = _savedUser.getUser();
 		self = this;
-		System.out.println("mainframe user: "+_user);
+		//System.out.println("mainframe user: "+_user);
 		initComponents();
 
 
@@ -567,7 +567,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 		closetPanel.setVisible(false);
 		newItemPanel.clear();
 		newItemPanel.setVisible(true);
-		System.out.println("new item");
+		//System.out.println("new item");
 		pack();
 	}
 
@@ -604,7 +604,7 @@ public class MainFrame extends javax.swing.JFrame implements WindowListener {
 
 	public static void main(String args[]) {
 
-		System.out.println("We found the main");
+		//System.out.println("We found the main");
 		/* Set the Nimbus look and feel */
 		// <editor-fold defaultstate="collapsed"
 		// desc=" Look and feel setting code (optional) ">

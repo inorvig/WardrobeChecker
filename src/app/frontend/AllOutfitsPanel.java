@@ -21,7 +21,7 @@ public class AllOutfitsPanel extends JPanel {
 
 	private final MainFrame parent;
 	private final User user;
-	private GridBagLayout gridBagLayout;
+	private transient GridBagLayout gridBagLayout;
 	private GridBagConstraints c;
 	private int row,col,count = 0;
 	
@@ -74,12 +74,12 @@ public class AllOutfitsPanel extends JPanel {
 		}
 		System.out.format("row: %d, col: %d, count: %d\n",row,col,count);
 		add(btnNewOutfit,c);
-		System.out.println("width: "+btnNewOutfit.getWidth());
 		count++;
 		col++;
 	}
 	
 	public void addOutfits(){
+		System.out.println("add outfits called; outfits length: "+user.getOutfits().size());
 		for (final Outfit o : user.getOutfits()){
 			System.out.println("outfit encountered");
 			JButton item = new JButton(o.getName());
@@ -120,7 +120,7 @@ public class AllOutfitsPanel extends JPanel {
 	
 
 	public void reset(){
-		System.out.println("resetting outfits");
+		System.out.println("resetting all outfits panel");
 		removeAll();
 		count = 0;
 		row = 0;
